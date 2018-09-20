@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.mapper.MemberMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.entity.Member">
+        <id column="member_id" property="memberId" />
+        <result column="address" property="address" />
+        <result column="balance" property="balance" />
+        <result column="created" property="created" />
+        <result column="description" property="description" />
+        <result column="email" property="email" />
+        <result column="file" property="file" />
+        <result column="password" property="password" />
+        <result column="phone" property="phone" />
+        <result column="point" property="point" />
+        <result column="sex" property="sex" />
+        <result column="state" property="state" />
+        <result column="updated" property="updated" />
+        <result column="username" property="username" />
+    </resultMap>
+
+</mapper>

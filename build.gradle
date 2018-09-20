@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+group 'com.yoke.poseidon'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+// config subModule dependencies
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: "maven"
+    ext{
+        springBootVersion = '2.0.4.RELEASE'
+        springCloudVersion = 'Finchley.SR1'
+        mybatisPlusVersion ='3.0.3'
+        compileJava.options.encoding = 'UTF-8'
+        compileTestJava.options.encoding = 'UTF-8'
+    }
+    // specify jdk version
+    sourceCompatibility = 1.8
+    // specify class file version
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    dependencies{
+        compile group: 'com.baomidou', name: 'mybatis-plus', version: '3.0.3'
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

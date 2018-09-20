@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.mapper.ItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.entity.Item">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="sell_point" property="sellPoint" />
+        <result column="price" property="price" />
+        <result column="num" property="num" />
+        <result column="limit_num" property="limitNum" />
+        <result column="image" property="image" />
+        <result column="c_id" property="cId" />
+        <result column="status" property="status" />
+        <result column="created" property="created" />
+        <result column="updated" property="updated" />
+        <result column="sort_order" property="sortOrder" />
+        <result column="remark" property="remark" />
+        <result column="description" property="description" />
+    </resultMap>
+
+</mapper>
