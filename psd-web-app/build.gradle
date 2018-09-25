@@ -1,7 +1,6 @@
 // the resources required by the gradle script itself
 buildscript {
     repositories {
-        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -16,19 +15,19 @@ group 'com.yoke.poseidon'
 apply plugin: "io.spring.dependency-management"
 version '1.0-SNAPSHOT'
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
     compile('mysql:mysql-connector-java:8.0.12')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 //    compile('org.springframework:springloaded:1.2.8.RELEASE')
     compile("org.springframework.boot:spring-boot-devtools")
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
-    compile ("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+    compile("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus
     compile group: 'com.baomidou', name: 'mybatis-plus', version: "${mybatisPlusVersion}"
     // https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.manager.mapper.LogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.manager.entity.Log">
+        <id column="log_id" property="logId" />
+        <result column="create_date" property="createDate" />
+        <result column="ip" property="ip" />
+        <result column="ip_info" property="ipInfo" />
+        <result column="name" property="name" />
+        <result column="request_param" property="requestParam" />
+        <result column="request_type" property="requestType" />
+        <result column="time" property="time" />
+        <result column="url" property="url" />
+        <result column="user" property="user" />
+    </resultMap>
+
+</mapper>

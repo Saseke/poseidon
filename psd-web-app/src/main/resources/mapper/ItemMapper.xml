@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yoke.poseidon.mapper.ItemMapper">
+<mapper namespace="com.yoke.poseidon.web.mapper.ItemMapper">
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yoke.poseidon.entity.Item">
-        <id column="id" property="id" />
-        <result column="title" property="title" />
-        <result column="sell_point" property="sellPoint" />
-        <result column="price" property="price" />
-        <result column="num" property="num" />
-        <result column="limit_num" property="limitNum" />
-        <result column="image" property="image" />
-        <result column="c_id" property="cId" />
-        <result column="status" property="status" />
-        <result column="created" property="created" />
-        <result column="updated" property="updated" />
-        <result column="sort_order" property="sortOrder" />
-        <result column="remark" property="remark" />
-        <result column="description" property="description" />
-    </resultMap>
+    <select id="findByItemTitle" resultType="com.yoke.poseidon.web.entity.Item">
+        SELECT * FROM db_item where title = #{title}
+    </select>
 
+    <select id="getAll" resultType="com.yoke.poseidon.web.entity.Item">
+        SELECT * FROM db_item
+        <if test="prop != null and order !=null and limit!=null and offset !=null">
+            order by
+            <choose>
+                <when test="prop=='id'">
+                    id
+                </when>
+                <when test="prop=='title'">
+                    title
+                </when>
+            </choose>
+
+            <if test="order == 'asc'">
+                asc
+            </if>
+            <if test="order == 'desc'">
+                desc
+            </if>
+            limit #{limit} offset #{offset}
+        </if>
+    </select>
 </mapper>
