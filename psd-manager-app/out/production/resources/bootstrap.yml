@@ -1,3 +1,8 @@
 spring:
   application:
     name: manager-app
+  cloud:
+    config:
+      label: master
+      uri: http://localhost:8888/
+      profile: dev

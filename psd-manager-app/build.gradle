@@ -38,7 +38,13 @@ dependencies {
     compile group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.0'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-ribbon
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.0.1.RELEASE'
+//    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.0.1.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
+
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

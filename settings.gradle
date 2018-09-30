@@ -3,4 +3,5 @@ include 'psd-web-app'
 include 'psd-discovery'
 include 'psd-gateway'
 include 'psd-manager-app'
+include 'psd-config-server'
 

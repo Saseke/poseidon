@@ -1,10 +1,11 @@
-server:
-  port: 10000
 eureka:
-  instance:
-    appname: gateway
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+zuul:
+  routes:
+    api-a:
+      path: /item/**
+      serviceId: web-app

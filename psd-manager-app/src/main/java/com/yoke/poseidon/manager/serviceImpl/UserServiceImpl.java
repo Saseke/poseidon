@@ -19,12 +19,4 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-
-    @Override
-    public String hello() {
-        return restTemplate.getForObject("http://WEB-APP/item/hello", String.class);
-    }
 }

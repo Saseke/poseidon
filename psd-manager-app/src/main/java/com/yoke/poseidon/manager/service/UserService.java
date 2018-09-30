@@ -12,5 +12,4 @@ import com.yoke.poseidon.manager.entity.User;
  * @since 2018-09-20
  */
 public interface UserService extends IService<User> {
-    String hello();
 }
