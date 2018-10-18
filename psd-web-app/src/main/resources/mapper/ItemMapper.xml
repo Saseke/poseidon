@@ -6,6 +6,11 @@
         SELECT * FROM db_item where title = #{title}
     </select>
 
+    <select id="findItemCatWithItems" resultType="com.yoke.poseidon.web.dto.ItemDto">
+        select item_cat_id ,db_item_cat.name,db_item.image,db_item.title as title,sell_point ,price,db_item.description,limit_num,db_item.sort_order from db_item,db_item_cat
+        where db_item_cat.name = #{itemCatName} and c_id = item_cat_id order by  db_item.sort_order asc limit #{limit}
+    </select>
+
     <select id="getAll" resultType="com.yoke.poseidon.web.entity.Item">
         SELECT * FROM db_item
         <if test="prop != null and order !=null and limit!=null and offset !=null">

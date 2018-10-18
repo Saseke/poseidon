@@ -20,9 +20,18 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+bootJar {
+    baseName = 'gs-spring-boot-docker'
+    version = '1.0.0'
+}
+
 repositories {
     mavenCentral()
 }
+
+sourceCompatibility = 1.8
+
+targetCompatibility = 1.8
 
 ext {
     springCloudVersion = 'Finchley.SR1'

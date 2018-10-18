@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.entity.Item;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface ItemService extends IService<Item> {
     Item findByItemTitle(String title);
 
     List<Item> getAll(String prop, String order, Integer page, Integer limit);
+
+    List<ItemDto> findItemCatWithItems(String itemCatName, Integer limit);
 }

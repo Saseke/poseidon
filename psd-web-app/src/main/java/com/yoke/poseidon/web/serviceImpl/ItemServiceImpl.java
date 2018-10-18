@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.serviceImpl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.entity.Item;
 import com.yoke.poseidon.web.mapper.ItemMapper;
 import com.yoke.poseidon.web.service.ItemService;
@@ -32,4 +33,8 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
         return itemMapper.getAll(prop, order, limit, (page - 1) * limit);
     }
 
+    @Override
+    public List<ItemDto> findItemCatWithItems(String itemCatName, Integer limit) {
+        return itemMapper.findItemCatWithItems(itemCatName, limit);
+    }
 }

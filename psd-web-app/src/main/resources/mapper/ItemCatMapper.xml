@@ -2,18 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.web.mapper.ItemCatMapper">
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yoke.poseidon.web.entity.ItemCat">
-        <id column="item_cat_id" property="itemCatId" />
-        <result column="created" property="created" />
-        <result column="icon" property="icon" />
-        <result column="is_parent" property="isParent" />
-        <result column="name" property="name" />
-        <result column="parent_id" property="parentId" />
-        <result column="remark" property="remark" />
-        <result column="sort_order" property="sortOrder" />
-        <result column="state" property="state" />
-        <result column="updated" property="updated" />
-    </resultMap>
+    <select id="listRootCat" resultType="com.yoke.poseidon.web.entity.ItemCat">
+        SELECT * FROM db_item_cat where parent_id = 0
+    </select>
 
+    <select id="listCatBySortOrder" resultType="com.yoke.poseidon.web.dto.ItemCatDto">
+        select name,sort_order from db_item_cat order by sort_order asc limit #{limit}
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.entity.Item;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,8 @@ public interface ItemMapper extends BaseMapper<Item> {
             @Param("order") String order,
             @Param("limit") Integer limit,
             @Param("offset") Integer offset);
+
+    List<ItemDto> findItemCatWithItems(
+            @Param("itemCatName") String itemCatName,
+            @Param("limit") Integer limit);
 }

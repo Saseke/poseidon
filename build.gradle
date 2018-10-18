@@ -10,10 +10,11 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: "maven"
-    ext{
+
+    ext {
         springBootVersion = '2.0.4.RELEASE'
         springCloudVersion = 'Finchley.SR1'
-        mybatisPlusVersion ='3.0.3'
+        mybatisPlusVersion = '3.0.3'
         compileJava.options.encoding = 'UTF-8'
         compileTestJava.options.encoding = 'UTF-8'
     }
@@ -25,7 +26,7 @@ subprojects {
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
     }
-    dependencies{
+    dependencies {
         compile group: 'com.baomidou', name: 'mybatis-plus', version: '3.0.3'
     }
 }
