@@ -1,2 +1,6 @@
 language: java
-sudo: false
+jdk:
+- openjdk8
+before_script:
+- chmod a+x gradlew
+script: ./gradlew build
