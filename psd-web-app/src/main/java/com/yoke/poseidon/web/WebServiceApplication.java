@@ -1,9 +1,10 @@
 package com.yoke.poseidon.web;
 
+import org.modelmapper.ModelMapper;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @author ethereal
@@ -12,6 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.yoke.poseidon.web.mapper")
 @SpringBootApplication
 public class WebServiceApplication {
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(WebServiceApplication.class, args);
     }

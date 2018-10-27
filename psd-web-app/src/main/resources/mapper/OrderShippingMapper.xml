@@ -2,17 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.web.mapper.OrderShippingMapper">
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yoke.poseidon.web.entity.OrderShipping">
-        <id column="order_id" property="orderId" />
-        <result column="receiver_name" property="receiverName" />
-        <result column="receiver_mobile" property="receiverMobile" />
-        <result column="receiver_state" property="receiverState" />
-        <result column="receiver_city" property="receiverCity" />
-        <result column="receiver_district" property="receiverDistrict" />
-        <result column="receiver_address" property="receiverAddress" />
-        <result column="created" property="created" />
-        <result column="updated" property="updated" />
-    </resultMap>
+
 
 </mapper>

@@ -11,23 +11,16 @@ public class ItemDto implements Serializable {
 
     private static final long serialVersionUID = -4001786119212330546L;
     private String itemId;
-    private String title;
-    private Long itemCatId;
+    private String name;
+    private Long cId;
     private String itemCatName;
     private String sellPoint;
     private BigDecimal price;
     private Integer limitNum;
     private String image;
+    private String remark;
     private String description;
     private Integer sortOrder;
-
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -41,20 +34,20 @@ public class ItemDto implements Serializable {
         this.itemId = itemId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Long getItemCatId() {
-        return itemCatId;
+    public Long getcId() {
+        return cId;
     }
 
-    public void setItemCatId(Long itemCatId) {
-        this.itemCatId = itemCatId;
+    public void setcId(Long cId) {
+        this.cId = cId;
     }
 
     public String getItemCatName() {
@@ -105,33 +98,34 @@ public class ItemDto implements Serializable {
         this.description = description;
     }
 
-    public ItemDto() {
+    public Integer getSortOrder() {
+        return sortOrder;
     }
 
-    public ItemDto(String itemId, String title, Long itemCatId, String itemCatName, String sellPoint,
-                   BigDecimal price, Integer limitNum, String image, String description) {
-        this.itemId = itemId;
-        this.title = title;
-        this.itemCatId = itemCatId;
-        this.itemCatName = itemCatName;
-        this.sellPoint = sellPoint;
-        this.price = price;
-        this.limitNum = limitNum;
-        this.image = image;
-        this.description = description;
+    public void setSortOrder(Integer sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override
     public String toString() {
         return "ItemDto{" +
                 "itemId='" + itemId + '\'' +
-                ", title='" + title + '\'' +
-                ", itemCatId=" + itemCatId +
+                ", name='" + name + '\'' +
+                ", cId=" + cId +
                 ", itemCatName='" + itemCatName + '\'' +
                 ", sellPoint='" + sellPoint + '\'' +
                 ", price=" + price +
                 ", limitNum=" + limitNum +
                 ", image='" + image + '\'' +
+                ", remark='" + remark + '\'' +
                 ", description='" + description + '\'' +
                 ", sortOrder=" + sortOrder +
                 '}';

@@ -1,8 +1,10 @@
 package com.yoke.poseidon.web.config;
 
+import com.yoke.poseidon.web.constants.PoseidonConstants;
 import com.yoke.poseidon.web.directives.ItemCatDirective;
 import com.yoke.poseidon.web.directives.ItemDirective;
 import freemarker.template.Configuration;
+import freemarker.template.TemplateExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import javax.annotation.PostConstruct;
  */
 @Component
 public class FreemarkerConfig {
+
     @Autowired
     private Configuration configuration;
     @Autowired
@@ -23,7 +26,9 @@ public class FreemarkerConfig {
 
     @PostConstruct
     public void setSharedVariable() {
-//        开启方括号标签
+        configuration.setDefaultEncoding(PoseidonConstants.ENCODING);
+        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        //        开启方括号标签
         configuration.setTagSyntax(Configuration.SQUARE_BRACKET_TAG_SYNTAX);
 //        修改插值语法
         configuration.setInterpolationSyntax(Configuration.SQUARE_BRACKET_INTERPOLATION_SYNTAX);

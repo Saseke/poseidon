@@ -2,17 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.web.mapper.PanelMapper">
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yoke.poseidon.web.entity.Panel">
-        <id column="panel_id" property="panelId" />
-        <result column="created" property="created" />
-        <result column="limit_num" property="limitNum" />
-        <result column="name" property="name" />
-        <result column="remark" property="remark" />
-        <result column="sort_order" property="sortOrder" />
-        <result column="status" property="status" />
-        <result column="type" property="type" />
-        <result column="updated" property="updated" />
-    </resultMap>
 
 </mapper>

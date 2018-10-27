@@ -1,29 +1,30 @@
 package com.yoke.poseidon.web.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
  * 商品表
  * </p>
  *
- * @author ehereal
- * @since 2018-09-20
+ * @author yoke
+ * @since 2018-10-27
  */
 @TableName("db_item")
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private String itemId;
 
     /**
      * 商品名称
      */
-    private String title;
+    private String name;
 
     /**
      * 卖点
@@ -50,7 +51,7 @@ public class Item implements Serializable {
     /**
      * 分类id
      */
-    private Integer cId;
+    private Long cId;
 
     /**
      * 状态
@@ -77,20 +78,20 @@ public class Item implements Serializable {
     private String description;
 
 
-    public String getId() {
-        return id;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSellPoint() {
@@ -133,11 +134,11 @@ public class Item implements Serializable {
         this.image = image;
     }
 
-    public Integer getcId() {
+    public Long getcId() {
         return cId;
     }
 
-    public void setcId(Integer cId) {
+    public void setcId(Long cId) {
         this.cId = cId;
     }
 
@@ -192,20 +193,20 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "Item{" +
-        "id=" + id +
-        ", title=" + title +
-        ", sellPoint=" + sellPoint +
-        ", price=" + price +
-        ", num=" + num +
-        ", limitNum=" + limitNum +
-        ", image=" + image +
-        ", cId=" + cId +
-        ", status=" + status +
-        ", created=" + created +
-        ", updated=" + updated +
-        ", sortOrder=" + sortOrder +
-        ", remark=" + remark +
-        ", description=" + description +
-        "}";
+                "itemId=" + itemId +
+                ", name=" + name +
+                ", sellPoint=" + sellPoint +
+                ", price=" + price +
+                ", num=" + num +
+                ", limitNum=" + limitNum +
+                ", image=" + image +
+                ", cId=" + cId +
+                ", status=" + status +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", sortOrder=" + sortOrder +
+                ", remark=" + remark +
+                ", description=" + description +
+                "}";
     }
 }

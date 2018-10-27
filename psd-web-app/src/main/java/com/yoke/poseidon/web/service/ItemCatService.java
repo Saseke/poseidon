@@ -17,6 +17,8 @@ import java.util.List;
 public interface ItemCatService extends IService<ItemCat> {
     List<ItemCat> listRootCat();
 
-    List<ItemCatDto> listCatBySortOrder(int limit);
+    List<ItemCat> getChildCat(Long catId);
+
+    List<ItemCat> listCatBySortOrder(int limit);
 
 }

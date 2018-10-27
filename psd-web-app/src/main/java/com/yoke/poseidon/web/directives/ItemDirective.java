@@ -1,5 +1,6 @@
 package com.yoke.poseidon.web.directives;
 
+import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.service.ItemService;
 import freemarker.core.Environment;
@@ -24,18 +25,25 @@ public class ItemDirective implements TemplateDirectiveModel {
     private ItemService itemService;
     private static final String LIMIT = "limit";
     private static final String ITEM_CAT_NAME = "item_cat_name";
+    private static final String REMARK = "remark";
 
     @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-        if (!params.containsKey(LIMIT) || params.get(LIMIT) == null || !params.containsKey(ITEM_CAT_NAME) || params.get(ITEM_CAT_NAME) == null) {
+        if (!params.containsKey(LIMIT) || (!params.containsKey(ITEM_CAT_NAME) && !params.containsKey(REMARK))) {
             throw new TemplateModelException("There miss params");
         }
-        List<ItemDto> list = itemService.findItemCatWithItems(params.get(ITEM_CAT_NAME).toString(),
-                Integer.valueOf(params.get(LIMIT).toString()));
+
         DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
-        ItemTestList itemTestList = new ItemTestList();
-        env.setVariable("item_cat_item_list", builder.build().wrap(list));
-        env.setVariable("item_test", itemTestList);
-        body.render(env.getOut());
+        if (params.containsKey(ITEM_CAT_NAME)) {
+            List<ItemDto> list = itemService.findItemCatWithItems(params.get(ITEM_CAT_NAME).toString(),
+                    Integer.valueOf(params.get(LIMIT).toString()));
+            env.setVariable("item_cat_item_list", builder.build().wrap(list));
+            body.render(env.getOut());
+        } else if (params.containsKey(REMARK)) {
+            List<ItemCatDto> ret = itemService.getByCatRemark(params.get(REMARK).toString(),
+                    Integer.valueOf(params.get(LIMIT).toString()));
+            env.setVariable("nav_cat_item", builder.build().wrap(ret));
+            body.render(env.getOut());
+        }
     }
 }

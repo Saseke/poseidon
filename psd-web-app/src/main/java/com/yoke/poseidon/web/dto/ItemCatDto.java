@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author Yoke
@@ -15,8 +16,10 @@ public class ItemCatDto implements Serializable {
     private Long parentId;
     private String remark;
     private Integer sortOrder;
+    private List<ItemCatDto> childCats;
+    private List<ItemDto> items;
 
-    ItemCatDto() {
+    public ItemCatDto() {
     }
 
     public Long getItemCatId() {
@@ -73,5 +76,25 @@ public class ItemCatDto implements Serializable {
 
     public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public List<ItemCatDto> getChildCats() {
+        return childCats;
+    }
+
+    public void setChildCats(List<ItemCatDto> childCats) {
+        this.childCats = childCats;
+    }
+
+    public List<ItemDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemDto> items) {
+        this.items = items;
     }
 }

@@ -1,0 +1,155 @@
+
+
+<!doctype html>
+<meta name="description" content="小米帐号能使用小米手机，MIUI，小米云，多看阅读，米聊，小米社区等小米服务。" />
+<meta name="keywords" content="小米帐号，小米账号，小米注册，注册，Mi Account，Sign in，小米，帐号，账号，小米帐户，登录，登陆，安全令牌，动态口令，小米注册，找回密码" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+
+
+
+
+
+<script>
+var LANG=(function(){
+    var locale=("en").toLowerCase();
+    if(locale){
+      if(locale.indexOf("en")>-1){
+        return {data:"en",cls:"en"};
+      }else if(locale.indexOf("zh")>-1){
+        if(locale.indexOf("cn")===-1){
+          return {data:"tw",cls:"zh_TW"};
+        }else{
+          return {data:"cn",cls:"zh_CN"};
+        }
+      }
+    }
+    return {data:"en",cls:"en"};
+})();
+</script>
+
+<script>
+var _d_={};
+/*fix ie下部分用户保护模式白屏：icacls %userprofile%\Appdata\LocalLow /t /setintegritylevel (OI)(CI)H*/
+try{
+  var supportLocalstorage=!!window.localStorage
+}catch(e){
+  var supportLocalstorage=false;
+}
+var _t_={
+  statURL:'https://data.mistat.xiaomi.com/mistats',
+  appId:"2882303761517246742",
+  appKey:"5621724658742",
+  jspcomplete:(new Date()).getTime(),
+  supportLocalstorage:supportLocalstorage,
+  samplingBase:100,
+  samplingRate:5
+};
+if(window.performance){
+  var timing=performance.timing;
+  if(!timing.responseEnd){
+    timing.responseEnd=timing.responseStart;
+  }
+  _d_.startTS=timing.fetchStart
+  _d_.endTS=timing.responseEnd;
+}else{
+  _d_.startTS=_d_.endTS=(new Date()).getTime();
+}
+var JSP_VAR={
+  deviceType:'PC',
+  dataCenter:'c3',
+  locale:'en',
+  region:'CN',
+  callback:"https://account.xiaomi.com/sts?sign=Alu7ygqMqyP8yHqeSXZC7WAuM20%3D&followup=https%3A%2F%2Faccount.xiaomi.com%2Fpass%2FuserInfoJsonP%3FuserId%3D0%26callback%3DsetLoginInfo_getAccountInfo&sid=passport",
+  sid:'passport',
+  qs:"%3Fcallback%3Dhttps%253A%252F%252Faccount.xiaomi.com%252Fsts%253Fsign%253DAlu7ygqMqyP8yHqeSXZC7WAuM20%25253D%2526followup%253Dhttps%25253A%25252F%25252Faccount.xiaomi.com%25252Fpass%25252FuserInfoJsonP%25253FuserId%25253D0%252526callback%25253DsetLoginInfo_getAccountInfo%2526sid%253Dpassport%26sid%3Dpassport",
+  hidden:'',
+  "_sign":"2&V1_passport&TglPsc3elT3x+i608UqB70GSHKM=",
+  serviceParam :'{"checkSafePhone":false}',
+  privacyLink:'https://www.mi.com/us/about/privacy/',
+  agreeLink:'https://static.account.xiaomi.com/html/agreement/account/en.html',
+  showActiveXControl:false,
+  loginMethods:["PWD","TICKET"]
+};
+var PAGE_VAR={
+  form_cache:false,
+  cache_key:(JSP_VAR.deviceType!=="mobile" ? "/static/res/9afe3b8/account-static/html/login/dist/v2/login-en.html" : "/static/res/9afe3b8/account-static/html/login/dist/v2/login-wap-en.html")
+};
+
+var localStorageKey='id.mi.com.login.'+( PAGE_VAR.cache_key.substring( PAGE_VAR.cache_key.indexOf("/account-static") ) || "main" );
+var scopes='';
+if(location.search.indexOf("_debugMode")>-1&&supportLocalstorage){
+  window.localStorage && window.localStorage.removeItem(localStorageKey);
+}
+
+(function(){
+
+  function getLocal(url){
+    if(supportLocalstorage){
+      var data=""+localStorage.getItem(localStorageKey);
+      var index=data.indexOf("@")
+
+      if(data.substring(0,index) == url){
+        return data.substring(index+1)
+      }
+    }
+    return null;
+  }
+  function setLocal(url,data){
+    if(supportLocalstorage && data){
+      try{
+        localStorage.setItem(localStorageKey,url+"@"+data);
+      }catch(e){}
+    }
+  }
+  function getContent(url){
+    var xhr= new (window.XMLHttpRequest || window.ActiveXObject)("Microsoft.XMLHTTP");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          setLocal(url,xhr.responseText);
+          _t_.htmlGetEnd=(new Date()).getTime();
+          document.write(xhr.responseText);
+          document.close();
+      }
+    };
+    xhr.open("GET",url,false);
+    xhr.send();
+  }
+  var cache_key=PAGE_VAR.cache_key;
+      _t_.version=cache_key;
+  var html=getLocal(cache_key);
+  if(html){
+    _t_.htmlCache=true;
+    PAGE_VAR.form_cache=true;
+    document.write(html);
+    document.close();
+  }else{
+    _t_.htmlCache=false;
+    _t_.htmlGetStart=(new Date()).getTime();
+    getContent(cache_key);
+  }
+})();
+</script>

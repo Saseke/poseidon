@@ -18,13 +18,16 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("itemRootCats", itemCatService.listRootCat());
-        model.addAttribute("name", "yoke");
         return "index";
     }
 
+    @GetMapping("/catDtl")
+    public String catDtl(Model model) {
+        return "catDtl";
+    }
+
     @GetMapping("/test")
-    public String test(Model model) {
+    public String test() {
         return "test";
     }
 }

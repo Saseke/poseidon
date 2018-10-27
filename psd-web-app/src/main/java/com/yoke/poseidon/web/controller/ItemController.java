@@ -1,12 +1,17 @@
 package com.yoke.poseidon.web.controller;
 
 
+import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.entity.Item;
 import com.yoke.poseidon.web.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,22 +23,11 @@ import java.util.List;
  * @author ehereal
  * @since 2018-09-20
  */
-@RestController
+@Controller
 @RequestMapping("/item")
 public class ItemController {
     @Autowired
     private ItemService itemService;
-
-    @Value("#{'a'}")
-    private String s;
-
-    @Value("#{${server.port}}")
-    private Integer port;
-
-    @GetMapping("")
-    public Item test() {
-        return itemService.findByItemTitle("test");
-    }
 
     @GetMapping("/list")
     public List<Item> listAll(@RequestParam String prop,
@@ -44,11 +38,15 @@ public class ItemController {
         return itemService.getAll(prop, order, page, limit);
     }
 
-    @GetMapping("/hello")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String hello() {
-        System.out.println(port);
-        System.out.println("execute");
-        return "hello";
+    @GetMapping("/{catId}")
+    public String getItemByCatId(@PathVariable @NonNull Long catId, Model model) {
+        List<ItemCatDto> itemCatDtos = itemService.getByCatId(catId);
+        model.addAttribute("itemCatDtos", itemCatDtos);
+        return "catDtl";
+    }
+
+    @GetMapping("/d/{itemId}")
+    public String getItemByItemId(@PathVariable Long itemId, Model model) {
+        return "itemDtl.html";
     }
 }

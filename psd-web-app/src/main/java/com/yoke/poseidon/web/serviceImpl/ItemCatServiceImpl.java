@@ -1,7 +1,7 @@
 package com.yoke.poseidon.web.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.entity.ItemCat;
 import com.yoke.poseidon.web.mapper.ItemCatMapper;
 import com.yoke.poseidon.web.service.ItemCatService;
@@ -29,7 +29,16 @@ public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat> impl
     }
 
     @Override
-    public List<ItemCatDto> listCatBySortOrder(int limit) {
-        return itemCatMapper.listCatBySortOrder(limit);
+    public List<ItemCat> getChildCat(Long catId) {
+        return itemCatMapper.selectList(
+                new QueryWrapper<ItemCat>().eq("parent_id", catId)
+        );
+    }
+
+    @Override
+    public List<ItemCat> listCatBySortOrder(int limit) {
+        return itemCatMapper.selectList(
+                new QueryWrapper<>()
+        );
     }
 }

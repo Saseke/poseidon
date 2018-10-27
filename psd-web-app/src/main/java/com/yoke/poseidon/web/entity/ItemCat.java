@@ -1,18 +1,19 @@
 package com.yoke.poseidon.web.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
  * 
  * </p>
  *
- * @author ehereal
- * @since 2018-09-20
+ * @author yoke
+ * @since 2018-10-27
  */
 @TableName("db_item_cat")
 public class ItemCat implements Serializable {
