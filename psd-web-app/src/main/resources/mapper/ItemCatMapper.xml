@@ -3,4 +3,13 @@
 <mapper namespace="com.yoke.poseidon.web.mapper.ItemCatMapper">
 
 
+    <select id="getChildCat" resultType="com.yoke.poseidon.web.entity.ItemCat">
+        select item_cat_id, icon, is_parent, name, parent_id, remark, sort_order
+        from poseidon.db_item_cat
+        <where>
+            parent_id in
+            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">#{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>

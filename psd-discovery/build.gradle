@@ -6,7 +6,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
+                "se.transmode.gradle:gradle-docker:1.2"
+
+        )
     }
 }
 
@@ -14,15 +17,27 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
+apply plugin: 'docker'
 group 'com.yoke.poseidon'
 version '1.0-SNAPSHOT'
+
+task buildDocker(type: Docker, dependsOn: build) {
+    push = true
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
+}
 
 sourceCompatibility = 1.8
 
 bootJar {
-    baseName = 'gs-spring-boot-docker'
-    version = '1.0.0'
+    baseName = 'poseidon-eureka-server'
+    version = '0.1.0'
 }
 
 repositories {

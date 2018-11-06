@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author yoke
- * @since 2018-10-27
+ * @since 2018-10-30
  */
 @TableName("db_item")
 public class Item implements Serializable {
@@ -193,20 +193,20 @@ public class Item implements Serializable {
     @Override
     public String toString() {
         return "Item{" +
-                "itemId=" + itemId +
-                ", name=" + name +
-                ", sellPoint=" + sellPoint +
-                ", price=" + price +
-                ", num=" + num +
-                ", limitNum=" + limitNum +
-                ", image=" + image +
-                ", cId=" + cId +
-                ", status=" + status +
-                ", created=" + created +
-                ", updated=" + updated +
-                ", sortOrder=" + sortOrder +
-                ", remark=" + remark +
-                ", description=" + description +
-                "}";
+        "itemId=" + itemId +
+        ", name=" + name +
+        ", sellPoint=" + sellPoint +
+        ", price=" + price +
+        ", num=" + num +
+        ", limitNum=" + limitNum +
+        ", image=" + image +
+        ", cId=" + cId +
+        ", status=" + status +
+        ", created=" + created +
+        ", updated=" + updated +
+        ", sortOrder=" + sortOrder +
+        ", remark=" + remark +
+        ", description=" + description +
+        "}";
     }
 }

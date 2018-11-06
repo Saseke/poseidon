@@ -41,6 +41,7 @@ dependencies {
     compile('mysql:mysql-connector-java:8.0.12')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-test")
 //    compile('org.springframework:springloaded:1.2.8.RELEASE')
     compile("org.springframework.boot:spring-boot-devtools")
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
@@ -61,7 +62,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
-    
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

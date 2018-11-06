@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web-service:
+    image: poseidon-web
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+    ports:
+    - "8080:8080"
+    networks:
+    - webnet
+networks:
+  webnet:

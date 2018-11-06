@@ -24,18 +24,6 @@ public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat> impl
     private ItemCatMapper itemCatMapper;
 
     @Override
-    public List<ItemCat> listRootCat() {
-        return itemCatMapper.listRootCat();
-    }
-
-    @Override
-    public List<ItemCat> getChildCat(Long catId) {
-        return itemCatMapper.selectList(
-                new QueryWrapper<ItemCat>().eq("parent_id", catId)
-        );
-    }
-
-    @Override
     public List<ItemCat> listCatBySortOrder(int limit) {
         return itemCatMapper.selectList(
                 new QueryWrapper<>()

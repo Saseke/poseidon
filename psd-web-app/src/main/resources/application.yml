@@ -2,11 +2,12 @@
 spring:
   # datasource
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/poseidon?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: '123456'
+    url: jdbc:mysql://${db.server}:${db.port}/poseidon?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${db.username}
+    password: ${db.password}
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
   # mybatis plus
 
 mybatis-plus:
@@ -47,3 +48,8 @@ management:
     web:
       exposure:
         include: health,info,env,metrics,prometheus
+db:
+  server: 127.0.0.1
+  port: 3306
+  username: root
+  password: '123456'

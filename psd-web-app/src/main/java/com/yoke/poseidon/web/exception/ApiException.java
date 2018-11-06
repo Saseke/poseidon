@@ -1,4 +1,4 @@
-package com.yoke.poseidon.web.excception;
+package com.yoke.poseidon.web.exception;
 
 /**
  * @Author Yoke

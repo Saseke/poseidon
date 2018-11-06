@@ -2,5 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.web.mapper.ItemMapper">
 
-
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.web.entity.Item">
+        <id column="item_id" property="itemId"/>
+        <result column="name" property="name"/>
+        <result column="sell_point" property="sellPoint"/>
+        <result column="price" property="price"/>
+        <result column="num" property="num"/>
+        <result column="limit_num" property="limitNum"/>
+        <result column="image" property="image"/>
+        <result column="c_id" property="cId"/>
+        <result column="status" property="status"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="remark" property="remark"/>
+        <result column="description" property="description"/>
+    </resultMap>
+    <select id="selectItems" resultType="com.yoke.poseidon.web.entity.Item">
+        select item_id,
+        name,
+        c_id,
+        sell_point,
+        price,
+        limit_num,
+        image,
+        remark,
+        sort_order
+        from db_item
+        <where>
+            c_id in
+            <foreach collection="cIds" item="id" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>

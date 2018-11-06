@@ -42,7 +42,7 @@
                                                   onclick="_msq.push([&#39;trackEvent&#39;, &#39;81190ccc4d52f577-cb599fe6b8c9f764&#39;, &#39;https://www.mi.com/mi8youth/&#39;, &#39;pcpid&#39;, &#39;&#39;]);">
                                 [=item.name]</a></div>
                             <p class="price">[=item.price]元起</p>
-                            [#if item.remark=="新品"]
+                            [#if item.remark??&&item.remark=="新品"]
                             <div class="flags">
                                 <div class="flag">新品</div>
                             </div>

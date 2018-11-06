@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yoke
@@ -125,16 +125,16 @@ public class ItemCat implements Serializable {
     @Override
     public String toString() {
         return "ItemCat{" +
-        "itemCatId=" + itemCatId +
-        ", created=" + created +
-        ", icon=" + icon +
-        ", isParent=" + isParent +
-        ", name=" + name +
-        ", parentId=" + parentId +
-        ", remark=" + remark +
-        ", sortOrder=" + sortOrder +
-        ", state=" + state +
-        ", updated=" + updated +
-        "}";
+                "itemCatId=" + itemCatId +
+                ", created=" + created +
+                ", icon=" + icon +
+                ", isParent=" + isParent +
+                ", name=" + name +
+                ", parentId=" + parentId +
+                ", remark=" + remark +
+                ", sortOrder=" + sortOrder +
+                ", state=" + state +
+                ", updated=" + updated +
+                "}";
     }
 }

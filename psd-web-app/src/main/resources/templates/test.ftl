@@ -1,5 +1,0 @@
-[@item_cat_show limit=4]
-    [#list item_cat_list as item_cat]
-        [=item_cat.name]
-    [/#list]
-[/@item_cat_show]
