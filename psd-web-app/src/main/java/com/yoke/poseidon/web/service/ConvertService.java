@@ -10,9 +10,9 @@ import com.yoke.poseidon.web.entity.ItemCat;
  * @Date 2018/10/23 下午3:20
  */
 public interface ConvertService {
-    public ItemDto convert(Item item);
+    ItemDto convert(Item item);
 
-    public ItemCatDto convert(ItemCat itemCat);
+    ItemCatDto convert(ItemCat itemCat);
 
 
 }

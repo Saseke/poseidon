@@ -7,15 +7,15 @@
         </div>
 
         <div class="header-nav">
-            <ul class="nav-list J_navMainList clearfix">
+            <ul class="nav-list  clearfix">
                 <li id="J_navCategory" class="nav-category">
                     <a class="link-category" href="https://list.mi.com/" data-stat-id="a325049a1994809b"
                        onclick="_msq.push([&#39;trackEvent&#39;, &#39;81190ccc4d52f577-a325049a1994809b&#39;, &#39;//list.mi.com&#39;, &#39;pcpid&#39;, &#39;&#39;]);"><span
                             class="text">全部商品分类</span></a>
-                [#--siteCat有点问题--]
-                    [#include "siteCat.ftl"]
+                    [#include "cats.ftl"]
                 </li>
-                [#include "nav.ftl"]
+                [#--暂时显示不出来,就不加了--]
+                [#include "../common/nav.ftl"]
             </ul>
         </div>
 

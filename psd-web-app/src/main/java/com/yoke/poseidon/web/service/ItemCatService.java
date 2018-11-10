@@ -3,6 +3,7 @@ package com.yoke.poseidon.web.service;
 import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.entity.ItemCat;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -16,6 +17,5 @@ import java.util.List;
  */
 public interface ItemCatService extends IService<ItemCat> {
 
-    List<ItemCat> listCatBySortOrder(int limit);
-
+    List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit);
 }

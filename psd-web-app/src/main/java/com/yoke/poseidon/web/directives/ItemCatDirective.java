@@ -1,9 +1,11 @@
 package com.yoke.poseidon.web.directives;
 
-import com.yoke.poseidon.web.entity.ItemCat;
+import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.service.ItemCatService;
 import freemarker.core.Environment;
 import freemarker.template.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,16 +23,19 @@ import java.util.Map;
 public class ItemCatDirective implements TemplateDirectiveModel {
     @Autowired
     private ItemCatService itemCatService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ItemCatDirective.class);
+    private static final String REMARK = "remark";
     private static final String LIMIT = "limit";
 
     @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-        if (!params.containsKey(LIMIT) || params.get(LIMIT) == null) {
+        if (!params.containsKey(LIMIT) || params.get(LIMIT) == null || !params.containsKey(REMARK) || params.get(REMARK) == null) {
             throw new TemplateModelException("This is miss limit param");
         }
-        List<ItemCat> itemCat = itemCatService.listCatBySortOrder(Integer.valueOf(params.get(LIMIT).toString()));
+        LOGGER.info("the remark is {} ,limit is {}", params.get(REMARK).toString(), Integer.valueOf(params.get(LIMIT).toString()));
+        List<ItemCatDto> itemCatDtos = itemCatService.getByRemark(params.get(REMARK).toString(), Integer.valueOf(params.get(LIMIT).toString()));
         DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
-        env.setVariable("item_cat_list", builder.build().wrap(itemCat));
+        env.setVariable("item_cat_list", builder.build().wrap(itemCatDtos));
         body.render(env.getOut());
     }
 }

@@ -42,76 +42,40 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements It
     @Autowired
     private ModelMapper modelMapper;
 
-
-    @Override
-    public List<ItemCatDto> getByCatId(Long catId, Integer limit) {
-        Optional<List<ItemCat>> itemCats = Optional.ofNullable(itemCatMapper.selectList(
-                new QueryWrapper<ItemCat>().eq("parent_id", catId))
-        );
-        return itemCats.map(itemCatsList -> getItemsByCats(itemCatsList, limit))
-                .orElse(Collections.emptyList());
-    }
-
-    @Override
-    public List<ItemCatDto> getByCatRemark(String remark, Integer limit) {
-
-        Optional<List<ItemCat>> itemCats = Optional.ofNullable(itemCatMapper.selectList(
-                new QueryWrapper<ItemCat>()
-                        .eq("remark", remark)
-                        .orderByAsc("sort_order"))
-        );
-        return itemCats.map(itemCatsList -> getItemsByCats(itemCatsList, limit))
-                .orElse(Collections.emptyList());
-    }
-
     @Override
     public List<ItemCatDto> getIndexCatWithItems() {
         Optional<List<ItemCat>> itemRootCats = Optional.ofNullable(itemCatMapper.selectList(
                 new QueryWrapper<ItemCat>()
                         .eq("parent_id", 0).eq("remark", "index")
         ));
-        return itemRootCats.map(this::getItemsByRootCat).orElse(Collections.emptyList());
+        return itemRootCats.map(itemCatList -> getItemsByRootCat(itemCatList, 8)).orElse(Collections.emptyList());
     }
 
     @Override
-    public List<ItemCatDto> getSiteRootCatWithItems(Integer limit) {
-        Optional<List<ItemCat>> itemRootCats = Optional.ofNullable(itemCatMapper.selectList(
-                new QueryWrapper<ItemCat>()
-                        .eq("parent_id", 0)
-        ));
-        return itemRootCats.map(this::getItemsByRootCat).orElse(Collections.emptyList());
+    public List<ItemCatDto> getRootCatsWithItems(Integer limit) {
+        // 得到所有的根分类
+        Optional<List<ItemCat>> itemRootCats = Optional.ofNullable(itemCatMapper.selectRootCat());
+        // 得到每个根分类的所有子分类
+        // 查找每个子分类的商品
+        // 进行封装
+        return itemRootCats.map(itemCatList -> getItemsByRootCat(itemCatList, null)).orElse(Collections.emptyList());
     }
 
     @Override
-    public List<List<ItemCatDto>> getSiteRootCatWithItemsPart(Integer limit) {
-        return Lists.partition(getSiteRootCatWithItems(limit), 2);
+    public List<List<ItemCatDto>> getRootCatsWithItemsParted(Integer limit) {
+        return Lists.partition(getRootCatsWithItems(limit), 2);
     }
 
-    private List<ItemCatDto> getItemsByRootCat(List<ItemCat> itemRootCatList) {
+
+    private List<ItemCatDto> getItemsByRootCat(List<ItemCat> itemRootCatList, Integer limit) {
         return itemRootCatList.stream().map(itemRootCat -> {
             ItemCatDto itemCatDto = modelMapper.map(itemRootCat, ItemCatDto.class);
-            List<ItemCat> childCats = itemCatMapper.selectList(new QueryWrapper<ItemCat>().eq("parent_id", itemRootCat.getItemCatId()).orderByAsc("sort_order"));
             List<Long> ids = new ArrayList<>();
             ids.add(itemRootCat.getItemCatId());
-            if (childCats.size() > 0) {
-                ids.addAll(childCats.stream().map(ItemCat::getItemCatId).collect(Collectors.toList()));
-            }
-            List<ItemDto> itemDtos = itemMapper.selectItems(ids)
+            Optional<List<Long>> childIdsOptional = Optional.ofNullable(itemCatMapper.selectChildIdsByParentId(itemRootCat.getItemCatId()));
+            childIdsOptional.map(ids::addAll);
+            List<ItemDto> itemDtos = itemMapper.selectByCIds(ids, limit)
                     .stream().map(item -> modelMapper.map(item, ItemDto.class)).collect(Collectors.toList());
-            itemCatDto.setItems(itemDtos);
-            return itemCatDto;
-        }).collect(Collectors.toList());
-    }
-
-    private List<ItemCatDto> getItemsByCats(List<ItemCat> itemCatsList, Integer limit) {
-        return itemCatsList.stream().map(itemCat -> {
-            ItemCatDto itemCatDto = modelMapper.map(itemCat, ItemCatDto.class);
-            List<ItemDto> itemDtos = itemMapper.selectList(
-                    new QueryWrapper<Item>()
-                            .eq("c_id", itemCatDto.getItemCatId())
-                            .orderByAsc("sort_order")
-                            .last("limit " + limit)
-            ).stream().map(item -> convertService.convert(item)).collect(Collectors.toList());
             itemCatDto.setItems(itemDtos);
             return itemCatDto;
         }).collect(Collectors.toList());

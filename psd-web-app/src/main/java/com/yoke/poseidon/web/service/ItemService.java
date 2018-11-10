@@ -2,7 +2,10 @@ package com.yoke.poseidon.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yoke.poseidon.web.dto.ItemCatDto;
+import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.entity.Item;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 
@@ -16,13 +19,10 @@ import java.util.List;
  */
 public interface ItemService extends IService<Item> {
 
-    List<ItemCatDto> getByCatId(Long catId, Integer limit);
-
-    List<ItemCatDto> getByCatRemark(String remark, Integer limit);
 
     List<ItemCatDto> getIndexCatWithItems();
 
-    List<ItemCatDto> getSiteRootCatWithItems(Integer limit);
-    List<List<ItemCatDto>> getSiteRootCatWithItemsPart(Integer limit);
+    List<ItemCatDto> getRootCatsWithItems(Integer limit);
 
+    List<List<ItemCatDto>> getRootCatsWithItemsParted(Integer limit);
 }

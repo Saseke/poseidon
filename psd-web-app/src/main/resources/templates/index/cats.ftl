@@ -15,7 +15,7 @@
                                            onclick="_msq.push([&#39;trackEvent&#39;, &#39;81190ccc4d52f577-47da862014d3df03&#39;, &#39;https://www.mi.com/mix3/&#39;, &#39;pcpid&#39;, &#39;&#39;]);"><img
                                             class="thumb"
                                             src="/img/placeholder-40.png"
-                                            data-src="//i1.mifile.cn/f/i/g/2015/cn-index/mix3-80.png?width=80&amp;height=80"
+                                            data-src="[=item.image]?width=80&amp;height=80"
                                             width="40" height="40" alt=""><span class="text">[=item.name]</span></a>
                                     </li>
                                 [/#list]

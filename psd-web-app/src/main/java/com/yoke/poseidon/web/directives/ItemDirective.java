@@ -24,24 +24,16 @@ public class ItemDirective implements TemplateDirectiveModel {
     private ItemService itemService;
     private static final String INDEX = "index";
     private static final String LIMIT = "limit";
-    private static final String REMARK = "remark";
 
     @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-        if (!params.containsKey(LIMIT) || (!params.containsKey(INDEX) && !params.containsKey(REMARK))) {
+        if (!params.containsKey(LIMIT) || params.get(LIMIT) == null || (!params.containsKey(INDEX)) || params.get(INDEX) == null) {
             throw new TemplateModelException("There miss params");
         }
         DefaultObjectWrapperBuilder builder = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
-        if (params.containsKey(INDEX)) {
-            List<List<ItemCatDto>> ret =
-                    itemService.getSiteRootCatWithItemsPart(Integer.valueOf(params.get(LIMIT).toString()));
-            env.setVariable("root_cat_item", builder.build().wrap(ret));
-            body.render(env.getOut());
-        } else if (params.containsKey(REMARK)) {
-            List<ItemCatDto> ret = itemService.getByCatRemark(params.get(REMARK).toString(),
-                    Integer.valueOf(params.get(LIMIT).toString()));
-            env.setVariable("nav_cat_item", builder.build().wrap(ret));
-            body.render(env.getOut());
-        }
+        List<List<ItemCatDto>> ret =
+                itemService.getRootCatsWithItemsParted(Integer.valueOf(params.get(LIMIT).toString()));
+        env.setVariable("root_cat_item", builder.build().wrap(ret));
+        body.render(env.getOut());
     }
 }

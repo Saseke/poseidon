@@ -19,17 +19,73 @@
         <result column="remark" property="remark"/>
         <result column="description" property="description"/>
     </resultMap>
-    <select id="selectItems" resultType="com.yoke.poseidon.web.entity.Item">
+
+    <sql id="itemColumns">
         select item_id,
-        name,
-        c_id,
-        sell_point,
-        price,
-        limit_num,
-        image,
-        remark,
-        sort_order
+               name,
+               c_id,
+               sell_point,
+               price,
+               limit_num,
+               image,
+               remark,
+               sort_order
         from db_item
+    </sql>
+    <sql id="itemAllColumns">
+        select *
+        from db_item
+    </sql>
+    <select id="selectById" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemColumns"/>
+        where item_id = #{id}
+    </select>
+
+
+    <select id="selectByIdWithBLOB" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemAllColumns"/>
+        where item_id = #{id}
+    </select>
+
+
+    <select id="selectIdIn" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemColumns"/>
+        <where>
+            item_id in
+            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectIdInWithBLOG" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemAllColumns"/>
+        <where>
+            item_id in
+            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+
+    <select id="selectByCIds" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemColumns"/>
+        <where>
+            c_id in
+            <foreach collection="cIds" item="id" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+        order by sort_order asc
+        <if test="limit != null">
+            limit #{limit}
+        </if>
+    </select>
+
+
+    <select id="selectByCIdsWithBLOB" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemAllColumns"/>
         <where>
             c_id in
             <foreach collection="cIds" item="id" index="index" open="(" separator="," close=")">
@@ -37,4 +93,39 @@
             </foreach>
         </where>
     </select>
+
+    <select id="selectByCId" resultType="com.yoke.poseidon.web.entity.Item">
+        <include refid="itemColumns"/>
+        where c_id = #{cId}
+        <if test="sort != null">
+            order by ${sort}
+        </if>
+        <if test="limit != null">
+            limit #{limit}
+        </if>
+    </select>
+    <select id="selectByCIdWithBLOG" resultType="com.yoke.poseidon.web.entity.Item">
+
+        <include refid="itemAllColumns"/>
+        <where>
+            c_id = #{cId}
+            <if test="limit != null">
+                limit = #{limit}
+
+            </if>
+
+            <if test="orderBy != null">
+                order by
+                <foreach collection="orderBy" item="order" open="(" separator="," close=")">
+                    #{order}
+                </foreach>
+            </if>
+            <if test="sort != null">
+                #{sort}
+            </if>
+        </where>
+    </select>
+
+
+
 </mapper>

@@ -5,10 +5,6 @@
     <script type="text/javascript" async=""
             src="https://a.stat.xiaomi.com/js/mstr.js?mid=&amp;device_id=&amp;phpsessid=&amp;mstuid=1539608334682_2577&amp;muuid=&amp;mucid=&amp;sessionId=1840547034&amp;step=47&amp;new_visitor=0&amp;mstprevpid=&amp;mstprev_pid_loc=&amp;prevtarget=&amp;lastsource=www.google.com&amp;timestamp=1540540136751&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;domain=.mi.com&amp;screen=1920*1080&amp;language=en-US&amp;vendor=Google%20Inc.&amp;platform=Linux%20x86_64&amp;gu=http%253A%252F%252Flocalhost%253A63342%252Fweb%252Fpsd-web-app_main%252Ftemplates%252Fa.html%253F_ijt%253Drkn71h9ug5usm4gf24spl81khv&amp;miwd=&amp;edm_task=&amp;masid=&amp;client_id=&amp;pu=https%3A%2F%2Fwww.google.com%2F&amp;rf=0&amp;mutid=&amp;muwd=&amp;domain_id=100&amp;pageid=81190ccc4d52f577&amp;curl=https%3A%2F%2Fwww.mi.com%2Findex.html&amp;xmv=1539608334682_2577_1540538300053&amp;v=1.0.0&amp;vuuid=SECU5L6TQD6F5AQ4&amp;type=sp&amp;logs=81190ccc4d52f577-AA20875+2_15_5_72&amp;log_codes=31pchometop_slide005001%23t%3Dnormal%26act%3Dother%26page%3Dhome%26bid%3D3030335.5%26adm%3D5208"></script>
     <script type="text/javascript" async="" src="/js/mstr.js"></script>
-    <script type="text/javascript" async="" src="/js/mstr(1).js"></script>
-    <script type="text/javascript" async="" src="/js/mstr(2).js"></script>
-    <script type="text/javascript" async="" src="/js/mstr(3).js"></script>
-    <script type="text/javascript" async="" src="/js/mstr(4).js"></script>
     <script type="text/javascript" async=""
             src="/js/jquery.statData.min.js"></script>
     <script type="text/javascript" async="" src="/js/xmst.js"></script>
@@ -41,12 +37,12 @@
 </head>
 <body mpa-version="5.2.5" mpa-extension-id="ibefaeehajgcpooopoegkifhgecigeeg" cz-shortcut-listen="true">
 
-[#include "topbar.ftl"]
-[#include "header.ftl"]
+[#include "common/topbar.ftl"]
+[#include "index/header.ftl"]
 
 <div class="home-hero-container container">
 [#--轮播图部分--]
-    [#include "carousel.ftl"]
+    [#include "index/carousel.ftl"]
 </div>
 
 
@@ -228,65 +224,6 @@
     </div>
 </div>
 
-<script id="J_rightbartempl_l" type="text/x-dot-template">
-    <ul class="bar-top">
-        {{~it:value:index}}
-        {{? value.type && value.button_title && value.button_img && value.button_hover_img}}
-        {{? value.type === 'image'}}
-        {{? value.qrcode_img && value.qrcode_title}}
-        <li class="bar-sort bar-sort-qr">
-            <a href="javascript:;" class="bar-link" data-log_code="{{= value.block_id}}">
-                <div class="bar-img">
-                    <img class="original-img" src="{{= value.button_img}}">
-                    <img class="hover-img" src="{{= value.button_hover_img}}">
-                </div>
-                <p class="bar-text">{{= value.button_title}}</p>
-                <div class="bar-pop">
-                    <div class="bar-pop-content">
-                        <img src="{{= value.qrcode_img}}" class="bar-pop-qr">
-                        <p class="bar-pop-text">{{= value.qrcode_title}}</p>
-                    </div>
-                    <div class="bar-arrow"></div>
-                </div>
-            </a>
-        </li>
-        {{?}}
-        {{?? value.type === 'cart'}}
-        {{? value.jump_url}}
-        <li class="bar-sort bar-l-car">
-            <a href="{{= value.jump_url}}" class="bar-link" data-log_code="{{= value.block_id}}">
-                <div class="bar-img">
-                    <img class="original-img" src="{{= value.button_img}}">
-                    <img class="hover-img" src="{{= value.button_hover_img}}">
-                    {{? value.carnum > 0 }}
-                    <span class="bar-car J_barLMum J_homeRightbarCarNum">{{= value.carnum}}</span>
-                    {{??}}
-                    <span class="bar-car hidden J_barLMum J_homeRightbarCarNum">{{= value.carnum}}</span>
-                    {{?}}
-                </div>
-                <p class="bar-text">{{= value.button_title}}</p>
-                <div class="pop"></div>
-            </a>
-        </li>
-        {{?}}
-        {{??}}
-        {{? value.jump_url}}
-        <li class="bar-sort">
-            <a href="{{= value.jump_url}}" class="bar-link" data-log_code="{{= value.block_id}}">
-                <div class="bar-img">
-                    <img class="original-img" src="{{= value.button_img}}">
-                    <img class="hover-img" src="{{= value.button_hover_img}}">
-                </div>
-                <p class="bar-text">{{= value.button_title}}</p>
-            </a>
-        </li>
-        {{?}}
-        {{?}}
-        {{?}}
-        {{~}}
-    </ul>
-</script>
-
 <script id="J_rightbartempl_s" type="text/x-dot-template">
     <ul class="bar-top">
         {{~it:value:index}}
@@ -383,51 +320,10 @@
 </script>
 
 
-[#include "footer.ftl"]
+[#include "common/footer.ftl"]
 <!-- .modal-globalSites END -->
 <script src="/js/base.min.js"></script>
-<script>
-    (function () {
-        MI.namespace('GLOBAL_CONFIG');
-        MI.GLOBAL_CONFIG = {
-            orderSite: '//order.mi.com',
-            orderSSLSite: 'https://order.mi.com',
-            wwwSite: '//www.mi.com',
-            cartSite: '//cart.mi.com',
-            itemSite: '//item.mi.com',
-            assetsSite: '//s01.mifile.cn',
-            listSite: '//list.mi.com',
-            searchSite: '//search.mi.com',
-            mySite: '//my.mi.com',
-            damiaoSite: '//tp.hd.mi.com/',
-            damiaoGoodsId: ["2160400006", "2160400007", "2162100004", "2162800010", "2155300001", "2155300002", "2163500025", "2163500026", "2163500027", "2164200021", "2142400036", "2170800008", "2171000055", "2171500039", "2171600005", "1171800032", "1171800031", "1171800030", "1171800035", "1171800034", "1171800033", "2171500038", "2171800016", "2171500037", "2171900024"],
-            logoutUrl: '//order.mi.com/site/logout',
-            staticSite: '//static.mi.com',
-            quickLoginUrl: 'https://account.xiaomi.com/pass/static/login.html'
-        };
-        MI.setLoginInfo.orderUrl = MI.GLOBAL_CONFIG.orderSite + '/user/order';
-        MI.setLoginInfo.logoutUrl = MI.GLOBAL_CONFIG.logoutUrl;
-        MI.setLoginInfo.init(MI.GLOBAL_CONFIG);
-        MI.miniCart.init();
-        MI.updateMiniCart();
-    })();
-</script>
 <script src="/js/home.min.js"></script>
-<!-- <script src="//i1.mifile.cn/f/i/15/stat/js/xmsg_ti.js"></script> -->
-<script>
-    var _msq = _msq || [];
-    _msq.push(['setDomainId', 100]);
-    _msq.push(['trackPageView']);
-    (function () {
-        var ms = document.createElement('script');
-        ms.type = 'text/javascript';
-        ms.async = true;
-        ms.src = '//s1.mi.com/stat/18/xmst.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ms, s);
-    })();
-</script>
-<!--mae_monitor-->
 
 <div class="mpa-sc account-switcher" data-z="100" style="display: block;"></div>
 <div class="mpa-sc article-gatherer new mpa-rootsc" data-z="100" style="display: block;"
