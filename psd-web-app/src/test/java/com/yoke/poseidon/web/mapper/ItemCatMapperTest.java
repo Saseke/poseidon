@@ -19,25 +19,26 @@ import java.util.List;
 @SpringBootTest
 public class ItemCatMapperTest {
 
-    @Autowired
-    private ItemCatMapper itemCatMapper;
+	@Autowired
+	private ItemCatMapper itemCatMapper;
 
-    @Test
-    public void selectByParentId() {
-        List<ItemCat> list = itemCatMapper.selectByParentId(0L);
-        Assert.assertEquals(20, list.size());
-    }
+	@Test
+	public void selectByParentId() {
+		List<ItemCat> list = itemCatMapper.selectByParentId(0L);
+		Assert.assertEquals(20, list.size());
+	}
 
-    @Test
-    public void selectByParentIds() {
-        List<Long> list = Longs.asList(0L, 1L);
-        List<ItemCat> itemCats = itemCatMapper.selectByParentIds(list);
-        Assert.assertNotNull(itemCats);
-    }
+	@Test
+	public void selectByParentIds() {
+		List<Long> list = Longs.asList(0L, 1L);
+		List<ItemCat> itemCats = itemCatMapper.selectByParentIds(list);
+		Assert.assertNotNull(itemCats);
+	}
 
-    @Test
-    public void selectRootCat() {
-        List<ItemCat> list = itemCatMapper.selectRootCat();
-        Assert.assertNotNull(list);
-    }
+	@Test
+	public void selectRootCat() {
+		List<ItemCat> list = itemCatMapper.selectRootCat();
+		Assert.assertNotNull(list);
+	}
+
 }

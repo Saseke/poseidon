@@ -15,87 +15,82 @@ import java.io.Serializable;
 @TableName("db_order_item")
 public class OrderItem implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String id;
+	private String id;
 
-    private String itemId;
+	private String itemId;
 
-    private String orderId;
+	private String orderId;
 
-    /**
-     * 商品购买的数量
-     */
-    private Integer itemNum;
+	/**
+	 * 商品购买的数量
+	 */
+	private Integer itemNum;
 
-    /**
-     * 商品单价
-     */
-    private BigDecimal itemPrice;
+	/**
+	 * 商品单价
+	 */
+	private BigDecimal itemPrice;
 
-    /**
-     * 商品总金额
-     */
-    private BigDecimal itemTotalPrice;
+	/**
+	 * 商品总金额
+	 */
+	private BigDecimal itemTotalPrice;
 
+	public String getId() {
+		return id;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getItemId() {
+		return itemId;
+	}
 
-    public String getItemId() {
-        return itemId;
-    }
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+	public String getOrderId() {
+		return orderId;
+	}
 
-    public String getOrderId() {
-        return orderId;
-    }
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+	public Integer getItemNum() {
+		return itemNum;
+	}
 
-    public Integer getItemNum() {
-        return itemNum;
-    }
+	public void setItemNum(Integer itemNum) {
+		this.itemNum = itemNum;
+	}
 
-    public void setItemNum(Integer itemNum) {
-        this.itemNum = itemNum;
-    }
+	public BigDecimal getItemPrice() {
+		return itemPrice;
+	}
 
-    public BigDecimal getItemPrice() {
-        return itemPrice;
-    }
+	public void setItemPrice(BigDecimal itemPrice) {
+		this.itemPrice = itemPrice;
+	}
 
-    public void setItemPrice(BigDecimal itemPrice) {
-        this.itemPrice = itemPrice;
-    }
+	public BigDecimal getItemTotalPrice() {
+		return itemTotalPrice;
+	}
 
-    public BigDecimal getItemTotalPrice() {
-        return itemTotalPrice;
-    }
+	public void setItemTotalPrice(BigDecimal itemTotalPrice) {
+		this.itemTotalPrice = itemTotalPrice;
+	}
 
-    public void setItemTotalPrice(BigDecimal itemTotalPrice) {
-        this.itemTotalPrice = itemTotalPrice;
-    }
+	@Override
+	public String toString() {
+		return "OrderItem{" + "id=" + id + ", itemId=" + itemId + ", orderId=" + orderId
+				+ ", itemNum=" + itemNum + ", itemPrice=" + itemPrice
+				+ ", itemTotalPrice=" + itemTotalPrice + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-        "id=" + id +
-        ", itemId=" + itemId +
-        ", orderId=" + orderId +
-        ", itemNum=" + itemNum +
-        ", itemPrice=" + itemPrice +
-        ", itemTotalPrice=" + itemTotalPrice +
-        "}";
-    }
 }

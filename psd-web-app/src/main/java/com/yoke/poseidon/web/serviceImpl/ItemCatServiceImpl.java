@@ -24,17 +24,22 @@ import java.util.stream.Collectors;
  * @since 2018-09-20
  */
 @Service
-public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat> implements ItemCatService {
-    @Autowired
-    private ItemCatMapper itemCatMapper;
-    @Autowired
-    private ConvertService convertService;
+public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat>
+		implements ItemCatService {
 
-    @Override
-    public List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit) {
-        Optional<List<ItemCat>> itemCats = Optional.ofNullable(itemCatMapper.selectByRemark(remark, limit));
-        return itemCats.map(itemCatList ->
-                itemCatList.stream().map(itemCat -> convertService.convert(itemCat)).collect(Collectors.toList())
-        ).orElse(Collections.emptyList());
-    }
+	@Autowired
+	private ItemCatMapper itemCatMapper;
+
+	@Autowired
+	private ConvertService convertService;
+
+	@Override
+	public List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit) {
+		Optional<List<ItemCat>> itemCats = Optional
+				.ofNullable(itemCatMapper.selectByRemark(remark, limit));
+		return itemCats.map(itemCatList -> itemCatList.stream()
+				.map(itemCat -> convertService.convert(itemCat))
+				.collect(Collectors.toList())).orElse(Collections.emptyList());
+	}
+
 }

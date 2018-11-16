@@ -17,16 +17,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConvertServiceImpl implements ConvertService {
 
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 
-    @Override
-    public ItemDto convert(Item item) {
-        return modelMapper.map(item, ItemDto.class);
-    }
+	@Override
+	public ItemDto convert(Item item) {
+		return modelMapper.map(item, ItemDto.class);
+	}
 
-    @Override
-    public ItemCatDto convert(ItemCat itemCat) {
-        return modelMapper.map(itemCat, ItemCatDto.class);
-    }
+	@Override
+	public ItemCatDto convert(ItemCat itemCat) {
+		return modelMapper.map(itemCat, ItemCatDto.class);
+	}
+
 }

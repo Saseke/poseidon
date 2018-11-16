@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author ehereal
@@ -16,231 +16,219 @@ import java.io.Serializable;
 @TableName("db_order")
 public class Order implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String orderId;
+	private String orderId;
 
-    /**
-     * 实付金额
-     */
-    private BigDecimal payment;
+	/**
+	 * 实付金额
+	 */
+	private BigDecimal payment;
 
-    /**
-     * 支付方式
-     */
-    private Integer paymentType;
+	/**
+	 * 支付方式
+	 */
+	private Integer paymentType;
 
-    /**
-     * 邮费
-     */
-    private BigDecimal postFee;
+	/**
+	 * 邮费
+	 */
+	private BigDecimal postFee;
 
-    private Integer status;
+	private Integer status;
 
-    private LocalDateTime createTime;
+	private LocalDateTime createTime;
 
-    private LocalDateTime updateTime;
+	private LocalDateTime updateTime;
 
-    private LocalDateTime paymentTime;
+	private LocalDateTime paymentTime;
 
-    private LocalDateTime endTime;
+	private LocalDateTime endTime;
 
-    private LocalDateTime closeTime;
+	private LocalDateTime closeTime;
 
-    /**
-     * 物流名称
-     */
-    private String shippingName;
+	/**
+	 * 物流名称
+	 */
+	private String shippingName;
 
-    /**
-     * 物流单号
-     */
-    private String shippingCode;
+	/**
+	 * 物流单号
+	 */
+	private String shippingCode;
 
-    /**
-     * 买家id
-     */
-    private Long buyerId;
+	/**
+	 * 买家id
+	 */
+	private Long buyerId;
 
-    /**
-     * 买家留言
-     */
-    private String buyerMessage;
+	/**
+	 * 买家留言
+	 */
+	private String buyerMessage;
 
-    private String buyerNick;
+	private String buyerNick;
 
-    private Long sellerId;
+	private Long sellerId;
 
-    private String sellerNick;
+	private String sellerNick;
 
-    private Integer buyerComment;
+	private Integer buyerComment;
 
+	public String getOrderId() {
+		return orderId;
+	}
 
-    public String getOrderId() {
-        return orderId;
-    }
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+	public BigDecimal getPayment() {
+		return payment;
+	}
 
-    public BigDecimal getPayment() {
-        return payment;
-    }
+	public void setPayment(BigDecimal payment) {
+		this.payment = payment;
+	}
 
-    public void setPayment(BigDecimal payment) {
-        this.payment = payment;
-    }
+	public Integer getPaymentType() {
+		return paymentType;
+	}
 
-    public Integer getPaymentType() {
-        return paymentType;
-    }
+	public void setPaymentType(Integer paymentType) {
+		this.paymentType = paymentType;
+	}
 
-    public void setPaymentType(Integer paymentType) {
-        this.paymentType = paymentType;
-    }
+	public BigDecimal getPostFee() {
+		return postFee;
+	}
 
-    public BigDecimal getPostFee() {
-        return postFee;
-    }
+	public void setPostFee(BigDecimal postFee) {
+		this.postFee = postFee;
+	}
 
-    public void setPostFee(BigDecimal postFee) {
-        this.postFee = postFee;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
+	public LocalDateTime getUpdateTime() {
+		return updateTime;
+	}
 
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
+	public LocalDateTime getPaymentTime() {
+		return paymentTime;
+	}
 
-    public LocalDateTime getPaymentTime() {
-        return paymentTime;
-    }
+	public void setPaymentTime(LocalDateTime paymentTime) {
+		this.paymentTime = paymentTime;
+	}
 
-    public void setPaymentTime(LocalDateTime paymentTime) {
-        this.paymentTime = paymentTime;
-    }
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
+	public LocalDateTime getCloseTime() {
+		return closeTime;
+	}
 
-    public LocalDateTime getCloseTime() {
-        return closeTime;
-    }
+	public void setCloseTime(LocalDateTime closeTime) {
+		this.closeTime = closeTime;
+	}
 
-    public void setCloseTime(LocalDateTime closeTime) {
-        this.closeTime = closeTime;
-    }
+	public String getShippingName() {
+		return shippingName;
+	}
 
-    public String getShippingName() {
-        return shippingName;
-    }
+	public void setShippingName(String shippingName) {
+		this.shippingName = shippingName;
+	}
 
-    public void setShippingName(String shippingName) {
-        this.shippingName = shippingName;
-    }
+	public String getShippingCode() {
+		return shippingCode;
+	}
 
-    public String getShippingCode() {
-        return shippingCode;
-    }
+	public void setShippingCode(String shippingCode) {
+		this.shippingCode = shippingCode;
+	}
 
-    public void setShippingCode(String shippingCode) {
-        this.shippingCode = shippingCode;
-    }
+	public Long getBuyerId() {
+		return buyerId;
+	}
 
-    public Long getBuyerId() {
-        return buyerId;
-    }
+	public void setBuyerId(Long buyerId) {
+		this.buyerId = buyerId;
+	}
 
-    public void setBuyerId(Long buyerId) {
-        this.buyerId = buyerId;
-    }
+	public String getBuyerMessage() {
+		return buyerMessage;
+	}
 
-    public String getBuyerMessage() {
-        return buyerMessage;
-    }
+	public void setBuyerMessage(String buyerMessage) {
+		this.buyerMessage = buyerMessage;
+	}
 
-    public void setBuyerMessage(String buyerMessage) {
-        this.buyerMessage = buyerMessage;
-    }
+	public String getBuyerNick() {
+		return buyerNick;
+	}
 
-    public String getBuyerNick() {
-        return buyerNick;
-    }
+	public void setBuyerNick(String buyerNick) {
+		this.buyerNick = buyerNick;
+	}
 
-    public void setBuyerNick(String buyerNick) {
-        this.buyerNick = buyerNick;
-    }
+	public Long getSellerId() {
+		return sellerId;
+	}
 
-    public Long getSellerId() {
-        return sellerId;
-    }
+	public void setSellerId(Long sellerId) {
+		this.sellerId = sellerId;
+	}
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
+	public String getSellerNick() {
+		return sellerNick;
+	}
 
-    public String getSellerNick() {
-        return sellerNick;
-    }
+	public void setSellerNick(String sellerNick) {
+		this.sellerNick = sellerNick;
+	}
 
-    public void setSellerNick(String sellerNick) {
-        this.sellerNick = sellerNick;
-    }
+	public Integer getBuyerComment() {
+		return buyerComment;
+	}
 
-    public Integer getBuyerComment() {
-        return buyerComment;
-    }
+	public void setBuyerComment(Integer buyerComment) {
+		this.buyerComment = buyerComment;
+	}
 
-    public void setBuyerComment(Integer buyerComment) {
-        this.buyerComment = buyerComment;
-    }
+	@Override
+	public String toString() {
+		return "Order{" + "orderId=" + orderId + ", payment=" + payment + ", paymentType="
+				+ paymentType + ", postFee=" + postFee + ", status=" + status
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", paymentTime=" + paymentTime + ", endTime=" + endTime + ", closeTime="
+				+ closeTime + ", shippingName=" + shippingName + ", shippingCode="
+				+ shippingCode + ", buyerId=" + buyerId + ", buyerMessage=" + buyerMessage
+				+ ", buyerNick=" + buyerNick + ", sellerId=" + sellerId + ", sellerNick="
+				+ sellerNick + ", buyerComment=" + buyerComment + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "Order{" +
-        "orderId=" + orderId +
-        ", payment=" + payment +
-        ", paymentType=" + paymentType +
-        ", postFee=" + postFee +
-        ", status=" + status +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", paymentTime=" + paymentTime +
-        ", endTime=" + endTime +
-        ", closeTime=" + closeTime +
-        ", shippingName=" + shippingName +
-        ", shippingCode=" + shippingCode +
-        ", buyerId=" + buyerId +
-        ", buyerMessage=" + buyerMessage +
-        ", buyerNick=" + buyerNick +
-        ", sellerId=" + sellerId +
-        ", sellerNick=" + sellerNick +
-        ", buyerComment=" + buyerComment +
-        "}";
-    }
 }

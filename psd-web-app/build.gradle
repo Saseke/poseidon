@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+        classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.6")
     }
 }
 
@@ -13,6 +14,12 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'java'
 group 'com.yoke.poseidon'
 apply plugin: "io.spring.dependency-management"
+apply plugin: 'io.spring.javaformat'
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion = "8.11"
+}
 version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
@@ -62,6 +69,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
+    checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.6")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

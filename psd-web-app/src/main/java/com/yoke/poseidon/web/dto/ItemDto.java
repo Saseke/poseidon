@@ -9,125 +9,130 @@ import java.math.BigDecimal;
  */
 public class ItemDto implements Serializable {
 
-    private static final long serialVersionUID = -4001786119212330546L;
-    private String itemId;
-    private String name;
-    private Long cId;
-    private String itemCatName;
-    private String sellPoint;
-    private BigDecimal price;
-    private Integer limitNum;
-    private String image;
-    private String remark;
-    private String description;
-    private Integer sortOrder;
+	private static final long serialVersionUID = -4001786119212330546L;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+	private String itemId;
 
-    public String getItemId() {
-        return itemId;
-    }
+	private String name;
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+	private Long cId;
 
-    public String getName() {
-        return name;
-    }
+	private String itemCatName;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private String sellPoint;
 
-    public Long getcId() {
-        return cId;
-    }
+	private BigDecimal price;
 
-    public void setcId(Long cId) {
-        this.cId = cId;
-    }
+	private Integer limitNum;
 
-    public String getItemCatName() {
-        return itemCatName;
-    }
+	private String image;
 
-    public void setItemCatName(String itemCatName) {
-        this.itemCatName = itemCatName;
-    }
+	private String remark;
 
-    public String getSellPoint() {
-        return sellPoint;
-    }
+	private String description;
 
-    public void setSellPoint(String sellPoint) {
-        this.sellPoint = sellPoint;
-    }
+	private Integer sortOrder;
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+	public String getItemId() {
+		return itemId;
+	}
 
-    public Integer getLimitNum() {
-        return limitNum;
-    }
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
 
-    public void setLimitNum(Integer limitNum) {
-        this.limitNum = limitNum;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getImage() {
-        return image;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public Long getcId() {
+		return cId;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setcId(Long cId) {
+		this.cId = cId;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getItemCatName() {
+		return itemCatName;
+	}
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+	public void setItemCatName(String itemCatName) {
+		this.itemCatName = itemCatName;
+	}
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
+	public String getSellPoint() {
+		return sellPoint;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setSellPoint(String sellPoint) {
+		this.sellPoint = sellPoint;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    @Override
-    public String toString() {
-        return "ItemDto{" +
-                "itemId='" + itemId + '\'' +
-                ", name='" + name + '\'' +
-                ", cId=" + cId +
-                ", itemCatName='" + itemCatName + '\'' +
-                ", sellPoint='" + sellPoint + '\'' +
-                ", price=" + price +
-                ", limitNum=" + limitNum +
-                ", image='" + image + '\'' +
-                ", remark='" + remark + '\'' +
-                ", description='" + description + '\'' +
-                ", sortOrder=" + sortOrder +
-                '}';
-    }
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public Integer getLimitNum() {
+		return limitNum;
+	}
+
+	public void setLimitNum(Integer limitNum) {
+		this.limitNum = limitNum;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemDto{" + "itemId='" + itemId + '\'' + ", name='" + name + '\''
+				+ ", cId=" + cId + ", itemCatName='" + itemCatName + '\''
+				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", limitNum="
+				+ limitNum + ", image='" + image + '\'' + ", remark='" + remark + '\''
+				+ ", description='" + description + '\'' + ", sortOrder=" + sortOrder
+				+ '}';
+	}
+
 }

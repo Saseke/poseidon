@@ -1,6 +1,5 @@
 package com.yoke.poseidon.web.controller;
 
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -18,4 +17,3 @@ import org.springframework.stereotype.Controller;
 public class OrderShippingController {
 
 }
-

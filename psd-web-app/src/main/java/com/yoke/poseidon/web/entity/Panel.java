@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author ehereal
@@ -17,112 +17,105 @@ import java.io.Serializable;
 @TableName("db_panel")
 public class Panel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "panel_id", type = IdType.AUTO)
-    private Integer panelId;
+	@TableId(value = "panel_id", type = IdType.AUTO)
+	private Integer panelId;
 
-    private LocalDateTime created;
+	private LocalDateTime created;
 
-    private Integer limitNum;
+	private Integer limitNum;
 
-    private String name;
+	private String name;
 
-    private String remark;
+	private String remark;
 
-    private Integer sortOrder;
+	private Integer sortOrder;
 
-    private Integer status;
+	private Integer status;
 
-    private Integer type;
+	private Integer type;
 
-    private LocalDateTime updated;
+	private LocalDateTime updated;
 
+	public Integer getPanelId() {
+		return panelId;
+	}
 
-    public Integer getPanelId() {
-        return panelId;
-    }
+	public void setPanelId(Integer panelId) {
+		this.panelId = panelId;
+	}
 
-    public void setPanelId(Integer panelId) {
-        this.panelId = panelId;
-    }
+	public LocalDateTime getCreated() {
+		return created;
+	}
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
+	public Integer getLimitNum() {
+		return limitNum;
+	}
 
-    public Integer getLimitNum() {
-        return limitNum;
-    }
+	public void setLimitNum(Integer limitNum) {
+		this.limitNum = limitNum;
+	}
 
-    public void setLimitNum(Integer limitNum) {
-        this.limitNum = limitNum;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getRemark() {
+		return remark;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Integer getType() {
+		return type;
+	}
 
-    public Integer getType() {
-        return type;
-    }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	public LocalDateTime getUpdated() {
+		return updated;
+	}
 
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
+	public void setUpdated(LocalDateTime updated) {
+		this.updated = updated;
+	}
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
+	@Override
+	public String toString() {
+		return "Panel{" + "panelId=" + panelId + ", created=" + created + ", limitNum="
+				+ limitNum + ", name=" + name + ", remark=" + remark + ", sortOrder="
+				+ sortOrder + ", status=" + status + ", type=" + type + ", updated="
+				+ updated + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "Panel{" +
-        "panelId=" + panelId +
-        ", created=" + created +
-        ", limitNum=" + limitNum +
-        ", name=" + name +
-        ", remark=" + remark +
-        ", sortOrder=" + sortOrder +
-        ", status=" + status +
-        ", type=" + type +
-        ", updated=" + updated +
-        "}";
-    }
 }

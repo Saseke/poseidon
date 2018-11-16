@@ -18,123 +18,115 @@ import java.time.LocalDateTime;
 @TableName("db_item_cat")
 public class ItemCat implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "item_cat_id", type = IdType.AUTO)
-    private Long itemCatId;
+	@TableId(value = "item_cat_id", type = IdType.AUTO)
+	private Long itemCatId;
 
-    private LocalDateTime created;
+	private LocalDateTime created;
 
-    private String icon;
+	private String icon;
 
-    private Integer isParent;
+	private Integer isParent;
 
-    private String name;
+	private String name;
 
-    private Long parentId;
+	private Long parentId;
 
-    private String remark;
+	private String remark;
 
-    private Integer sortOrder;
+	private Integer sortOrder;
 
-    private Integer state;
+	private Integer state;
 
-    private LocalDateTime updated;
+	private LocalDateTime updated;
 
+	public Long getItemCatId() {
+		return itemCatId;
+	}
 
-    public Long getItemCatId() {
-        return itemCatId;
-    }
+	public void setItemCatId(Long itemCatId) {
+		this.itemCatId = itemCatId;
+	}
 
-    public void setItemCatId(Long itemCatId) {
-        this.itemCatId = itemCatId;
-    }
+	public LocalDateTime getCreated() {
+		return created;
+	}
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
+	public String getIcon() {
+		return icon;
+	}
 
-    public String getIcon() {
-        return icon;
-    }
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+	public Integer getIsParent() {
+		return isParent;
+	}
 
-    public Integer getIsParent() {
-        return isParent;
-    }
+	public void setIsParent(Integer isParent) {
+		this.isParent = isParent;
+	}
 
-    public void setIsParent(Integer isParent) {
-        this.isParent = isParent;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Long getParentId() {
+		return parentId;
+	}
 
-    public Long getParentId() {
-        return parentId;
-    }
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
+	public String getRemark() {
+		return remark;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
+	public Integer getState() {
+		return state;
+	}
 
-    public Integer getState() {
-        return state;
-    }
+	public void setState(Integer state) {
+		this.state = state;
+	}
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
+	public LocalDateTime getUpdated() {
+		return updated;
+	}
 
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
+	public void setUpdated(LocalDateTime updated) {
+		this.updated = updated;
+	}
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
+	@Override
+	public String toString() {
+		return "ItemCat{" + "itemCatId=" + itemCatId + ", created=" + created + ", icon="
+				+ icon + ", isParent=" + isParent + ", name=" + name + ", parentId="
+				+ parentId + ", remark=" + remark + ", sortOrder=" + sortOrder
+				+ ", state=" + state + ", updated=" + updated + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "ItemCat{" +
-                "itemCatId=" + itemCatId +
-                ", created=" + created +
-                ", icon=" + icon +
-                ", isParent=" + isParent +
-                ", name=" + name +
-                ", parentId=" + parentId +
-                ", remark=" + remark +
-                ", sortOrder=" + sortOrder +
-                ", state=" + state +
-                ", updated=" + updated +
-                "}";
-    }
 }

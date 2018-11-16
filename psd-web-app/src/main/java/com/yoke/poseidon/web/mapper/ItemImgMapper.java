@@ -5,7 +5,7 @@ import com.yoke.poseidon.web.entity.ItemImg;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author yoke

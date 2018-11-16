@@ -19,10 +19,10 @@ import java.util.List;
  */
 public interface ItemService extends IService<Item> {
 
+	List<ItemCatDto> getIndexCatWithItems();
 
-    List<ItemCatDto> getIndexCatWithItems();
+	List<ItemCatDto> getRootCatsWithItems(Integer limit);
 
-    List<ItemCatDto> getRootCatsWithItems(Integer limit);
+	List<List<ItemCatDto>> getRootCatsWithItemsParted(Integer limit);
 
-    List<List<ItemCatDto>> getRootCatsWithItemsParted(Integer limit);
 }

@@ -20,27 +20,27 @@ import java.util.List;
 @SpringBootTest
 public class ItemMapperTest {
 
-    @Autowired
-    private ItemMapper itemMapper;
+	@Autowired
+	private ItemMapper itemMapper;
 
-    @Test
-    public void selectById() {
-        Item item = itemMapper.selectById("BHTRTGVR");
-        Assert.assertNotNull(item);
-    }
+	@Test
+	public void selectById() {
+		Item item = itemMapper.selectById("BHTRTGVR");
+		Assert.assertNotNull(item);
+	}
 
-    @Test
-    public void selectByCId() {
-        ArrayList<String> orderBy = new ArrayList<String>() {
-            private static final long serialVersionUID = 7438452364005054326L;
+	@Test
+	public void selectByCId() {
+		ArrayList<String> orderBy = new ArrayList<String>() {
+			private static final long serialVersionUID = 7438452364005054326L;
 
-            {
-                add("sort_order");
-                add("price");
-            }
-        };
-        List<Item> req2 = itemMapper.selectByCId(8L, 6, "price DESC");
-        Assert.assertEquals(5399.00, req2.get(0).getPrice());
-    }
+			{
+				add("sort_order");
+				add("price");
+			}
+		};
+		List<Item> req2 = itemMapper.selectByCId(8L, 6, "price DESC");
+		Assert.assertEquals(5399.00, req2.get(0).getPrice());
+	}
+
 }
-

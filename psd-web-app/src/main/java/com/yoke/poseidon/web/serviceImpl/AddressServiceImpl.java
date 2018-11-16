@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author ehereal
  * @since 2018-09-20
  */
 @Service
-public class AddressServiceImpl extends ServiceImpl<AddressMapper, Address> implements AddressService {
+public class AddressServiceImpl extends ServiceImpl<AddressMapper, Address>
+		implements AddressService {
 
 }

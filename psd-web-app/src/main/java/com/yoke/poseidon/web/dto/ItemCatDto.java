@@ -8,93 +8,104 @@ import java.util.List;
  * @Date 2018/10/17 下午9:56
  */
 public class ItemCatDto implements Serializable {
-    private static final long serialVersionUID = 3026371933152829463L;
-    private Long itemCatId;
-    private String icon;
-    private Integer isParent;
-    private String name;
-    private Long parentId;
-    private String remark;
-    private Integer sortOrder;
-    private List<ItemCatDto> childCats;
-    private List<ItemDto> items;
 
-    public ItemCatDto() {
-    }
+	private static final long serialVersionUID = 3026371933152829463L;
 
-    public Long getItemCatId() {
-        return itemCatId;
-    }
+	private Long itemCatId;
 
-    public void setItemCatId(Long itemCatId) {
-        this.itemCatId = itemCatId;
-    }
+	private String icon;
 
-    public String getIcon() {
-        return icon;
-    }
+	private Integer isParent;
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+	private String name;
 
-    public Integer getIsParent() {
-        return isParent;
-    }
+	private Long parentId;
 
-    public void setIsParent(Integer isParent) {
-        this.isParent = isParent;
-    }
+	private String remark;
 
-    public String getName() {
-        return name;
-    }
+	private Integer sortOrder;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private List<ItemCatDto> childCats;
 
-    public Long getParentId() {
-        return parentId;
-    }
+	private List<ItemDto> items;
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
+	public ItemCatDto() {
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public Long getItemCatId() {
+		return itemCatId;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public void setItemCatId(Long itemCatId) {
+		this.itemCatId = itemCatId;
+	}
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+	public String getIcon() {
+		return icon;
+	}
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+	public Integer getIsParent() {
+		return isParent;
+	}
 
-    public List<ItemCatDto> getChildCats() {
-        return childCats;
-    }
+	public void setIsParent(Integer isParent) {
+		this.isParent = isParent;
+	}
 
-    public void setChildCats(List<ItemCatDto> childCats) {
-        this.childCats = childCats;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public List<ItemDto> getItems() {
-        return items;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setItems(List<ItemDto> items) {
-        this.items = items;
-    }
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public List<ItemCatDto> getChildCats() {
+		return childCats;
+	}
+
+	public void setChildCats(List<ItemCatDto> childCats) {
+		this.childCats = childCats;
+	}
+
+	public List<ItemDto> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemDto> items) {
+		this.items = items;
+	}
+
 }

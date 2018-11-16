@@ -6,13 +6,14 @@ package com.yoke.poseidon.web.exception;
  */
 public abstract class ApiException extends RuntimeException {
 
-    @Override
-    public String getMessage() {
-        String customMessage = getCustomMessage();
-        return customMessage==null?super.getMessage():customMessage;
-    }
+	@Override
+	public String getMessage() {
+		String customMessage = getCustomMessage();
+		return customMessage == null ? super.getMessage() : customMessage;
+	}
 
-    protected String getCustomMessage(){
-       return null;
-    }
+	protected String getCustomMessage() {
+		return null;
+	}
+
 }

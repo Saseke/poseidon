@@ -18,97 +18,106 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SoftCacheStorage implements CacheStorageWithGetSize, ConcurrentCacheStorage {
 
-    private static final Method atomicRemove = getAtomicRemoveMethod();
-    private final ReferenceQueue queue = new ReferenceQueue();
-    private final Map<Object, SoftValueReference> map;
-    private final boolean concurrent;
+	private static final Method atomicRemove = getAtomicRemoveMethod();
 
-    public SoftCacheStorage() {
-        this(new ConcurrentHashMap<>());
-    }
+	private final ReferenceQueue queue = new ReferenceQueue();
 
-    public SoftCacheStorage(Map<Object, SoftValueReference> map) {
-        this.map = map;
-        this.concurrent = map instanceof ConcurrentHashMap;
-    }
+	private final Map<Object, SoftValueReference> map;
 
-    @Override
-    public int getSize() {
-        processQueue();
-        return map.size();
-    }
+	private final boolean concurrent;
 
-    @Override
-    public boolean isConcurrent() {
-        return false;
-    }
+	public SoftCacheStorage() {
+		this(new ConcurrentHashMap<>());
+	}
 
-    @Override
-    public Object get(Object key) {
-        processQueue();
-        Reference ref = map.get(key);
-        return ref == null ? null : ref.get();
-    }
+	public SoftCacheStorage(Map<Object, SoftValueReference> map) {
+		this.map = map;
+		this.concurrent = map instanceof ConcurrentHashMap;
+	}
 
-    @Override
-    public void put(Object key, Object value) {
-        processQueue();
-        map.put(key, new SoftValueReference(key, value, queue));
-    }
+	@Override
+	public int getSize() {
+		processQueue();
+		return map.size();
+	}
 
-    @Override
-    public void remove(Object key) {
-        processQueue();
-        map.remove(key);
-    }
+	@Override
+	public boolean isConcurrent() {
+		return false;
+	}
 
-    @Override
-    public void clear() {
-        map.clear();
-        processQueue();
-    }
+	@Override
+	public Object get(Object key) {
+		processQueue();
+		Reference ref = map.get(key);
+		return ref == null ? null : ref.get();
+	}
 
+	@Override
+	public void put(Object key, Object value) {
+		processQueue();
+		map.put(key, new SoftValueReference(key, value, queue));
+	}
 
-    private void processQueue() {
-        for (; ; ) {
-            SoftValueReference ref = (SoftValueReference) queue.poll();
-            if (ref == null) {
-                return;
-            }
-            Object key = ref.getKey();
-            if (concurrent) {
-                try {
-                    atomicRemove.invoke(map, key, ref);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    throw new UndeclaredThrowableException(e);
-                }
-            } else if (map.get(key) == ref) {
-                map.remove(key);
-            }
-        }
-    }
+	@Override
+	public void remove(Object key) {
+		processQueue();
+		map.remove(key);
+	}
 
-    private static final class SoftValueReference extends SoftReference {
-        private final Object key;
+	@Override
+	public void clear() {
+		map.clear();
+		processQueue();
+	}
 
-        SoftValueReference(Object key, Object value, ReferenceQueue queue) {
-            super(value, queue);
-            this.key = key;
-        }
+	private void processQueue() {
+		for (;;) {
+			SoftValueReference ref = (SoftValueReference) queue.poll();
+			if (ref == null) {
+				return;
+			}
+			Object key = ref.getKey();
+			if (concurrent) {
+				try {
+					atomicRemove.invoke(map, key, ref);
+				}
+				catch (IllegalAccessException | InvocationTargetException e) {
+					throw new UndeclaredThrowableException(e);
+				}
+			}
+			else if (map.get(key) == ref) {
+				map.remove(key);
+			}
+		}
+	}
 
-        Object getKey() {
-            return key;
-        }
-    }
+	private static final class SoftValueReference extends SoftReference {
 
-    private static Method getAtomicRemoveMethod() {
-        try {
-            return Class.forName("java.util.concurrent.ConcurrentMap").getMethod("remove", Object.class,
-                    Object.class);
-        } catch (ClassNotFoundException e) {
-            return null;
-        } catch (NoSuchMethodException e) {
-            throw new UndeclaredThrowableException(e);
-        }
-    }
+		private final Object key;
+
+		SoftValueReference(Object key, Object value, ReferenceQueue queue) {
+			super(value, queue);
+			this.key = key;
+		}
+
+		Object getKey() {
+			return key;
+		}
+
+	}
+
+	private static Method getAtomicRemoveMethod() {
+		try {
+			return Class.forName("java.util.concurrent.ConcurrentMap").getMethod("remove",
+					Object.class, Object.class);
+		}
+		catch (ClassNotFoundException e) {
+			return null;
+		}
+		catch (NoSuchMethodException e) {
+			throw new UndeclaredThrowableException(e);
+		}
+	}
+
 }

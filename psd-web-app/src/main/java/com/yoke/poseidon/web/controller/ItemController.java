@@ -1,6 +1,5 @@
 package com.yoke.poseidon.web.controller;
 
-
 import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/item")
 public class ItemController {
-    @GetMapping("/d/{itemId}")
-    public String getItemByItemId(@PathVariable Long itemId, Model model) {
-        return "itemDtl.html";
-    }
+
+	@GetMapping("/d/{itemId}")
+	public String getItemByItemId(@PathVariable Long itemId, Model model) {
+		return "itemDtl.html";
+	}
+
 }

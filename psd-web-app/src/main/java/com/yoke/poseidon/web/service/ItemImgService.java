@@ -5,7 +5,7 @@ import com.yoke.poseidon.web.entity.ItemImg;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author yoke

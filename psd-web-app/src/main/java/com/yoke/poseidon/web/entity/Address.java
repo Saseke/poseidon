@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author ehereal
@@ -16,79 +16,74 @@ import java.io.Serializable;
 @TableName("db_address")
 public class Address implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "address_id", type = IdType.AUTO)
-    private Long addressId;
+	@TableId(value = "address_id", type = IdType.AUTO)
+	private Long addressId;
 
-    private Integer isDefault;
+	private Integer isDefault;
 
-    private String streetName;
+	private String streetName;
 
-    private String tel;
+	private String tel;
 
-    private Long userId;
+	private Long userId;
 
-    private String userName;
+	private String userName;
 
+	public Long getAddressId() {
+		return addressId;
+	}
 
-    public Long getAddressId() {
-        return addressId;
-    }
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
 
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
-    }
+	public Integer getIsDefault() {
+		return isDefault;
+	}
 
-    public Integer getIsDefault() {
-        return isDefault;
-    }
+	public void setIsDefault(Integer isDefault) {
+		this.isDefault = isDefault;
+	}
 
-    public void setIsDefault(Integer isDefault) {
-        this.isDefault = isDefault;
-    }
+	public String getStreetName() {
+		return streetName;
+	}
 
-    public String getStreetName() {
-        return streetName;
-    }
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
+	public String getTel() {
+		return tel;
+	}
 
-    public String getTel() {
-        return tel;
-    }
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public Long getUserId() {
-        return userId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	@Override
+	public String toString() {
+		return "Address{" + "addressId=" + addressId + ", isDefault=" + isDefault
+				+ ", streetName=" + streetName + ", tel=" + tel + ", userId=" + userId
+				+ ", userName=" + userName + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "Address{" +
-        "addressId=" + addressId +
-        ", isDefault=" + isDefault +
-        ", streetName=" + streetName +
-        ", tel=" + tel +
-        ", userId=" + userId +
-        ", userName=" + userName +
-        "}";
-    }
 }

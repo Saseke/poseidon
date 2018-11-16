@@ -6,5 +6,6 @@ package com.yoke.poseidon.web.cache;
  */
 public interface ConcurrentCacheStorage extends CacheStorage {
 
-    boolean isConcurrent();
+	boolean isConcurrent();
+
 }

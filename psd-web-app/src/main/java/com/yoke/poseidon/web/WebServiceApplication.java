@@ -13,12 +13,14 @@ import org.springframework.context.annotation.Bean;
 @MapperScan(basePackages = "com.yoke.poseidon.web.mapper")
 @SpringBootApplication
 public class WebServiceApplication {
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 
-    public static void main(String[] args) {
-        SpringApplication.run(WebServiceApplication.class, args);
-    }
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(WebServiceApplication.class, args);
+	}
+
 }

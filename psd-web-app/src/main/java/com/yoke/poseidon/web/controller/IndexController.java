@@ -17,25 +17,27 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private ItemCatService itemCatService;
-    @Autowired
-    private ItemService itemService;
+	@Autowired
+	private ItemCatService itemCatService;
 
-    @GetMapping("/")
-    public String index(Model model) {
-        List<ItemCatDto> itemCatDtos = itemService.getIndexCatWithItems();
-        model.addAttribute("item_cat_items_list", itemCatDtos);
-        return "index";
-    }
+	@Autowired
+	private ItemService itemService;
 
-    @GetMapping("/catDtl")
-    public String catDtl(Model model) {
-        return "catDtl";
-    }
+	@GetMapping("/")
+	public String index(Model model) {
+		List<ItemCatDto> itemCatDtos = itemService.getIndexCatWithItems();
+		model.addAttribute("item_cat_items_list", itemCatDtos);
+		return "index";
+	}
 
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
+	@GetMapping("/catDtl")
+	public String catDtl(Model model) {
+		return "catDtl";
+	}
+
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
+
 }

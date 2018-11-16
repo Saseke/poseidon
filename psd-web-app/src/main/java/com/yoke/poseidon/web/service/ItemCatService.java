@@ -17,5 +17,6 @@ import java.util.List;
  */
 public interface ItemCatService extends IService<ItemCat> {
 
-    List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit);
+	List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit);
+
 }

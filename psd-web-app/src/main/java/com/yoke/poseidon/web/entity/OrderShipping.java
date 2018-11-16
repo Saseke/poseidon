@@ -15,126 +15,120 @@ import java.io.Serializable;
 @TableName("db_order_shipping")
 public class OrderShipping implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String orderId;
+	private String orderId;
 
-    /**
-     * 收货人名称
-     */
-    private String receiverName;
+	/**
+	 * 收货人名称
+	 */
+	private String receiverName;
 
-    private String receiverMobile;
+	private String receiverMobile;
 
-    /**
-     * 省份
-     */
-    private String receiverState;
+	/**
+	 * 省份
+	 */
+	private String receiverState;
 
-    /**
-     * 城市
-     */
-    private String receiverCity;
+	/**
+	 * 城市
+	 */
+	private String receiverCity;
 
-    /**
-     * 区县
-     */
-    private String receiverDistrict;
+	/**
+	 * 区县
+	 */
+	private String receiverDistrict;
 
-    /**
-     * 收货地址
-     */
-    private String receiverAddress;
+	/**
+	 * 收货地址
+	 */
+	private String receiverAddress;
 
-    private LocalDateTime created;
+	private LocalDateTime created;
 
-    private LocalDateTime updated;
+	private LocalDateTime updated;
 
+	public String getOrderId() {
+		return orderId;
+	}
 
-    public String getOrderId() {
-        return orderId;
-    }
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+	public String getReceiverName() {
+		return receiverName;
+	}
 
-    public String getReceiverName() {
-        return receiverName;
-    }
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
 
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
+	public String getReceiverMobile() {
+		return receiverMobile;
+	}
 
-    public String getReceiverMobile() {
-        return receiverMobile;
-    }
+	public void setReceiverMobile(String receiverMobile) {
+		this.receiverMobile = receiverMobile;
+	}
 
-    public void setReceiverMobile(String receiverMobile) {
-        this.receiverMobile = receiverMobile;
-    }
+	public String getReceiverState() {
+		return receiverState;
+	}
 
-    public String getReceiverState() {
-        return receiverState;
-    }
+	public void setReceiverState(String receiverState) {
+		this.receiverState = receiverState;
+	}
 
-    public void setReceiverState(String receiverState) {
-        this.receiverState = receiverState;
-    }
+	public String getReceiverCity() {
+		return receiverCity;
+	}
 
-    public String getReceiverCity() {
-        return receiverCity;
-    }
+	public void setReceiverCity(String receiverCity) {
+		this.receiverCity = receiverCity;
+	}
 
-    public void setReceiverCity(String receiverCity) {
-        this.receiverCity = receiverCity;
-    }
+	public String getReceiverDistrict() {
+		return receiverDistrict;
+	}
 
-    public String getReceiverDistrict() {
-        return receiverDistrict;
-    }
+	public void setReceiverDistrict(String receiverDistrict) {
+		this.receiverDistrict = receiverDistrict;
+	}
 
-    public void setReceiverDistrict(String receiverDistrict) {
-        this.receiverDistrict = receiverDistrict;
-    }
+	public String getReceiverAddress() {
+		return receiverAddress;
+	}
 
-    public String getReceiverAddress() {
-        return receiverAddress;
-    }
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
+	}
 
-    public void setReceiverAddress(String receiverAddress) {
-        this.receiverAddress = receiverAddress;
-    }
+	public LocalDateTime getCreated() {
+		return created;
+	}
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
+	public LocalDateTime getUpdated() {
+		return updated;
+	}
 
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
+	public void setUpdated(LocalDateTime updated) {
+		this.updated = updated;
+	}
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
+	@Override
+	public String toString() {
+		return "OrderShipping{" + "orderId=" + orderId + ", receiverName=" + receiverName
+				+ ", receiverMobile=" + receiverMobile + ", receiverState="
+				+ receiverState + ", receiverCity=" + receiverCity + ", receiverDistrict="
+				+ receiverDistrict + ", receiverAddress=" + receiverAddress + ", created="
+				+ created + ", updated=" + updated + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "OrderShipping{" +
-        "orderId=" + orderId +
-        ", receiverName=" + receiverName +
-        ", receiverMobile=" + receiverMobile +
-        ", receiverState=" + receiverState +
-        ", receiverCity=" + receiverCity +
-        ", receiverDistrict=" + receiverDistrict +
-        ", receiverAddress=" + receiverAddress +
-        ", created=" + created +
-        ", updated=" + updated +
-        "}";
-    }
 }

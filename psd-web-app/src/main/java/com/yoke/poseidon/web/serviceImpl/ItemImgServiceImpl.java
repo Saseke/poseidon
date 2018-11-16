@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author yoke
  * @since 2018-10-27
  */
 @Service
-public class ItemImgServiceImpl extends ServiceImpl<ItemImgMapper, ItemImg> implements ItemImgService {
+public class ItemImgServiceImpl extends ServiceImpl<ItemImgMapper, ItemImg>
+		implements ItemImgService {
 
 }
