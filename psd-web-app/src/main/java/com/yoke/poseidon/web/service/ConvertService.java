@@ -4,6 +4,9 @@ import com.yoke.poseidon.web.dto.ItemCatDto;
 import com.yoke.poseidon.web.dto.ItemDto;
 import com.yoke.poseidon.web.entity.Item;
 import com.yoke.poseidon.web.entity.ItemCat;
+import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 /**
  * @Author Yoke
@@ -11,8 +14,12 @@ import com.yoke.poseidon.web.entity.ItemCat;
  */
 public interface ConvertService {
 
-	ItemDto convert(Item item);
+	ItemDto convertItem(@NonNull Item item);
 
-	ItemCatDto convert(ItemCat itemCat);
+	List<ItemDto> convertItem(@NonNull List<Item> items);
+
+	ItemCatDto convertItemCat(@NonNull ItemCat itemCat);
+
+	List<ItemCatDto> convertItemCat(@NonNull List<ItemCat> itemCats);
 
 }

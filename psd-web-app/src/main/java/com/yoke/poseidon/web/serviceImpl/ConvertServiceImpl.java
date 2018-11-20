@@ -7,7 +7,11 @@ import com.yoke.poseidon.web.entity.ItemCat;
 import com.yoke.poseidon.web.service.ConvertService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author Yoke
@@ -21,13 +25,26 @@ public class ConvertServiceImpl implements ConvertService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public ItemDto convert(Item item) {
+	public ItemDto convertItem(@NonNull Item item) {
 		return modelMapper.map(item, ItemDto.class);
 	}
 
 	@Override
-	public ItemCatDto convert(ItemCat itemCat) {
+	public List<ItemDto> convertItem(@NonNull List<Item> items) {
+		return items.stream().map(item -> modelMapper.map(item, ItemDto.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public ItemCatDto convertItemCat(@NonNull ItemCat itemCat) {
 		return modelMapper.map(itemCat, ItemCatDto.class);
+	}
+
+	@Override
+	public List<ItemCatDto> convertItemCat(@NonNull List<ItemCat> itemCats) {
+		return itemCats.stream()
+				.map(itemCat -> modelMapper.map(itemCat, ItemCatDto.class))
+				.collect(Collectors.toList());
 	}
 
 }

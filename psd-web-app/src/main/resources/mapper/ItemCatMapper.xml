@@ -7,35 +7,70 @@
         from poseidon.db_item_cat
     </sql>
 
-    <select id="selectByParentIds" resultType="com.yoke.poseidon.web.entity.ItemCat">
-        <include refid="itemCatColumns"/>
-        <where>
-            parent_id in
-            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">#{id}
-            </foreach>
-        </where>
-    </select>
+
     <select id="selectByParentId" resultType="com.yoke.poseidon.web.entity.ItemCat">
         <include refid="itemCatColumns"/>
-        where parent_id = #{pId} order by sort_order asc
+        where parent_id = #{pId}
+        <choose>
+            <when test="sort != null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
+        <if test="limit !=null ">
+            limit #{limit}
+        </if>
+    </select>
+    <select id="selectIdsByParentId" resultType="java.lang.Long">
+        select poseidon.db_item_cat.item_cat_id
+        from poseidon.db_item_cat
+        where parent_id = #{pId}
+        <choose>
+            <when test="sort != null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
+        <if test="limit !=null">
+            limit #{limit}
+        </if>
     </select>
     <select id="selectRootCat" resultType="com.yoke.poseidon.web.entity.ItemCat">
         <include refid="itemCatColumns"/>
-        where parent_id=0
-    </select>
-    <select id="selectByRemark" resultType="com.yoke.poseidon.web.entity.ItemCat">
-
-        <include refid="itemCatColumns"/>
-
-        where remark = #{remark}
-        order by sort_order asc
+        where is_parent = 1
+        <choose>
+            <when test="sort != null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
         <if test="limit != null">
             limit #{limit}
         </if>
     </select>
-    <select id="selectChildIdsByParentId" resultType="java.lang.Long">
-        select item_cat_id
-        from db_item_cat
-        where parent_id = #{pId}
+    <select id="selectByRemark" resultType="com.yoke.poseidon.web.entity.ItemCat">
+        <include refid="itemCatColumns"/>
+        where remark=#{remark}
+        <choose>
+            <when test="sort != null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
+        <if test="limit != null">
+            limit #{limit}
+        </if>
+    </select>
+    <select id="selectById" resultType="com.yoke.poseidon.web.entity.ItemCat">
+        <include refid="itemCatColumns"/>
+
     </select>
 </mapper>

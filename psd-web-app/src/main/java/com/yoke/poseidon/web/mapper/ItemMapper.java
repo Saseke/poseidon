@@ -20,59 +20,43 @@ public interface ItemMapper extends BaseMapper<Item> {
 
 	/**
 	 * 根据商品id得到Item的部分信息信息,不包括BLOB
+	 * @param itemId 商品id
+	 * @param blob 是否包含大字段信息
 	 */
-	Item selectById(@NonNull @Param("id") String itemId);
-
-	/**
-	 * 根据商品id得到Item的所有信息
-	 */
-	Item selectByIdWithBLOB(@NonNull @Param("id") String itemId);
+	Item selectById(@NonNull @Param("id") String itemId,
+			@NonNull @Param("blob") boolean blob);
 
 	/**
 	 * 根据一群ids查询得到相对应的商品
+	 * @param itemIds 商品ids
+	 * @param sort 排序方式,默认根据sort_order升序排列
+	 * @param blob 是否包含大字段信息
+	 * @return 查询得到的商品列表
 	 */
-	List<Item> selectIdIn(@NonNull @Param("ids") List<String> itemIds);
-
-	/**
-	 * 根据一群ids查询得到相对应的商品的所有信息,
-	 */
-	List<Item> selectIdInWithBLOG(@NonNull @Param("ids") List<String> itemIds);
+	List<Item> selectIdIn(@NonNull @Param("ids") List<String> itemIds,
+			@Param("sort") String sort, @NonNull @Param("blob") boolean blob);
 
 	/**
 	 * 根据商品id得到Item的部分信息,不包括BLOB
 	 * @param cId 商品 id
 	 * @param limit 显示的条数
-	 * @param sort 条件
+	 * @param sort 排序方式,默认根据sort_order排序
+	 * @param blob 是否包含大字段信息
 	 * @return 查询得到的商品列表
 	 */
-	List<Item> selectByCId(@NonNull @Param("cId") Long cId,
-			@Nullable @Param("limit") Integer limit,
-			@Nullable @Param("sort") String sort);
-
-	/**
-	 * 根据商品id得到Item的全部信息
-	 * @param cId 商品 id
-	 * @param limit 显示的条数
-	 * @param sort 条件
-	 * @return 查询得到的商品列表
-	 */
-	List<Item> selectByCIdWithBLOG(@NonNull @Param("cId") Long cId,
-			@Nullable @Param("limit") Integer limit,
-			@Nullable @Param("sort") String sort);
+	List<Item> selectByCId(@NonNull @Param("cId") Long cId, @Param("limit") Integer limit,
+			@Nullable @Param("sort") String sort, @Param("blob") boolean blob);
 
 	/**
 	 * 根据分类ids查询出对应的Items部分信息
 	 * @param cIds 分类id集合
+	 * @param limit 显示的条数
+	 * @param sort 排序方式,默认根据sort_order排序
+	 * @param blob 是否包含大字段信息
 	 * @return 查询得出的商品集合
 	 */
 	List<Item> selectByCIds(@NonNull @Param("cIds") List<Long> cIds,
-			@Param("limit") Integer limit);
-
-	/**
-	 * 根据分类ids查询对应的Items包含商品全部信息
-	 * @param cIds 分类id的集合
-	 * @return 查询得出商品集合
-	 */
-	List<Item> selectByCIdsWithBLOB(@NonNull @Param("cIds") List<Long> cIds);
+			@Param("limit") Integer limit, @Param("sort") String sort,
+			@NonNull @Param("blob") boolean blob);
 
 }

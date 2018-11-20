@@ -3,6 +3,8 @@ package com.yoke.poseidon.web.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * @Author Yoke
  * @Date 2018/10/17 下午9:56
@@ -15,7 +17,7 @@ public class ItemCatDto implements Serializable {
 
 	private String icon;
 
-	private Integer isParent;
+	private Boolean isParent;
 
 	private String name;
 
@@ -30,6 +32,8 @@ public class ItemCatDto implements Serializable {
 	private List<ItemDto> items;
 
 	public ItemCatDto() {
+		childCats = newArrayList();
+		items = newArrayList();
 	}
 
 	public Long getItemCatId() {
@@ -48,11 +52,11 @@ public class ItemCatDto implements Serializable {
 		this.icon = icon;
 	}
 
-	public Integer getIsParent() {
+	public Boolean getIsParent() {
 		return isParent;
 	}
 
-	public void setIsParent(Integer isParent) {
+	public void setIsParent(Boolean isParent) {
 		this.isParent = isParent;
 	}
 

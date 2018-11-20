@@ -27,7 +27,7 @@ public class ItemCat implements Serializable {
 
 	private String icon;
 
-	private Integer isParent;
+	private Boolean isParent;
 
 	private String name;
 
@@ -65,11 +65,11 @@ public class ItemCat implements Serializable {
 		this.icon = icon;
 	}
 
-	public Integer getIsParent() {
+	public Boolean getIsParent() {
 		return isParent;
 	}
 
-	public void setIsParent(Integer isParent) {
+	public void setIsParent(Boolean isParent) {
 		this.isParent = isParent;
 	}
 

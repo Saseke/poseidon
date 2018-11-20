@@ -30,102 +30,99 @@
                image,
                remark,
                sort_order
-        from db_item
+        from poseidon.db_item
     </sql>
-    <sql id="itemAllColumns">
+    <sql id="itemColumnsWithBLOB">
         select *
-        from db_item
+        from poseidon.db_item
     </sql>
     <select id="selectById" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemColumns"/>
-        where item_id = #{id}
-    </select>
-
-
-    <select id="selectByIdWithBLOB" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemAllColumns"/>
-        where item_id = #{id}
+        <choose>
+            <when test="blob==true">
+                <include refid="itemColumnsWithBLOB"/>
+            </when>
+            <otherwise>
+                <include refid="itemColumns"/>
+            </otherwise>
+        </choose>
+        where item_id=#{id}
     </select>
 
 
     <select id="selectIdIn" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemColumns"/>
+        <choose>
+            <when test="blob==true">
+                <include refid="itemColumnsWithBLOB"/>
+            </when>
+            <otherwise>
+                <include refid="itemColumns"/>
+            </otherwise>
+        </choose>
         <where>
             item_id in
             <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
                 #{id}
             </foreach>
         </where>
-    </select>
-
-    <select id="selectIdInWithBLOG" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemAllColumns"/>
-        <where>
-            item_id in
-            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
-                #{id}
-            </foreach>
-        </where>
+        <choose>
+            <when test="sort!=null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
     </select>
 
 
     <select id="selectByCIds" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemColumns"/>
+        <choose>
+            <when test="blob==true">
+                <include refid="itemColumnsWithBLOB"/>
+            </when>
+            <otherwise>
+                <include refid="itemColumns"/>
+            </otherwise>
+        </choose>
         <where>
             c_id in
             <foreach collection="cIds" item="id" index="index" open="(" separator="," close=")">
                 #{id}
             </foreach>
         </where>
-        order by sort_order asc
+        <choose>
+            <when test="sort!=null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
         <if test="limit != null">
             limit #{limit}
         </if>
     </select>
-
-
-    <select id="selectByCIdsWithBLOB" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemAllColumns"/>
-        <where>
-            c_id in
-            <foreach collection="cIds" item="id" index="index" open="(" separator="," close=")">
-                #{id}
-            </foreach>
-        </where>
-    </select>
-
     <select id="selectByCId" resultType="com.yoke.poseidon.web.entity.Item">
-        <include refid="itemColumns"/>
+        <choose>
+            <when test="blob==true">
+                <include refid="itemColumnsWithBLOB"/>
+            </when>
+            <otherwise>
+                <include refid="itemColumns"/>
+            </otherwise>
+        </choose>
         where c_id = #{cId}
-        <if test="sort != null">
-            order by ${sort}
-        </if>
+        <choose>
+            <when test="sort!=null">
+                ${sort}
+            </when>
+            <otherwise>
+                order by sort_order asc
+            </otherwise>
+        </choose>
         <if test="limit != null">
             limit #{limit}
         </if>
     </select>
-    <select id="selectByCIdWithBLOG" resultType="com.yoke.poseidon.web.entity.Item">
-
-        <include refid="itemAllColumns"/>
-        <where>
-            c_id = #{cId}
-            <if test="limit != null">
-                limit = #{limit}
-
-            </if>
-
-            <if test="orderBy != null">
-                order by
-                <foreach collection="orderBy" item="order" open="(" separator="," close=")">
-                    #{order}
-                </foreach>
-            </if>
-            <if test="sort != null">
-                #{sort}
-            </if>
-        </where>
-    </select>
-
-
 
 </mapper>

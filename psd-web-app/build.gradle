@@ -17,6 +17,10 @@ apply plugin: "io.spring.dependency-management"
 apply plugin: 'io.spring.javaformat'
 apply plugin: 'checkstyle'
 
+ext {
+    swaggerVersion = '2.9.2'
+}
+
 checkstyle {
     toolVersion = "8.11"
 }
@@ -64,11 +68,19 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
 // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
     compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.6'
-// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker'
 
     // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
+
+//    ----------------------swagger2 dependencies-----------------------------------------------
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: "${swaggerVersion}"
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${swaggerVersion}"
+// https://mvnrepository.com/artifact/org.jooq/jool-java-8
+    compile group: 'org.jooq', name: 'jool-java-8', version: '0.9.14'
+
+//   -------------------------------------------------------------------------------
     checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.6")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
