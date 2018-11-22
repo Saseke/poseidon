@@ -1,0 +1,94 @@
+// the resources required by the gradle script itself
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+        classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.6")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'java'
+group 'com.yoke.poseidon'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'io.spring.javaformat'
+apply plugin: 'checkstyle'
+
+ext {
+    swaggerVersion = '2.9.2'
+}
+
+checkstyle {
+    toolVersion = "8.11"
+}
+version '1.0-SNAPSHOT'
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    baseName = 'gs-spring-boot-docker'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// show gradle build info
+springBoot {
+    buildInfo()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
+    compile('mysql:mysql-connector-java:8.0.12')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-test")
+//    compile('org.springframework:springloaded:1.2.8.RELEASE')
+    compile("org.springframework.boot:spring-boot-devtools")
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
+    compile("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
+    // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus
+    compile group: 'com.baomidou', name: 'mybatis-plus', version: "${mybatisPlusVersion}"
+    // https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter
+    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.10'
+    // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.2'
+    // https://mvnrepository.com/artifact/org.apache.velocity/velocity-engine-core
+    compile group: 'org.apache.velocity', name: 'velocity-engine-core', version: '2.0'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.6'
+
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
+
+//    ----------------------swagger2 dependencies-----------------------------------------------
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: "${swaggerVersion}"
+    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${swaggerVersion}"
+// https://mvnrepository.com/artifact/org.jooq/jool-java-8
+    compile group: 'org.jooq', name: 'jool-java-8', version: '0.9.14'
+
+//   -------------------------------------------------------------------------------
+    checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.6")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
