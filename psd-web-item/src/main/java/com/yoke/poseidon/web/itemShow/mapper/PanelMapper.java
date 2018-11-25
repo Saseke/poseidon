@@ -2,6 +2,10 @@ package com.yoke.poseidon.web.itemShow.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yoke.poseidon.web.itemShow.entity.Panel;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,15 @@ import com.yoke.poseidon.web.itemShow.entity.Panel;
  * @since 2018-09-20
  */
 public interface PanelMapper extends BaseMapper<Panel> {
+
+	/**
+	 * 根据标签查询对应的版块信息
+	 * @param remark 标签名称
+	 * @param limit 限制的条数
+	 * @param sort 排序方式
+	 * @return 查询得到的版块信息
+	 */
+	List<Panel> selectByRemark(@NonNull @Param("remark") String remark,
+			@Param("sort") String sort, @Param("limit") Integer limit);
 
 }

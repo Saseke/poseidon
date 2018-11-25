@@ -4,7 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.web.itemShow.entity.PanelContent;
 import com.yoke.poseidon.web.itemShow.mapper.PanelContentMapper;
 import com.yoke.poseidon.web.itemShow.service.PanelContentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,5 +21,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PanelContentServiceImpl extends ServiceImpl<PanelContentMapper, PanelContent>
 		implements PanelContentService {
+
+	@Autowired
+	private PanelContentMapper panelContentMapper;
+
+	@Override
+	public List<String> getItemIdByPanelId(@NonNull Integer panelId, Integer limit) {
+		return panelContentMapper.selectItemIdsByPanelId(panelId, limit);
+	}
 
 }

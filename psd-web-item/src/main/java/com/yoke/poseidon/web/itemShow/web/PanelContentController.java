@@ -1,7 +1,7 @@
 package com.yoke.poseidon.web.itemShow.web;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author ehereal
  * @since 2018-09-20
  */
-@Controller
+@RestController
 @RequestMapping("/panelContent")
 public class PanelContentController {
 

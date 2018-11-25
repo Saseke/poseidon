@@ -93,7 +93,7 @@ public class PanelContent implements Serializable {
 
     @Override
     public String toString() {
-        return "PanelContent{" +
+        return "PanelContentDto{" +
         "panelContentId=" + panelContentId +
         ", created=" + created +
         ", panelId=" + panelId +

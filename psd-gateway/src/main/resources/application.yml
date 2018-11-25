@@ -5,10 +5,13 @@ eureka:
 server:
   port: 8769
 zuul:
+  ignored-services: "*"
   routes:
-    api-item:
-      path: /item/**
-      serviceId: web-app
-    api-user:
-      path: /user/**
-      serviceId: manager-app
+    web-item-service:
+      path: /itemshow/**
+      service-id: web-item-service
+    auth-service:
+      path: /auth/**
+      service-id: auth-service
+      strip-prefix: false
+      sensitive-headers: Cookie,Set-Cookie

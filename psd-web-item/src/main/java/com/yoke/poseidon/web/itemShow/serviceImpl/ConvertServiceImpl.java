@@ -1,9 +1,11 @@
 package com.yoke.poseidon.web.itemShow.serviceImpl;
 
-import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
-import com.yoke.poseidon.web.itemShow.dto.ItemDto;
+import com.yoke.poseidon.web.itemShow.dto.PanelDto;
 import com.yoke.poseidon.web.itemShow.entity.Item;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
+import com.yoke.poseidon.web.itemShow.entity.Panel;
+import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
+import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.service.ConvertService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,17 @@ public class ConvertServiceImpl implements ConvertService {
 	public List<ItemCatDto> convertItemCat(@NonNull List<ItemCat> itemCats) {
 		return itemCats.stream()
 				.map(itemCat -> modelMapper.map(itemCat, ItemCatDto.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public PanelDto convertPanel(@NonNull Panel panel) {
+		return modelMapper.map(panel, PanelDto.class);
+	}
+
+	@Override
+	public List<PanelDto> convertPanel(@NonNull List<Panel> panels) {
+		return panels.stream().map(panel -> modelMapper.map(panel, PanelDto.class))
 				.collect(Collectors.toList());
 	}
 

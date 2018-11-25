@@ -46,3 +46,7 @@ db:
   port: 13306
   username: root
   password: '123456'
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

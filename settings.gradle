@@ -1,9 +1,8 @@
 rootProject.name = 'web'
-include 'psd-web-app'
 include 'psd-discovery'
 include 'psd-gateway'
-include 'psd-config-server'
 include 'psd-web-item'
 include 'psd-generate'
-include 'poseidon-web-item'
+include 'psd-web-auth'
+include 'psd-config'
 

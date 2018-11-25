@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'java'
-group 'com.yoke.poseidon'
+group 'com.yoke.poseidon.gateway'
 apply plugin: "io.spring.dependency-management"
 version '1.0-SNAPSHOT'
 repositories {
@@ -29,6 +29,12 @@ repositories {
 dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.0.RELEASE'
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 dependencyManagement {
