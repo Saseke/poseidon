@@ -2,7 +2,6 @@ package com.yoke.poseidon.auth.config;
 
 import com.yoke.poseidon.auth.filter.JwtUsernameAndPasswordAuthenticationFilter;
 import com.yoke.poseidon.auth.serviceImpl.SecurityUserDetailsService;
-import com.yoke.poseidon.config.jwt.JwtConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

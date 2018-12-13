@@ -14,6 +14,7 @@ subprojects {
     ext {
         springBootVersion = '2.0.4.RELEASE'
         springCloudVersion = 'Finchley.SR1'
+        elasticSearchVersion = '6.5.1'
         mybatisPlusVersion = '3.0.3'
         compileJava.options.encoding = 'UTF-8'
         compileTestJava.options.encoding = 'UTF-8'

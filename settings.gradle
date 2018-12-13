@@ -1,8 +1,9 @@
 rootProject.name = 'web'
 include 'psd-discovery'
 include 'psd-gateway'
-include 'psd-web-item'
+include 'psd-web-view'
 include 'psd-generate'
 include 'psd-web-auth'
 include 'psd-config'
+include 'psd-elastic-search'
 

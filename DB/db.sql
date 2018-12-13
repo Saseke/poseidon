@@ -238,16 +238,16 @@ CREATE TABLE `db_member` (
   `created` datetime DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `file` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `point` int(11) DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
+  `sex` bit(1) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,6 +256,7 @@ CREATE TABLE `db_member` (
 
 LOCK TABLES `db_member` WRITE;
 /*!40000 ALTER TABLE `db_member` DISABLE KEYS */;
+INSERT INTO `db_member` VALUES (1,'山西省高平市',100000.00,'2018-11-25 06:30:19','超级会员','1538341848@qq.com','123456','15934129162',10000,_binary '',1,'2018-11-25 06:31:02','yoke','root');
 /*!40000 ALTER TABLE `db_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,11 +376,11 @@ CREATE TABLE `db_panel_content` (
   `created` datetime DEFAULT NULL,
   `panel_id` int(11) DEFAULT NULL,
   `pic_url` varchar(255) DEFAULT NULL,
-  `product_id` bigint(20) DEFAULT NULL,
+  `product_id` varchar(200) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`panel_content_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +389,7 @@ CREATE TABLE `db_panel_content` (
 
 LOCK TABLES `db_panel_content` WRITE;
 /*!40000 ALTER TABLE `db_panel_content` DISABLE KEYS */;
-INSERT INTO `db_panel_content` VALUES (1,'2018-11-21 03:39:30',1,NULL,1,1,'2018-11-21 03:40:08');
+INSERT INTO `db_panel_content` VALUES (1,'2018-11-21 03:39:30',1,NULL,'BHTRTGVR',1,'2018-11-21 03:40:08'),(2,'2018-11-22 11:29:36',1,NULL,'BMRTGVFSD',2,'2018-11-22 11:29:52'),(3,'2018-11-22 11:30:10',1,NULL,'BRGVDSVSD',3,'2018-11-22 11:30:26');
 /*!40000 ALTER TABLE `db_panel_content` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,4 +536,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-22 15:51:09
+-- Dump completed on 2018-12-12 16:11:11

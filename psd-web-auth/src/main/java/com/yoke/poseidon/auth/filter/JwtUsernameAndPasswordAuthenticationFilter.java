@@ -1,7 +1,7 @@
 package com.yoke.poseidon.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yoke.poseidon.config.jwt.JwtConfig;
+import com.yoke.poseidon.auth.config.JwtConfig;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -95,20 +95,12 @@ public class JwtUsernameAndPasswordAuthenticationFilter
 
 		// getters and setters ...
 
-		public String getUsername() {
+		String getUsername() {
 			return username;
 		}
 
-		public void setUsername(String username) {
-			this.username = username;
-		}
-
-		public String getPassword() {
+		String getPassword() {
 			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
 		}
 
 	}

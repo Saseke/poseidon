@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.web.itemShow.mapper.PanelContentMapper">
+
+    <sql id="panelContent">
+        select panel_content_id, pic_url, product_id, sort_order
+        from poseidon.db_panel_content
+    </sql>
+    <sql id="panelAllContent">
+        select *
+        from poseidon.db_panel_content;
+    </sql>
+    <select id="selectByPanelId" resultType="com.yoke.poseidon.web.itemShow.entity.PanelContent">
+        <include refid="panelContent"/>
+        where panel_id = #{panelId}
+        <if test="limit != null">
+            limit #{limit}
+        </if>
+    </select>
+    <select id="selectItemIdsByPanelId" resultType="java.lang.String">
+        select product_id
+        from poseidon.db_panel_content
+        where panel_id = #{panelId}
+    </select>
+</mapper>

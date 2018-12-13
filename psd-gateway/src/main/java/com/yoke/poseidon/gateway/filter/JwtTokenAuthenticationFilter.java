@@ -3,6 +3,7 @@ package com.yoke.poseidon.gateway.filter;
 import com.yoke.poseidon.gateway.config.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,8 +30,8 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request,
-			HttpServletResponse response, FilterChain chain)
+	protected void doFilterInternal(@NonNull HttpServletRequest request,
+			@NonNull HttpServletResponse response, @NonNull FilterChain chain)
 			throws ServletException, IOException {
 		// 1. get the authentication header. Tokens are supposed to be passed in the
 		// authentication header

@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yoke
@@ -18,167 +18,156 @@ import java.io.Serializable;
 @TableName("db_member")
 public class Member implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "member_id", type = IdType.AUTO)
-    private Long memberId;
+	@TableId(value = "member_id", type = IdType.AUTO)
+	private Long memberId;
 
-    private String address;
+	private String address;
 
-    private BigDecimal balance;
+	private BigDecimal balance;
 
-    private LocalDateTime created;
+	private LocalDateTime created;
 
-    private String description;
+	private String description;
 
-    private String email;
+	private String email;
 
-    private String password;
+	private String password;
 
-    private String phone;
+	private String phone;
 
-    private Integer point;
+	private Integer point;
 
-    private Boolean sex;
+	private Boolean sex;
 
-    private Integer state;
+	private Integer state;
 
-    private LocalDateTime updated;
+	private LocalDateTime updated;
 
-    private String username;
+	private String username;
 
-    private String remark;
+	private String remark;
 
+	public Long getMemberId() {
+		return memberId;
+	}
 
-    public Long getMemberId() {
-        return memberId;
-    }
+	public void setMemberId(Long memberId) {
+		this.memberId = memberId;
+	}
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public BigDecimal getBalance() {
+		return balance;
+	}
 
-    public BigDecimal getBalance() {
-        return balance;
-    }
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+	public LocalDateTime getCreated() {
+		return created;
+	}
 
-    public LocalDateTime getCreated() {
-        return created;
-    }
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
 
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public Integer getPoint() {
+		return point;
+	}
 
-    public Integer getPoint() {
-        return point;
-    }
+	public void setPoint(Integer point) {
+		this.point = point;
+	}
 
-    public void setPoint(Integer point) {
-        this.point = point;
-    }
+	public Boolean getSex() {
+		return sex;
+	}
 
-    public Boolean getSex() {
-        return sex;
-    }
+	public void setSex(Boolean sex) {
+		this.sex = sex;
+	}
 
-    public void setSex(Boolean sex) {
-        this.sex = sex;
-    }
+	public Integer getState() {
+		return state;
+	}
 
-    public Integer getState() {
-        return state;
-    }
+	public void setState(Integer state) {
+		this.state = state;
+	}
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
+	public LocalDateTime getUpdated() {
+		return updated;
+	}
 
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
+	public void setUpdated(LocalDateTime updated) {
+		this.updated = updated;
+	}
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getRemark() {
+		return remark;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	@Override
+	public String toString() {
+		return "Member{" + "memberId=" + memberId + ", address=" + address + ", balance="
+				+ balance + ", created=" + created + ", description=" + description
+				+ ", email=" + email + ", password=" + password + ", phone=" + phone
+				+ ", point=" + point + ", sex=" + sex + ", state=" + state + ", updated="
+				+ updated + ", username=" + username + ", remark=" + remark + "}";
+	}
 
-    @Override
-    public String toString() {
-        return "Member{" +
-        "memberId=" + memberId +
-        ", address=" + address +
-        ", balance=" + balance +
-        ", created=" + created +
-        ", description=" + description +
-        ", email=" + email +
-        ", password=" + password +
-        ", phone=" + phone +
-        ", point=" + point +
-        ", sex=" + sex +
-        ", state=" + state +
-        ", updated=" + updated +
-        ", username=" + username +
-        ", remark=" + remark +
-        "}";
-    }
 }

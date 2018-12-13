@@ -25,8 +25,12 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
+bootJar {
+    baseName = 'poseidon-gateway'
+    version = '0.1.0'
+}
 dependencies {
+    compile project(':psd-config')
     compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
     compile("org.springframework.boot:spring-boot-starter-web")

@@ -23,7 +23,10 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
+bootJar {
+    baseName = 'poseidon-eureka-config'
+    version = '0.1.0'
+}
 ext {
     springCloudVersion = 'Finchley.SR1'
 }
