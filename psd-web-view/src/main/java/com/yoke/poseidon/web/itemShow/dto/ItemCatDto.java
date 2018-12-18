@@ -1,5 +1,8 @@
 package com.yoke.poseidon.web.itemShow.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -110,6 +113,14 @@ public class ItemCatDto implements Serializable {
 
 	public void setItems(List<ItemDto> items) {
 		this.items = items;
+	}
+
+	@Override
+	public String toString() {
+		return "ItemCatDto{" + "itemCatId=" + itemCatId + ", icon='" + icon + '\''
+				+ ", isParent=" + isParent + ", name='" + name + '\'' + ", parentId="
+				+ parentId + ", remark='" + remark + '\'' + ", sortOrder=" + sortOrder
+				+ ", childCats=" + childCats + ", items=" + items + '}';
 	}
 
 }

@@ -19,11 +19,10 @@ public interface ItemService extends IService<Item> {
 
 	ItemDto getById(@NonNull String itemId, int intBlob);
 
-	List<ItemDto> getIdIn(@NonNull List<String> itemIds, String sort, int intBlob);
+	List<ItemDto> getIdIn(@NonNull List<String> itemIds, int intBlob);
 
-	List<ItemDto> getByCId(@NonNull Long cId, Integer limit, String sort, int intBlob);
+	List<ItemDto> getByCId(@NonNull Long cId, Integer limit, int intBlob);
 
-	List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, String sort,
-			int intBlob);
+	List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, int intBlob);
 
 }

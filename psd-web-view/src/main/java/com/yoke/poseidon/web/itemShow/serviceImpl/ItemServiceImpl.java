@@ -42,28 +42,24 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 	}
 
 	@Override
-	public List<ItemDto> getIdIn(@NonNull List<String> itemIds, String sort,
-			int intBlob) {
+	public List<ItemDto> getIdIn(@NonNull List<String> itemIds, int intBlob) {
 		boolean blob = intBlob == 1;
-		List<Item> itemList = itemMapper.selectIdIn(itemIds, sort, blob);
+		List<Item> itemList = itemMapper.selectIdIn(itemIds, null, blob);
 		return convertService.convertItem(itemList);
 	}
 
 	@Override
-	public List<ItemDto> getByCId(@NonNull Long cId, Integer limit, String sort,
-			int intBlob) {
+	public List<ItemDto> getByCId(@NonNull Long cId, Integer limit, int intBlob) {
 		boolean blob = intBlob == 1;
-		List<Item> itemList = itemMapper.selectByCId(cId, limit, sort, blob);
+		List<Item> itemList = itemMapper.selectByCId(cId, limit, null, blob);
 		return convertService.convertItem(itemList);
 	}
 
 	@Override
-	public List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, String sort,
-			int intBlob) {
+	public List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, int intBlob) {
 		boolean blob = intBlob == 1;
-		List<Item> itemList = itemMapper.selectByCIds(cIds, limit, sort, blob);
+		List<Item> itemList = itemMapper.selectByCIds(cIds, limit, null, blob);
 		return convertService.convertItem(itemList);
-
 	}
 
 }

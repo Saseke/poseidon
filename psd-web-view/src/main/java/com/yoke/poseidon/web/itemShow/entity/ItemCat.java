@@ -1,10 +1,11 @@
 package com.yoke.poseidon.web.itemShow.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -64,11 +65,11 @@ public class ItemCat implements Serializable {
 		this.icon = icon;
 	}
 
-	public Boolean getParent() {
+	public Boolean getIsParent() {
 		return isParent;
 	}
 
-	public void setParent(Boolean isParent) {
+	public void setIsParent(Boolean isParent) {
 		this.isParent = isParent;
 	}
 

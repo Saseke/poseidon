@@ -45,7 +45,7 @@ db:
   server: 127.0.0.1
   port: 13306
   username: root
-  password: '123456'
+  password: 'FJEOIRFWQ132EW'
 eureka:
   client:
     serviceUrl:
