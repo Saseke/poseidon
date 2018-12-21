@@ -1,8 +1,8 @@
 package com.yoke.poseidon.web.itemShow.serviceImpl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.common.collect.Lists;
 import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
-import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
 import com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper;
 import com.yoke.poseidon.web.itemShow.mapper.ItemMapper;
@@ -47,34 +47,16 @@ public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat>
 	}
 
 	@Override
-	public List<ItemCatDto> getRootCat(Integer limit) {
+	public List<List<ItemCatDto>> getRootCat(Integer limit) {
 		List<ItemCat> itemCatList = itemCatMapper.selectRootCat(null, limit);
-		System.out.println(itemCatList.get(0));
-		System.out.println(convertService.convertItemCat(itemCatList).get(0));
-		return convertService.convertItemCat(itemCatList);
+		List<ItemCatDto> itemCatDtoList = convertService.convertItemCat(itemCatList);
+		return Lists.partition(itemCatDtoList, 2);
 	}
 
 	@Override
-	public List<ItemCatDto> getByRemark(@NonNull String remark, Integer catLimit,
-			Integer itemLimit, int itemBlob) {
-		boolean blob = itemBlob == 1;
-		List<ItemCatDto> itemCatDtoList = getRootCat(catLimit);
-		itemCatDtoList.forEach(System.out::println);
-		itemCatDtoList.forEach(itemCatDto -> {
-			List<ItemDto> itemDtoList = convertService.convertItem(itemMapper
-					.selectByCId(itemCatDto.getItemCatId(), itemLimit, null, blob));
-			itemCatDto.getItems().addAll(itemDtoList);
-			if (itemCatDto.getIsParent()) {
-				List<Long> ids = itemCatMapper
-						.selectIdsByParentId(itemCatDto.getItemCatId(), null, catLimit);
-				if (ids.size() != 0) {
-					List<ItemDto> childCatsItemDtoList = convertService.convertItem(
-							itemMapper.selectByCIds(ids, itemLimit, null, blob));
-					itemCatDto.getItems().addAll(childCatsItemDtoList);
-				}
-			}
-		});
-		return itemCatDtoList;
+	public List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit) {
+		List<ItemCat> itemCatList = itemCatMapper.selectByRemark(remark, null, limit);
+		return convertService.convertItemCat(itemCatList);
 	}
 
 }

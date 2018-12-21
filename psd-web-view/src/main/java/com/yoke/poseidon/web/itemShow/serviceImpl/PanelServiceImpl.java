@@ -41,16 +41,38 @@ public class PanelServiceImpl extends ServiceImpl<PanelMapper, Panel>
 	private PanelContentMapper panelContentMapper;
 
 	@Override
-	public List<PanelDto> getPanelByRemark(@NonNull String remark, String panelSort,
-			Integer panelLimit, String itemSort, Integer itemLimit) {
-		List<Panel> panelList = panelMapper.selectByRemark(remark, panelSort, panelLimit);
+	public List<PanelDto> getPanelByRemark(@NonNull String remark, Integer panelLimit,
+			Integer itemLimit) {
+		List<Panel> panelList = panelMapper.selectByRemark(remark, null, panelLimit);
 		List<PanelDto> panelDtoList = convertService.convertPanel(panelList);
 		panelDtoList.forEach(panelDto -> {
 			List<String> itemIds = panelContentMapper
 					.selectItemIdsByPanelId(panelDto.getPanelId(), itemLimit);
-			List<Item> items = itemMapper.selectIdIn(itemIds, itemSort, false);
+			List<Item> items = itemMapper.selectIdIn(itemIds, null, false);
 			List<ItemDto> itemDtoList = convertService.convertItem(items);
 			panelDto.setItemDtoList(itemDtoList);
+		});
+		return panelDtoList;
+	}
+
+	@Override
+	public List<PanelDto> getPanelByItemCatId(@NonNull Long itemCatId) {
+		List<Panel> panelList = panelMapper.selectByCatId(itemCatId);
+		return convertService.convertPanel(panelList);
+	}
+
+	@Override
+	public List<PanelDto> getPanelWithItemsByItemCatId(@NonNull Long itemCatId,
+			Integer limit) {
+		List<PanelDto> panelDtoList = getPanelByItemCatId(itemCatId);
+		panelDtoList.forEach(panelDto -> {
+			List<String> itemIds = panelContentMapper
+					.selectItemIdsByPanelId(panelDto.getPanelId(), limit);
+			if (itemIds.size() != 0) {
+				List<ItemDto> itemDtoList = convertService
+						.convertItem(itemMapper.selectIdIn(itemIds, null, false));
+				panelDto.setItemDtoList(itemDtoList);
+			}
 		});
 		return panelDtoList;
 	}

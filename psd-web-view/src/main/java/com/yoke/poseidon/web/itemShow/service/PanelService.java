@@ -17,7 +17,11 @@ import java.util.List;
  */
 public interface PanelService extends IService<Panel> {
 
-	List<PanelDto> getPanelByRemark(@NonNull String remark, String panelSort,
-			Integer panelLimit, String itemSort, Integer itemLimit);
+	List<PanelDto> getPanelByRemark(@NonNull String remark, Integer panelLimit,
+			Integer itemLimit);
+
+	List<PanelDto> getPanelByItemCatId(@NonNull Long itemCatId);
+
+	List<PanelDto> getPanelWithItemsByItemCatId(@NonNull Long itemCatId, Integer limit);
 
 }

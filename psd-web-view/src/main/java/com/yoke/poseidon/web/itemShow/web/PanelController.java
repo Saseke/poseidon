@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 /**
  * <p>
@@ -30,26 +29,32 @@ public class PanelController {
 	@Autowired
 	private PanelService panelService;
 
-	@ApiOperation(value = "get panelDto ", response = List.class)
+	@ApiOperation(value = "得到版块信息和对应版块的商品的信息", response = PanelDto.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "版块remark,目前有index版块"),
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "panelSort", value = "版块的排序"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "panelLimit", value = "版块的查询限制条数"),
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemSort", value = "商品的排序"),
-			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的查询限制条数"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的查询限制条数"), })
+
+	@GetMapping({ "/re/{remark}", "/re/{remark}/{panelLimit}",
+			"/re/{remark}/{panelLimit}/{itemLimit}" })
+	public Flux<PanelDto> panel(@PathVariable("remark") String remark,
+			@PathVariable(value = "panelLimit", required = false) Integer panelLimit,
+			@PathVariable(value = "itemLimit", required = false) Integer itemLimit) {
+		return Flux.fromIterable(
+				panelService.getPanelByRemark(remark, panelLimit, itemLimit));
+	}
+
+	@ApiOperation(value = "点击商品分类,查看商品分类下的版块(包含商品)", response = PanelDto.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemCatId", value = "商品分类id"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制显示的商品数量")
 
 	})
-	@GetMapping({ "/re/{remark}", "/re/{remark}/{panelLimit}",
-			"/re/{remark}/{panelSort}/{panelLimit}",
-			"/re/{remark}/{panelSort}/{panelLimit}/{itemSort}/{itemLimit}", })
-	public List<PanelDto> panel(@PathVariable("remark") String remark,
-			@PathVariable(value = "panelSort", required = false) String panelSort,
-			@PathVariable(value = "panelLimit", required = false) Integer panelLimit,
-			@PathVariable(value = "itemSort", required = false) String itemSort,
-			@PathVariable(value = "itemLimit", required = false) Integer itemLimit) {
-
-		return panelService.getPanelByRemark(remark, panelSort, panelLimit, itemSort,
-				itemLimit);
+	@GetMapping({ "/pi/{itemCatId}", "/pi/{itemCatId}/{limit}" })
+	public Flux<PanelDto> panelWithItems(@PathVariable("itemCatId") Long itemCatId,
+			@PathVariable(value = "limit", required = false) Integer limit) {
+		return Flux.fromIterable(
+				panelService.getPanelWithItemsByItemCatId(itemCatId, limit));
 	}
 
 }

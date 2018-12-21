@@ -1,10 +1,11 @@
 package com.yoke.poseidon.web.itemShow.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -37,6 +38,8 @@ public class Panel implements Serializable {
 	private Integer type;
 
 	private LocalDateTime updated;
+
+	private Long itemCatId;
 
 	public Integer getPanelId() {
 		return panelId;
@@ -110,12 +113,26 @@ public class Panel implements Serializable {
 		this.updated = updated;
 	}
 
+	public Long getItemCatId() {
+		return itemCatId;
+	}
+
+	public void setItemCatId(Long itemCatId) {
+		this.itemCatId = itemCatId;
+	}
+
 	@Override
 	public String toString() {
 		return "Panel{" + "panelId=" + panelId + ", created=" + created + ", limitNum="
-				+ limitNum + ", name=" + name + ", remark=" + remark + ", sortOrder="
-				+ sortOrder + ", status=" + status + ", type=" + type + ", updated="
-				+ updated + "}";
+				+ limitNum + ", name='" + name + '\'' + ", remark='" + remark + '\''
+				+ ", sortOrder=" + sortOrder + ", status=" + status + ", type=" + type
+				+ ", updated=" + updated + ", itemCatId=" + itemCatId + '}';
 	}
+	/*
+	 * @Override public String toString() { return "Panel{" + "panelId=" + panelId +
+	 * ", created=" + created + ", limitNum=" + limitNum + ", name=" + name + ", remark="
+	 * + remark + ", sortOrder=" + sortOrder + ", status=" + status + ", type=" + type +
+	 * ", updated=" + updated + "}"; }
+	 */
 
 }

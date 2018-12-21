@@ -27,4 +27,12 @@ public interface PanelMapper extends BaseMapper<Panel> {
 	List<Panel> selectByRemark(@NonNull @Param("remark") String remark,
 			@Param("sort") String sort, @Param("limit") Integer limit);
 
+	/**
+	 * 根据商品分类id查找版块信息
+	 * @param itemCatId 商品分类的id
+	 * @return 查询得到的版块信息
+	 */
+	List<Panel> selectByCatId(@NonNull @Param("item_cat_id") Long itemCatId);
+
+
 }

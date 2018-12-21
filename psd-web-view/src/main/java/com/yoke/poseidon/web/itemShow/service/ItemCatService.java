@@ -34,17 +34,14 @@ public interface ItemCatService extends IService<ItemCat> {
 	 * @param limit 限制查询的条数
 	 * @return 查询得到的数据
 	 */
-	List<ItemCatDto> getRootCat(Integer limit);
+	List<List<ItemCatDto>> getRootCat(Integer limit);
 
 	/**
 	 * 根据remark类型得到分类
-	 * @param remark 标记
-	 * @param catLimit 限制查询分类的条数
-	 * @param itemLimit 限制查询每个分类商品的条数
-	 * @param itemBlob 查询的商品是否包含大字段信息
-	 * @return 查询得到的数据
+	 * @param remark remark的分类
+	 * @param limit 限制分类查询的条数
+	 * @return 查询得到的itemCat
 	 */
-	List<ItemCatDto> getByRemark(@NonNull String remark, Integer catLimit,
-			Integer itemLimit, int itemBlob);
+	List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit);
 
 }

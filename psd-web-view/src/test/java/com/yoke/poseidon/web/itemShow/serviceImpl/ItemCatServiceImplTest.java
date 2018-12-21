@@ -1,15 +1,11 @@
 package com.yoke.poseidon.web.itemShow.serviceImpl;
 
-import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
 import com.yoke.poseidon.web.itemShow.service.ItemCatService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 /**
  * @Author Yoke
@@ -32,8 +28,6 @@ public class ItemCatServiceImplTest {
 
 	@Test
 	public void getRootCat() {
-		List<ItemCatDto> list = itemCatService.getRootCat(null);
-		Assert.assertNotNull(list.get(0).getIsParent());
 	}
 
 	@Test

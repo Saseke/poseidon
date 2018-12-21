@@ -25,6 +25,8 @@ public class PanelDto implements Serializable {
 
 	private Integer type;
 
+	private Long itemCatId;
+
 	private List<ItemDto> itemDtoList;
 
 	public PanelDto() {
@@ -93,6 +95,14 @@ public class PanelDto implements Serializable {
 
 	public void setItemDtoList(List<ItemDto> itemDtoList) {
 		this.itemDtoList = itemDtoList;
+	}
+
+	public Long getItemCatId() {
+		return itemCatId;
+	}
+
+	public void setItemCatId(Long itemCatId) {
+		this.itemCatId = itemCatId;
 	}
 
 }
