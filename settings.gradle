@@ -6,4 +6,5 @@ include 'psd-generate'
 include 'psd-web-auth'
 include 'psd-config'
 include 'psd-elastic-search'
+include 'psd-web-shop-cart'
 

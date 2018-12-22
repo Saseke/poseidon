@@ -7,12 +7,11 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 /**
  * <p>
@@ -39,6 +38,12 @@ public class ItemController {
 	public Mono<ItemDto> item(@PathVariable("id") String id,
 			@PathVariable("blob") int blob) {
 		return Mono.justOrEmpty(itemService.getById(id, blob));
+	}
+
+	@PostMapping("/{blob}")
+	public List<ItemDto> items(@PathVariable("blob") int blob,
+			@RequestBody List<String> ids) {
+		return itemService.getIdIn(ids, blob);
 	}
 
 	@ApiOperation(value = "get list of items by cId", response = Flux.class)

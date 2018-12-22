@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.shopcart.mapper.ShopCartItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.shopcart.entity.ShopCartItem">
+        <id column="id" property="id"/>
+        <result column="shop_cart_id" property="shopCartId"/>
+        <result column="item_id" property="itemId"/>
+        <result column="item_count" property="itemCount"/>
+    </resultMap>
+    <select id="selectByShopCartId" resultType="com.yoke.poseidon.shopcart.entity.ShopCartItem">
+        select shop_cart_id,item_id,item_count
+        from poseidon.db_shop_cart_item
+        where shop_cart_id = #{shop_cart_id}
+    </select>
+
+</mapper>
