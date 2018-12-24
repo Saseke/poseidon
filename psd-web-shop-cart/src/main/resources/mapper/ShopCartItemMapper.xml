@@ -9,10 +9,37 @@
         <result column="item_id" property="itemId"/>
         <result column="item_count" property="itemCount"/>
     </resultMap>
+    <insert id="addItemsToShop">
+        insert into poseidon.db_shop_cart_item (shop_cart_id, item_id, item_count) values
+        <foreach collection="map.entrySet()" index="key" item="value" separator=";">
+            (#{shop_cart_id},#{key},#{value})
+        </foreach>
+    </insert>
+    <update id="updateItemsFromShop">
+        update poseidon.db_shop_cart_item
+        set item_count = #{count}
+        where shop_cart_id = #{shop_cart_id}
+          and item_id = #{item_id}
+    </update>
+    <delete id="deleteItemsFromShop">
+        delete
+        from poseidon.db_shop_cart_item
+        where shop_cart_id = #{shop_cart_id}
+        and item_id in
+        <foreach collection="itemIds" item="itemId" index="index" open="(" separator="," close=")">
+            #{itemId}
+        </foreach>
+    </delete>
     <select id="selectByShopCartId" resultType="com.yoke.poseidon.shopcart.entity.ShopCartItem">
         select shop_cart_id,item_id,item_count
         from poseidon.db_shop_cart_item
         where shop_cart_id = #{shop_cart_id}
+    </select>
+    <select id="selectCountByShopCartIdAndItemId" resultType="java.lang.Integer">
+        select item_count
+        from poseidon.db_shop_cart_item
+        where shop_cart_id = #{shop_cart_id}
+          and item_id = #{itemId}
     </select>
 
 </mapper>

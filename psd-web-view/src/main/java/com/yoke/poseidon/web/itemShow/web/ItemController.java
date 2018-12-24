@@ -1,17 +1,21 @@
 package com.yoke.poseidon.web.itemShow.web;
 
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
+import com.yoke.poseidon.web.itemShow.dto.Message;
 import com.yoke.poseidon.web.itemShow.service.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
+
+import static com.yoke.poseidon.web.itemShow.dto.Message.failed;
+import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 
 /**
  * <p>
@@ -35,15 +39,26 @@ public class ItemController {
 			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true) })
 
 	@GetMapping("/{id}/{blob}")
-	public Mono<ItemDto> item(@PathVariable("id") String id,
-			@PathVariable("blob") int blob) {
-		return Mono.justOrEmpty(itemService.getById(id, blob));
+	public Message item(@PathVariable("id") String id, @PathVariable("blob") int blob) {
+		try {
+			ItemDto data = itemService.getById(id, blob);
+			return success(data);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return failed();
 	}
 
+	@ApiOperation(value = "根据商品的ids查询商品信息返回", notes = "这个用于服务之间调用", response = ItemDto.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "blob", value = "是否包含大字段信息", required = true) })
+	@ApiImplicitParam(paramType = "post body", dataType = "List<String>", name = "ids", value = "商品的ids", required = true)
 	@PostMapping("/{blob}")
 	public List<ItemDto> items(@PathVariable("blob") int blob,
-			@RequestBody List<String> ids) {
+			@NonNull @RequestBody List<String> ids) {
 		return itemService.getIdIn(ids, blob);
+
 	}
 
 	@ApiOperation(value = "get list of items by cId", response = Flux.class)
@@ -52,10 +67,16 @@ public class ItemController {
 			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数") })
 	@GetMapping({ "/c/{cId}/{blob}", "/c/{cId}/{blob}/{limit}" })
-	public Flux<ItemDto> items(@PathVariable("cId") Long cId,
-			@PathVariable("blob") int blob,
+	public Message items(@PathVariable("cId") Long cId, @PathVariable("blob") int blob,
 			@PathVariable(value = "limit", required = false) Integer limit) {
-		return Flux.fromIterable(itemService.getByCId(cId, limit, blob));
+		try {
+			List<ItemDto> data = itemService.getByCId(cId, limit, blob);
+			return success(data);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return failed();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.yoke.poseidon.web.itemShow.web;
 
+import com.yoke.poseidon.web.itemShow.dto.Message;
 import com.yoke.poseidon.web.itemShow.dto.PanelDto;
 import com.yoke.poseidon.web.itemShow.service.PanelService;
 import io.swagger.annotations.Api;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
+
+import static com.yoke.poseidon.web.itemShow.dto.Message.failed;
+import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 
 /**
  * <p>
@@ -37,11 +42,18 @@ public class PanelController {
 
 	@GetMapping({ "/re/{remark}", "/re/{remark}/{panelLimit}",
 			"/re/{remark}/{panelLimit}/{itemLimit}" })
-	public Flux<PanelDto> panel(@PathVariable("remark") String remark,
+	public Message panel(@PathVariable("remark") String remark,
 			@PathVariable(value = "panelLimit", required = false) Integer panelLimit,
 			@PathVariable(value = "itemLimit", required = false) Integer itemLimit) {
-		return Flux.fromIterable(
-				panelService.getPanelByRemark(remark, panelLimit, itemLimit));
+		try {
+			List<PanelDto> data = panelService.getPanelByRemark(remark, panelLimit,
+					itemLimit);
+			return success(data);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return failed();
 	}
 
 	@ApiOperation(value = "点击商品分类,查看商品分类下的版块(包含商品)", response = PanelDto.class)
@@ -51,10 +63,17 @@ public class PanelController {
 
 	})
 	@GetMapping({ "/pi/{itemCatId}", "/pi/{itemCatId}/{limit}" })
-	public Flux<PanelDto> panelWithItems(@PathVariable("itemCatId") Long itemCatId,
+	public Message panelWithItems(@PathVariable("itemCatId") Long itemCatId,
 			@PathVariable(value = "limit", required = false) Integer limit) {
-		return Flux.fromIterable(
-				panelService.getPanelWithItemsByItemCatId(itemCatId, limit));
+		try {
+			List<PanelDto> data = panelService.getPanelWithItemsByItemCatId(itemCatId,
+					limit);
+			return success(data);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return failed();
 	}
 
 }

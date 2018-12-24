@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.itemShow.web;
 
 import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
+import com.yoke.poseidon.web.itemShow.dto.Message;
 import com.yoke.poseidon.web.itemShow.service.ItemCatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
+
+import static com.yoke.poseidon.web.itemShow.dto.Message.failed;
+import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 
 /**
  * <p>
@@ -25,7 +28,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/itemCat")
-@Api(value = "itemCatController", description = "handle itemCat")
+@Api(value = "商品分类", description = "handle itemCat")
 
 public class ItemCatController {
 
@@ -37,9 +40,16 @@ public class ItemCatController {
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数"),
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "sort", value = "默认按照 :order by sort_order排序,这个字段一般不用写") })
 	@GetMapping({ "/ro", "/ro/{limit}" })
-	public Flux<List<ItemCatDto>> itemCatDto(
+	public Message itemCatDto(
 			@PathVariable(value = "limit", required = false) Integer limit) {
-		return Flux.fromIterable(itemCatService.getRootCat(limit));
+		try {
+			List<List<ItemCatDto>> data = itemCatService.getRootCat(limit);
+			return success(data);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return failed();
 	}
 
 }

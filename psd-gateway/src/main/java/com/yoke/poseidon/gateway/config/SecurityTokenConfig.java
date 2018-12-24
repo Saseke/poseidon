@@ -1,6 +1,7 @@
 package com.yoke.poseidon.gateway.config;
 
 import com.yoke.poseidon.gateway.filter.JwtTokenAuthenticationFilter;
+import com.yoke.poseidon.gateway.router.Router;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -22,6 +23,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtConfig jwtConfig;
 
+	@Autowired
+	private Router router;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
@@ -39,10 +43,11 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 						UsernamePasswordAuthenticationFilter.class)
 				// authorization requests config
 				.authorizeRequests()
-				// allow all who are accessing "auth" service
-				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
+				.antMatchers(HttpMethod.GET, router.getWeb_shop_cart_service(),
+						router.getWeb_view_service())
+				.permitAll()
 				// required here)
-				.antMatchers("/itemshow" + "/admin/**").hasRole("")
+				// .antMatchers("/view" + "/admin/**").hasRole("")
 				// Any other request must be authenticated
 				.anyRequest().authenticated();
 	}
@@ -50,6 +55,11 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public JwtConfig jwtConfig() {
 		return new JwtConfig();
+	}
+
+	@Bean
+	public Router router() {
+		return new Router();
 	}
 
 }

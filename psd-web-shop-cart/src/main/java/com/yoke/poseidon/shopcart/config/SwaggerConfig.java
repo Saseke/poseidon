@@ -1,4 +1,4 @@
-package com.yoke.poseidon.web.itemShow.config;
+package com.yoke.poseidon.shopcart.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,12 +22,12 @@ public class SwaggerConfig {
 	public Docket createRestApi() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
 				.apis(RequestHandlerSelectors
-						.basePackage("com.yoke.poseidon.web.itemShow.web"))
+						.basePackage("com.yoke.poseidon.shopcart.web"))
 				.paths(PathSelectors.any()).build();
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Poseidon Java 商品展示部分")
+		return new ApiInfoBuilder().title("Poseidon Java版本购物车服务")
 				.description("Poseidon Rest Api 文档").version("1.0").build();
 	}
 

@@ -1,8 +1,5 @@
 package com.yoke.poseidon.web.itemShow.dto;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 

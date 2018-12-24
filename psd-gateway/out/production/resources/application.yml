@@ -8,10 +8,13 @@ zuul:
   ignored-services: "*"
   routes:
     web-item-service:
-      path: /itemshow/**
-      service-id: web-item-service
+      path: /view/**
+      service-id: web-view-service
     auth-service:
       path: /auth/**
       service-id: auth-service
       strip-prefix: false
       sensitive-headers: Cookie,Set-Cookie
+    web-shop-cart-service:
+      path: /shop/cart/**
+      service-id: web-shop-cart-service

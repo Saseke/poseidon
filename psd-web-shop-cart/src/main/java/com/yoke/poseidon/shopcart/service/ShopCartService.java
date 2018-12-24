@@ -5,8 +5,6 @@ import com.yoke.poseidon.shopcart.dto.ShopCartDto;
 import com.yoke.poseidon.shopcart.entity.ShopCart;
 import org.springframework.lang.NonNull;
 
-import java.util.List;
-
 /**
  * <p>
  * 购物车 服务类
@@ -17,6 +15,11 @@ import java.util.List;
  */
 public interface ShopCartService extends IService<ShopCart> {
 
+	/**
+	 * 根据用户id查询他的购物车信息，包含购物车中的商品
+	 * @param mId 用户id
+	 * @return 查询得到的购物车信息
+	 */
 	ShopCartDto getByMemberId(@NonNull Long mId);
 
 }
