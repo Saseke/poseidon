@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.yoke.poseidon.web.itemShow.dto.ItemCatDto;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
 import com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper;
-import com.yoke.poseidon.web.itemShow.mapper.ItemMapper;
 import com.yoke.poseidon.web.itemShow.service.ConvertService;
 import com.yoke.poseidon.web.itemShow.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ public class ItemCatServiceImpl extends ServiceImpl<ItemCatMapper, ItemCat>
 
 	@Autowired
 	private ItemCatMapper itemCatMapper;
-
-	@Autowired
-	private ItemMapper itemMapper;
 
 	@Autowired
 	private ConvertService convertService;

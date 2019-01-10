@@ -8,10 +8,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import static com.yoke.poseidon.shopcart.dto.Message.failed;
 import static com.yoke.poseidon.shopcart.dto.Message.success;
@@ -35,7 +33,7 @@ public class ShopCartController {
 	@ApiOperation(value = "根据用户id获取对应的购物车信息", response = ShopCartDto.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "mId", value = "用户id") })
-	@GetMapping("/{mId}")
+	@GetMapping(path = "/{mId}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Message shopCart(@PathVariable("mId") Long mId) {
 		try {
 			ShopCartDto data = shopCartService.getByMemberId(mId);
@@ -45,6 +43,11 @@ public class ShopCartController {
 			e.printStackTrace();
 		}
 		return failed();
+	}
+
+	@GetMapping("/test")
+	public void handle(@RequestHeader("Accept-Encoding") String encode) {
+		System.out.println(encode);
 	}
 
 }

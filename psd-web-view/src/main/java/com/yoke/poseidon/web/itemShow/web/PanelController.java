@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +41,8 @@ public class PanelController {
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "panelLimit", value = "版块的查询限制条数"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的查询限制条数"), })
 
-	@GetMapping({ "/re/{remark}", "/re/{remark}/{panelLimit}",
-			"/re/{remark}/{panelLimit}/{itemLimit}" })
+	@GetMapping(path = { "/re/{remark}", "/re/{remark}/{panelLimit}",
+			"/re/{remark}/{panelLimit}/{itemLimit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message panel(@PathVariable("remark") String remark,
 			@PathVariable(value = "panelLimit", required = false) Integer panelLimit,
 			@PathVariable(value = "itemLimit", required = false) Integer itemLimit) {
@@ -62,7 +63,8 @@ public class PanelController {
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制显示的商品数量")
 
 	})
-	@GetMapping({ "/pi/{itemCatId}", "/pi/{itemCatId}/{limit}" })
+	@GetMapping(path = { "/pi/{itemCatId}",
+			"/pi/{itemCatId}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message panelWithItems(@PathVariable("itemCatId") Long itemCatId,
 			@PathVariable(value = "limit", required = false) Integer limit) {
 		try {

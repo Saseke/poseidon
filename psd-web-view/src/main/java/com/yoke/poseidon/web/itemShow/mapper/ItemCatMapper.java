@@ -52,4 +52,6 @@ public interface ItemCatMapper extends BaseMapper<ItemCat> {
 	List<ItemCat> selectByRemark(@NonNull @Param("remark") String remark,
 			@Param("sort") String sort, @Param("limit") Integer limit);
 
+	int update(@Param("itemCat") ItemCat itemCat);
+
 }

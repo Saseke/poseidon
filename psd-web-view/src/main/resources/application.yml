@@ -9,7 +9,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
   # mybatis plus
-
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
@@ -42,10 +41,10 @@ logging:
     com.yoke.poseidon.web.itemShow.mapper: debug
 
 db:
-  server: 127.0.0.1
+  server: www.test.com
   port: 13306
   username: root
-  password: '123456'
+  password: 'FJEOIRFWQ132EW'
 eureka:
   client:
     serviceUrl:

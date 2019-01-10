@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,8 @@ public class ItemCatController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数"),
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "sort", value = "默认按照 :order by sort_order排序,这个字段一般不用写") })
-	@GetMapping({ "/ro", "/ro/{limit}" })
+	@GetMapping(path = { "/ro",
+			"/ro/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message itemCatDto(
 			@PathVariable(value = "limit", required = false) Integer limit) {
 		try {

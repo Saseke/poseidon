@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class ShopCartItemController {
 			@ApiImplicitParam(paramType = "insert", dataType = "Map", name = "map", value = "商品信息,Map中key为商品id,value为商品的数量")
 
 	})
-	@PostMapping("/{shopCartId}")
+	@PostMapping(path = "/{shopCartId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message add(@PathVariable("shopCartId") Long shopCartId,
 			@RequestBody Map<String, Integer> map) {
 		try {
@@ -56,7 +57,7 @@ public class ShopCartItemController {
 			@ApiImplicitParam(paramType = "update", dataType = "Long", name = "shopCartId", value = "购物车id"),
 			@ApiImplicitParam(paramType = "update", dataType = "String", name = "itemId", value = "商品id"),
 			@ApiImplicitParam(paramType = "update", dataType = "Integer", name = "count", value = "更新以后的商品的数量") })
-	@PutMapping("/{shopCartId}/{itemId}/{count}")
+	@PutMapping(path = "/{shopCartId}/{itemId}/{count}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message put(@PathVariable("shopCartId") Long shopCartId,
 			@PathVariable("itemId") String itemId, @PathVariable("count") Integer count) {
 		try {
@@ -74,7 +75,7 @@ public class ShopCartItemController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "delete", dataType = "Long", name = "shopCartId", value = "购物车的id"),
 			@ApiImplicitParam(paramType = "delete", dataType = "List", name = "itemIds", value = "商品id的集合") })
-	@DeleteMapping("/{shopCartId}")
+	@DeleteMapping(path = "/{shopCartId}")
 	public Message delete(@NonNull @PathVariable("shopCartId") Long shopCartId,
 			@RequestBody List<String> itemIds) {
 		try {

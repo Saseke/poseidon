@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -38,7 +39,7 @@ public class ItemController {
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "商品id", required = true),
 			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true) })
 
-	@GetMapping("/{id}/{blob}")
+	@GetMapping(path = "/{id}/{blob}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message item(@PathVariable("id") String id, @PathVariable("blob") int blob) {
 		try {
 			ItemDto data = itemService.getById(id, blob);
@@ -54,7 +55,7 @@ public class ItemController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "blob", value = "是否包含大字段信息", required = true) })
 	@ApiImplicitParam(paramType = "post body", dataType = "List<String>", name = "ids", value = "商品的ids", required = true)
-	@PostMapping("/{blob}")
+	@PostMapping(path = "/{blob}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<ItemDto> items(@PathVariable("blob") int blob,
 			@NonNull @RequestBody List<String> ids) {
 		return itemService.getIdIn(ids, blob);
@@ -66,7 +67,8 @@ public class ItemController {
 			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId", value = "商品分类的id", required = true),
 			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数") })
-	@GetMapping({ "/c/{cId}/{blob}", "/c/{cId}/{blob}/{limit}" })
+	@GetMapping(path = { "/c/{cId}/{blob}",
+			"/c/{cId}/{blob}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message items(@PathVariable("cId") Long cId, @PathVariable("blob") int blob,
 			@PathVariable(value = "limit", required = false) Integer limit) {
 		try {

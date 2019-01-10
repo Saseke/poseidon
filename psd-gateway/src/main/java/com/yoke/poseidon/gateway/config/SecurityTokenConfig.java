@@ -46,6 +46,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, router.getWeb_shop_cart_service(),
 						router.getWeb_view_service())
 				.permitAll()
+				.antMatchers(HttpMethod.OPTIONS, router.getWeb_shop_cart_service(),
+						router.getWeb_view_service())
+				.permitAll()
 				// required here)
 				// .antMatchers("/view" + "/admin/**").hasRole("")
 				// Any other request must be authenticated

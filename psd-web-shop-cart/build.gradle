@@ -64,6 +64,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-test")
 //    compile('org.springframework:springloaded:1.2.8.RELEASE')
     compile("org.springframework.boot:spring-boot-devtools")
+    compile('org.springframework.boot:spring-boot-starter-data-redis')
 //    springboot end
 
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
