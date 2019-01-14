@@ -33,25 +33,42 @@ import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 
 public class ItemCatController {
 
-	@Autowired
-	private ItemCatService itemCatService;
+	private final ItemCatService itemCatService;
 
-	@ApiOperation(value = "get Root ItemCat", response = ItemCatDto.class)
+	@Autowired
+	public ItemCatController(ItemCatService itemCatService) {
+		this.itemCatService = itemCatService;
+	}
+
+	@ApiOperation(value = "得到首页左侧展示的商品分类和相关的商品信息", response = ItemCatDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数"),
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "sort", value = "默认按照 :order by sort_order排序,这个字段一般不用写") })
-	@GetMapping(path = { "/ro",
-			"/ro/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message itemCatDto(
-			@PathVariable(value = "limit", required = false) Integer limit) {
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "catLimit", value = "商品分类的数量,推荐是20"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的数量,推荐是12") })
+
+	@GetMapping(path = "/ro/{catLimit}/{itemLimit}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message itemCatDto(@PathVariable Integer catLimit,
+			@PathVariable Integer itemLimit) {
+
 		try {
-			List<List<ItemCatDto>> data = itemCatService.getRootCat(limit);
+			List<List<ItemCatDto>> data = itemCatService.getRootCat(catLimit, itemLimit);
 			return success(data);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return failed();
+	}
+
+	@ApiOperation(value = "得到导航栏的展示信息", response = ItemCatDto.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "remark的值,有index和nav两种选择"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "catLimit", value = "商品分类的数量,推荐是10"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的数量,推荐是5") })
+	@GetMapping(path = "/{remark}/{catLimit}/{itemLimit}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message indexView(@PathVariable String remark, @PathVariable Integer catLimit,
+			@PathVariable Integer itemLimit) {
+		return Message
+				.success(itemCatService.getItemCatWithItems(remark, catLimit, itemLimit));
 	}
 
 }

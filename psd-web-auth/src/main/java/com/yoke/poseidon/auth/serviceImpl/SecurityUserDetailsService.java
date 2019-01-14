@@ -31,7 +31,6 @@ public class SecurityUserDetailsService implements UserDetailsService {
 		PasswordEncoder encoder = PasswordEncoderFactories
 				.createDelegatingPasswordEncoder();
 		String password = encoder.encode(member.getPassword());
-
 		return User.withUsername(username).password(password).roles("").build();
 	}
 

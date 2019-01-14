@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.cart.mapper.ItemCartMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.cart.entity.ItemCart">
+        <id column="item_cart_id" property="itemCartId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="remark" property="remark"/>
+        <result column="item_cart_status" property="itemCartStatus"/>
+        <result column="quantity" property="quantity"/>
+        <result column="item_id" property="itemId"/>
+        <result column="price" property="price"/>
+        <result column="create_date" property="createDate"/>
+        <result column="modify_date" property="modifyDate"/>
+        <result column="item_cat_id" property="itemCatId"/>
+        <result column="member_nickname" property="memberNickname"/>
+    </resultMap>
+</mapper>

@@ -1,7 +1,9 @@
 package com.yoke.poseidon.web.itemShow.web;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.dto.Message;
+import com.yoke.poseidon.web.itemShow.entity.Item;
 import com.yoke.poseidon.web.itemShow.service.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -79,6 +81,12 @@ public class ItemController {
 			e.printStackTrace();
 		}
 		return failed();
+	}
+
+	@GetMapping("/test")
+	public Message test() {
+		return Message.success(
+				itemService.list(new QueryWrapper<Item>().eq("item_id", "AGVERFERVE")));
 	}
 
 }

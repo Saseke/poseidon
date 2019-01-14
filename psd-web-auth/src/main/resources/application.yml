@@ -42,10 +42,10 @@ logging:
     com.yoke.poseidon.auth.mapper: debug
 
 db:
-  server: 127.0.0.1
+  server: www.test.com
   port: 13306
   username: root
-  password: '123456'
+  password: 'FJEOIRFWQ132EW'
 eureka:
   client:
     serviceUrl:

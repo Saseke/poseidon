@@ -42,7 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	// 通过重载，配置如何通过拦截器保护请求
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
+		http.headers().frameOptions().sameOrigin().httpStrictTransportSecurity().disable()
+				.and().csrf().disable()
 				// make sure we use stateless session; session won't be used to store
 				// user's state.
 				.sessionManagement()
@@ -63,8 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 						authenticationManager(), jwtConfig))
 				.authorizeRequests()
 				// allow all POST requests
-
 				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				// any other requests must be authenticated
 				.anyRequest().authenticated();
 	}

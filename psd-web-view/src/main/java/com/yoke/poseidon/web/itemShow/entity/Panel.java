@@ -23,7 +23,7 @@ public class Panel implements Serializable {
 	@TableId(value = "panel_id", type = IdType.AUTO)
 	private Integer panelId;
 
-	private LocalDateTime created;
+	private LocalDateTime createDate;
 
 	private Integer limitNum;
 
@@ -37,7 +37,7 @@ public class Panel implements Serializable {
 
 	private Integer type;
 
-	private LocalDateTime updated;
+	private LocalDateTime modifyDate;
 
 	private Long itemCatId;
 
@@ -47,14 +47,6 @@ public class Panel implements Serializable {
 
 	public void setPanelId(Integer panelId) {
 		this.panelId = panelId;
-	}
-
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
 	}
 
 	public Integer getLimitNum() {
@@ -105,14 +97,6 @@ public class Panel implements Serializable {
 		this.type = type;
 	}
 
-	public LocalDateTime getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
-	}
-
 	public Long getItemCatId() {
 		return itemCatId;
 	}
@@ -121,18 +105,29 @@ public class Panel implements Serializable {
 		this.itemCatId = itemCatId;
 	}
 
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Panel{" + "panelId=" + panelId + ", created=" + created + ", limitNum="
-				+ limitNum + ", name='" + name + '\'' + ", remark='" + remark + '\''
-				+ ", sortOrder=" + sortOrder + ", status=" + status + ", type=" + type
-				+ ", updated=" + updated + ", itemCatId=" + itemCatId + '}';
+		return "Panel{" + "panelId=" + panelId + ", createDate=" + createDate
+				+ ", limitNum=" + limitNum + ", name='" + name + '\'' + ", remark='"
+				+ remark + '\'' + ", sortOrder=" + sortOrder + ", status=" + status
+				+ ", type=" + type + ", modifyDate=" + modifyDate + ", itemCatId="
+				+ itemCatId + '}';
 	}
-	/*
-	 * @Override public String toString() { return "Panel{" + "panelId=" + panelId +
-	 * ", created=" + created + ", limitNum=" + limitNum + ", name=" + name + ", remark="
-	 * + remark + ", sortOrder=" + sortOrder + ", status=" + status + ", type=" + type +
-	 * ", updated=" + updated + "}"; }
-	 */
 
 }

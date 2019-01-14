@@ -21,8 +21,10 @@ public interface ItemService extends IService<Item> {
 
 	List<ItemDto> getIdIn(@NonNull List<String> itemIds, int intBlob);
 
-	List<ItemDto> getByCId(@NonNull Long cId, Integer limit, int intBlob);
+	List<ItemDto> getByCId(@NonNull Long cId, @NonNull Integer limit, int intBlob);
 
-	List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, int intBlob);
+	List<ItemDto> getByCIds(@NonNull List<Long> cIds, @NonNull Integer limit,
+			int intBlob);
 
+	List<ItemDto> getByCatIds(@NonNull List<Long> itemCatIds, @NonNull Integer limit);
 }

@@ -2,6 +2,7 @@ package com.yoke.poseidon.auth.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @Author Yoke
@@ -32,6 +33,10 @@ public class MemberDto implements Serializable {
 	private Integer state;
 
 	private String username;
+
+	private LocalDateTime createDate;
+
+	private LocalDateTime modifyDate;
 
 	public Long getMemberId() {
 		return memberId;
@@ -118,6 +123,27 @@ public class MemberDto implements Serializable {
 	}
 
 	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public MemberDto(String password, String username) {
+		this.password = password;
 		this.username = username;
 	}
 

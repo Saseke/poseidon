@@ -18,7 +18,8 @@ public class CodeGeneration {
 		AutoGenerator mpg = new AutoGenerator();
 		// 全局配置
 		GlobalConfig gc = new GlobalConfig();
-		gc.setOutputDir("/media/code/java/project/venus/src/main/java");
+		gc.setOutputDir(
+				"/media/code/java/project/Poseidon-Java/psd-web-shop-cart/src/main/java");
 		gc.setFileOverride(true);
 		gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
 		gc.setEnableCache(false);// XML 二级缓存
@@ -39,16 +40,16 @@ public class CodeGeneration {
 		dsc.setDbType(DbType.MYSQL);
 		dsc.setDriverName("com.mysql.cj.jdbc.Driver");
 		dsc.setUsername("root");
-		dsc.setPassword("123456");
+		dsc.setPassword("FJEOIRFWQ132EW");
 		dsc.setUrl(
-				"jdbc:mysql://127.0.0.1:13306/forum?useUnicode=true&characterEncoding=utf-8&useSSL=false");
+				"jdbc:mysql://www.test.com:13306/poseidon?useUnicode=true&characterEncoding=utf-8&useSSL=false");
 		mpg.setDataSource(dsc);
 
 		// 策略配置
 		StrategyConfig strategy = new StrategyConfig();
 		strategy.setTablePrefix("db_");// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude("db_article", "db_comment", "db_user");
+		strategy.setInclude("db_item_cart");
 		strategy.setSuperServiceClass(null);
 		strategy.setSuperServiceImplClass(null);
 		strategy.setSuperMapperClass(null);
@@ -56,7 +57,7 @@ public class CodeGeneration {
 
 		// 包配置
 		PackageConfig pc = new PackageConfig();
-		pc.setParent("com.yoke.venus");
+		pc.setParent("com.yoke.poseidon.cart");
 		pc.setController("web");
 		pc.setService("service");
 		pc.setServiceImpl("serviceImpl");

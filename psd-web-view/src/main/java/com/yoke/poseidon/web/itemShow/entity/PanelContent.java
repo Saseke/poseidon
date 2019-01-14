@@ -1,10 +1,11 @@
 package com.yoke.poseidon.web.itemShow.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -22,7 +23,7 @@ public class PanelContent implements Serializable {
 	@TableId(value = "panel_content_id", type = IdType.AUTO)
 	private Integer panelContentId;
 
-	private LocalDateTime created;
+	private LocalDateTime createDate;
 
 	private Integer panelId;
 
@@ -32,7 +33,7 @@ public class PanelContent implements Serializable {
 
 	private Integer sortOrder;
 
-	private LocalDateTime updated;
+	private LocalDateTime modifyDate;
 
 	public Integer getPanelContentId() {
 		return panelContentId;
@@ -40,14 +41,6 @@ public class PanelContent implements Serializable {
 
 	public void setPanelContentId(Integer panelContentId) {
 		this.panelContentId = panelContentId;
-	}
-
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
 	}
 
 	public Integer getPanelId() {
@@ -82,19 +75,28 @@ public class PanelContent implements Serializable {
 		this.sortOrder = sortOrder;
 	}
 
-	public LocalDateTime getUpdated() {
-		return updated;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	@Override
 	public String toString() {
-		return "PanelContentDto{" + "panelContentId=" + panelContentId + ", created="
-				+ created + ", panelId=" + panelId + ", picUrl=" + picUrl + ", productId="
-				+ productId + ", sortOrder=" + sortOrder + ", updated=" + updated + "}";
+		return "PanelContent{" + "panelContentId=" + panelContentId + ", createDate="
+				+ createDate + ", panelId=" + panelId + ", picUrl='" + picUrl + '\''
+				+ ", productId='" + productId + '\'' + ", sortOrder=" + sortOrder
+				+ ", modifyDate=" + modifyDate + '}';
 	}
 
 }

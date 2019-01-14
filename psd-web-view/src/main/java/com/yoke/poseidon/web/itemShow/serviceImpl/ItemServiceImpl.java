@@ -1,5 +1,6 @@
 package com.yoke.poseidon.web.itemShow.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.entity.Item;
@@ -49,17 +50,27 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 	}
 
 	@Override
-	public List<ItemDto> getByCId(@NonNull Long cId, Integer limit, int intBlob) {
+	public List<ItemDto> getByCId(@NonNull Long cId, @NonNull Integer limit,
+			int intBlob) {
 		boolean blob = intBlob == 1;
 		List<Item> itemList = itemMapper.selectByCId(cId, limit, null, blob);
 		return convertService.convertItem(itemList);
 	}
 
 	@Override
-	public List<ItemDto> getByCIds(@NonNull List<Long> cIds, Integer limit, int intBlob) {
+	public List<ItemDto> getByCIds(@NonNull List<Long> cIds, @NonNull Integer limit,
+			int intBlob) {
 		boolean blob = intBlob == 1;
 		List<Item> itemList = itemMapper.selectByCIds(cIds, limit, null, blob);
 		return convertService.convertItem(itemList);
+	}
+
+	@Override
+	public List<ItemDto> getByCatIds(@NonNull List<Long> itemCatIds,
+			@NonNull Integer limit) {
+		List<Item> data = list(
+				new QueryWrapper<Item>().in("c_id", itemCatIds).last("limit " + limit));
+		return convertService.convertItem(data);
 	}
 
 }

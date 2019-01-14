@@ -30,11 +30,9 @@ public interface ItemCatService extends IService<ItemCat> {
 	List<Long> getIdsByParentId(@NonNull Long pId, Integer limit);
 
 	/**
-	 * 查询得到根分类
-	 * @param limit 限制查询的条数
-	 * @return 查询得到的数据
+	 * 查询得到根分类和商品数据
 	 */
-	List<List<ItemCatDto>> getRootCat(Integer limit);
+	List<List<ItemCatDto>> getRootCat(Integer catLimit, Integer itemLimit);
 
 	/**
 	 * 根据remark类型得到分类
@@ -43,5 +41,16 @@ public interface ItemCatService extends IService<ItemCat> {
 	 * @return 查询得到的itemCat
 	 */
 	List<ItemCatDto> getByRemark(@NonNull String remark, Integer limit);
+
+	/**
+	 * 得到指定标签的分类和商品数据,用于首页展示
+	 */
+	List<ItemCatDto> getItemCatWithItems(String remark, Integer catLimit,
+			Integer itemLimit);
+
+	/**
+	 * 根据父类id获取子分类的id
+	 */
+	List<Long> getChildCatIds(Long itemCatId);
 
 }

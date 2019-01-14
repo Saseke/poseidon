@@ -4,6 +4,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 8769
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 zuul:
   ignored-services: "*"
   routes:
@@ -16,5 +19,5 @@ zuul:
       strip-prefix: false
       sensitive-headers: Cookie,Set-Cookie
     web-shop-cart-service:
-      path: /shop/cart/**
+      path: /cart/**
       service-id: web-shop-cart-service

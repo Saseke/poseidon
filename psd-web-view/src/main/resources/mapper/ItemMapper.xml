@@ -3,22 +3,7 @@
 <mapper namespace="com.yoke.poseidon.web.itemShow.mapper.ItemMapper">
     <cache type="com.yoke.poseidon.web.itemShow.cache.RedisCache"/>
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yoke.poseidon.web.itemShow.entity.Item">
-        <id column="item_id" property="itemId"/>
-        <result column="name" property="name"/>
-        <result column="sell_point" property="sellPoint"/>
-        <result column="price" property="price"/>
-        <result column="num" property="num"/>
-        <result column="limit_num" property="limitNum"/>
-        <result column="image" property="image"/>
-        <result column="c_id" property="cId"/>
-        <result column="status" property="status"/>
-        <result column="created" property="created"/>
-        <result column="updated" property="updated"/>
-        <result column="sort_order" property="sortOrder"/>
-        <result column="remark" property="remark"/>
-        <result column="description" property="description"/>
-    </resultMap>
+
 
     <sql id="itemColumns">
         select item_id,

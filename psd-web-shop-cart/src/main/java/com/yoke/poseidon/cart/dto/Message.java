@@ -1,4 +1,4 @@
-package com.yoke.poseidon.web.itemShow.dto;
+package com.yoke.poseidon.cart.dto;
 
 import org.springframework.http.HttpStatus;
 
@@ -30,6 +30,10 @@ public class Message implements Serializable {
 		return new Message(HttpStatus.OK.value(), msg, data);
 	}
 
+	public static Message success() {
+		return new Message(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), null);
+	}
+
 	/**
 	 * 普通返回错误的数据
 	 */
@@ -41,7 +45,6 @@ public class Message implements Serializable {
 	public static Message failed(String msg) {
 		return new Message(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg, null);
 	}
-
 
 	public int getCode() {
 		return code;

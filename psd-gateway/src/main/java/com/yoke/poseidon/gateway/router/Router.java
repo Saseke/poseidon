@@ -11,7 +11,7 @@ public class Router {
 	@Value("/view/**")
 	private String web_view_service;
 
-	@Value("/shop/cart/**")
+	@Value("/cart/**")
 	private String web_shop_cart_service;
 
 	public String getWeb_view_service() {

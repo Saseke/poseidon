@@ -1,11 +1,12 @@
 package com.yoke.poseidon.auth.entity;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -27,7 +28,7 @@ public class Member implements Serializable {
 
 	private BigDecimal balance;
 
-	private LocalDateTime created;
+	private LocalDateTime createDate;
 
 	private String description;
 
@@ -43,7 +44,7 @@ public class Member implements Serializable {
 
 	private Integer state;
 
-	private LocalDateTime updated;
+	private LocalDateTime modifyDate;
 
 	private String username;
 
@@ -71,14 +72,6 @@ public class Member implements Serializable {
 
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
-	}
-
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
 	}
 
 	public String getDescription() {
@@ -137,14 +130,6 @@ public class Member implements Serializable {
 		this.state = state;
 	}
 
-	public LocalDateTime getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -161,13 +146,31 @@ public class Member implements Serializable {
 		this.remark = remark;
 	}
 
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Member{" + "memberId=" + memberId + ", address=" + address + ", balance="
-				+ balance + ", created=" + created + ", description=" + description
-				+ ", email=" + email + ", password=" + password + ", phone=" + phone
-				+ ", point=" + point + ", sex=" + sex + ", state=" + state + ", updated="
-				+ updated + ", username=" + username + ", remark=" + remark + "}";
+		return "Member{" + "memberId=" + memberId + ", address='" + address + '\''
+				+ ", balance=" + balance + ", createDate=" + createDate
+				+ ", description='" + description + '\'' + ", email='" + email + '\''
+				+ ", password='" + password + '\'' + ", phone='" + phone + '\''
+				+ ", point=" + point + ", sex=" + sex + ", state=" + state
+				+ ", modifyDate=" + modifyDate + ", username='" + username + '\''
+				+ ", remark='" + remark + '\'' + '}';
 	}
 
 }

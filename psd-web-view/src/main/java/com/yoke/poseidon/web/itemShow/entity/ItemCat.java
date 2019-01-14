@@ -23,7 +23,7 @@ public class ItemCat implements Serializable {
 	@TableId(value = "item_cat_id", type = IdType.AUTO)
 	private Long itemCatId;
 
-	private LocalDateTime created;
+	private LocalDateTime createDate;
 
 	private String icon;
 
@@ -39,7 +39,7 @@ public class ItemCat implements Serializable {
 
 	private Integer state;
 
-	private LocalDateTime updated;
+	private LocalDateTime modifyDate;
 
 	public Long getItemCatId() {
 		return itemCatId;
@@ -47,14 +47,6 @@ public class ItemCat implements Serializable {
 
 	public void setItemCatId(Long itemCatId) {
 		this.itemCatId = itemCatId;
-	}
-
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
 	}
 
 	public String getIcon() {
@@ -113,20 +105,37 @@ public class ItemCat implements Serializable {
 		this.state = state;
 	}
 
-	public LocalDateTime getUpdated() {
-		return updated;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public Boolean getParent() {
+		return isParent;
+	}
+
+	public void setParent(Boolean parent) {
+		isParent = parent;
+	}
+
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	@Override
 	public String toString() {
-		return "ItemCat{" + "itemCatId=" + itemCatId + ", created=" + created + ", icon="
-				+ icon + ", isParent=" + isParent + ", name=" + name + ", parentId="
-				+ parentId + ", remark=" + remark + ", sortOrder=" + sortOrder
-				+ ", state=" + state + ", updated=" + updated + "}";
+		return "ItemCat{" + "itemCatId=" + itemCatId + ", createDate=" + createDate
+				+ ", icon='" + icon + '\'' + ", isParent=" + isParent + ", name='" + name
+				+ '\'' + ", parentId=" + parentId + ", remark='" + remark + '\''
+				+ ", sortOrder=" + sortOrder + ", state=" + state + ", modifyDate="
+				+ modifyDate + '}';
 	}
 
 }

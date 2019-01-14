@@ -35,6 +35,16 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// 1. get the authentication header. Tokens are supposed to be passed in the
 		// authentication header
+
+		if (request.getMethod().equals("OPTIONS")) {
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Methods",
+					"POST,GET,PUT,OPTIONS,DELETE");
+			response.setHeader("Access-Control-Max-Age", "3600");
+			response.setHeader("Access-Control-Allow-Headers",
+					"Origin,X-Requested-With,Content-Type,Accept,Authorization,token");
+			return;
+		}
 		String header = request.getHeader(jwtConfig.getHeader());
 
 		// 2. validate the header and check the prefix

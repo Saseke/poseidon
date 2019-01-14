@@ -78,6 +78,11 @@
         <include refid="itemCatColumns"/>
 
     </select>
+    <select id="selectChildIdsById" resultType="java.lang.Long">
+        select item_cat_id
+        from poseidon.db_item_cat
+        where parent_id = #{parent_id}
+    </select>
 
 
 </mapper>

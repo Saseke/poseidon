@@ -85,7 +85,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter
 				.compact();
 
 		// Add token to header
-		response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
+		response.setHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
+		response.setHeader("cur", auth.getName());
 	}
 
 	// A (temporary) class just to represent the user credentials
@@ -103,13 +104,14 @@ public class JwtUsernameAndPasswordAuthenticationFilter
 			return password;
 		}
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+		public void setUsername(String username) {
+			this.username = username;
+		}
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
-    }
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+	}
 
 }

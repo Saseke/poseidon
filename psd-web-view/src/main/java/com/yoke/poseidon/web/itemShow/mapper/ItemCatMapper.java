@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -54,4 +55,5 @@ public interface ItemCatMapper extends BaseMapper<ItemCat> {
 
 	int update(@Param("itemCat") ItemCat itemCat);
 
+	List<Long> selectChildIdsById(@NonNull @Param("parent_id") Long itemCatId);
 }

@@ -1,9 +1,10 @@
 package com.yoke.poseidon.web.itemShow.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -57,9 +58,9 @@ public class Item implements Serializable {
 	 */
 	private Integer status;
 
-	private LocalDateTime created;
+	private LocalDateTime createDate;
 
-	private LocalDateTime updated;
+	private LocalDateTime modifyDate;
 
 	/**
 	 * 排序号码
@@ -148,20 +149,20 @@ public class Item implements Serializable {
 		this.status = status;
 	}
 
-	public LocalDateTime getCreated() {
-		return created;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
 	}
 
-	public LocalDateTime getUpdated() {
-		return updated;
+	public LocalDateTime getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
+	public void setModifyDate(LocalDateTime modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	public Integer getSortOrder() {
@@ -190,11 +191,12 @@ public class Item implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Item{" + "itemId=" + itemId + ", name=" + name + ", sellPoint="
-				+ sellPoint + ", price=" + price + ", num=" + num + ", limitNum="
-				+ limitNum + ", image=" + image + ", cId=" + cId + ", status=" + status
-				+ ", created=" + created + ", updated=" + updated + ", sortOrder="
-				+ sortOrder + ", remark=" + remark + ", description=" + description + "}";
+		return "Item{" + "itemId='" + itemId + '\'' + ", name='" + name + '\''
+				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", num=" + num
+				+ ", limitNum=" + limitNum + ", image='" + image + '\'' + ", cId=" + cId
+				+ ", status=" + status + ", createDate=" + createDate + ", modifyDate="
+				+ modifyDate + ", sortOrder=" + sortOrder + ", remark='" + remark + '\''
+				+ ", description='" + description + '\'' + '}';
 	}
 
 }

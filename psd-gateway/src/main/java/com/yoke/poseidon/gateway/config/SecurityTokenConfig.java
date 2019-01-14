@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +29,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
+		http.csrf().disable().cors().and()
 				// make sure we use stateless session; session won't be used to store
 				// user's state.
 				.sessionManagement()
@@ -42,11 +43,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 				.addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig),
 						UsernamePasswordAuthenticationFilter.class)
 				// authorization requests config
-				.authorizeRequests()
+				.authorizeRequests().requestMatchers(CorsUtils::isCorsRequest).permitAll()
+				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
 				.antMatchers(HttpMethod.GET, router.getWeb_shop_cart_service(),
-						router.getWeb_view_service())
-				.permitAll()
-				.antMatchers(HttpMethod.OPTIONS, router.getWeb_shop_cart_service(),
 						router.getWeb_view_service())
 				.permitAll()
 				// required here)
