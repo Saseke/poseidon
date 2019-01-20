@@ -1,5 +1,6 @@
 package com.yoke.poseidon.web.itemShow.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.dto.PanelDto;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,21 +30,26 @@ import java.util.List;
 public class PanelServiceImpl extends ServiceImpl<PanelMapper, Panel>
 		implements PanelService {
 
-	@Autowired
-	private PanelMapper panelMapper;
+	private final PanelMapper panelMapper;
+
+	private final ConvertService convertService;
+
+	private final ItemMapper itemMapper;
+
+	private final PanelContentMapper panelContentMapper;
 
 	@Autowired
-	private ConvertService convertService;
-
-	@Autowired
-	private ItemMapper itemMapper;
-
-	@Autowired
-	private PanelContentMapper panelContentMapper;
+	public PanelServiceImpl(PanelMapper panelMapper, ConvertService convertService,
+			ItemMapper itemMapper, PanelContentMapper panelContentMapper) {
+		this.panelMapper = panelMapper;
+		this.convertService = convertService;
+		this.itemMapper = itemMapper;
+		this.panelContentMapper = panelContentMapper;
+	}
 
 	@Override
-	public List<PanelDto> getPanelByRemark(@NonNull String remark, Integer panelLimit,
-			Integer itemLimit) {
+	public List<PanelDto> getPanelByRemark(@NonNull String remark,
+			@NonNull Integer panelLimit, @NonNull Integer itemLimit) {
 		List<Panel> panelList = panelMapper.selectByRemark(remark, null, panelLimit);
 		List<PanelDto> panelDtoList = convertService.convertPanel(panelList);
 		panelDtoList.forEach(panelDto -> {
@@ -57,17 +64,33 @@ public class PanelServiceImpl extends ServiceImpl<PanelMapper, Panel>
 
 	@Override
 	public List<PanelDto> getPanelByItemCatId(@NonNull Long itemCatId) {
-		List<Panel> panelList = panelMapper.selectByCatId(itemCatId);
-		return convertService.convertPanel(panelList);
+		List<Long> ids = new ArrayList<Long>() {
+			{
+				add(itemCatId);
+			}
+		};
+		return getPanelByItemCatId(ids);
 	}
 
 	@Override
 	public List<PanelDto> getPanelWithItemsByItemCatId(@NonNull Long itemCatId,
-			Integer limit) {
-		List<PanelDto> panelDtoList = getPanelByItemCatId(itemCatId);
+
+			@NonNull Integer limit) {
+		List<Long> ids = new ArrayList<Long>() {
+			{
+				add(itemCatId);
+			}
+		};
+		return getPanelWithItemsByItemCatId(ids, limit);
+	}
+
+	@Override
+	public List<PanelDto> getPanelWithItemsByItemCatId(@NonNull List<Long> itemCatIds,
+			@NonNull Integer itemLimit) {
+		List<PanelDto> panelDtoList = getPanelByItemCatId(itemCatIds);
 		panelDtoList.forEach(panelDto -> {
 			List<String> itemIds = panelContentMapper
-					.selectItemIdsByPanelId(panelDto.getPanelId(), limit);
+					.selectItemIdsByPanelId(panelDto.getPanelId(), itemLimit);
 			if (itemIds.size() != 0) {
 				List<ItemDto> itemDtoList = convertService
 						.convertItem(itemMapper.selectIdIn(itemIds, null, false));
@@ -75,6 +98,13 @@ public class PanelServiceImpl extends ServiceImpl<PanelMapper, Panel>
 			}
 		});
 		return panelDtoList;
+	}
+
+	@Override
+	public List<PanelDto> getPanelByItemCatId(@NonNull List<Long> itemCatIds) {
+		List<Panel> panelList = panelMapper
+				.selectList(new QueryWrapper<Panel>().in("item_cat_id", itemCatIds));
+		return convertService.convertPanel(panelList);
 	}
 
 }

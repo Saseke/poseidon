@@ -5,83 +5,42 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
- * <p>
- * 商品表
- * </p>
- *
- * @author yoke
- * @since 2018-11-22
+ * @Author Yoke
+ * @Date 2018/10/17 下午8:17
  */
 @Document(indexName = "item")
 public class Item implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4001786119212330546L;
 
 	@Id
 	private String itemId;
 
-	/**
-	 * 商品名称
-	 */
 	private String name;
 
-	/**
-	 * 卖点
-	 */
+	private Long cId;
+
+	private String itemCatName;
+
 	private String sellPoint;
 
 	private BigDecimal price;
 
-	/**
-	 * 库存
-	 */
-	private Integer num;
-
-	/**
-	 * 限制售卖的数量
-	 */
 	private Integer limitNum;
 
-	/**
-	 * 商品图片
-	 */
 	private String image;
 
-	/**
-	 * 分类id
-	 */
-	private Long cId;
-
-	/**
-	 * 状态
-	 */
-	private Integer status;
-
-	private LocalDateTime created;
-
-	private LocalDateTime updated;
-
-	/**
-	 * 排序号码
-	 */
-	private Integer sortOrder;
-
-	/**
-	 * 备注
-	 */
 	private String remark;
 
-	/**
-	 * 描述
-	 */
 	private String description;
 
-	public Item(){
+	private Integer sortOrder;
 
-    }
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
 	public String getItemId() {
 		return itemId;
@@ -97,6 +56,22 @@ public class Item implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getcId() {
+		return cId;
+	}
+
+	public void setcId(Long cId) {
+		this.cId = cId;
+	}
+
+	public String getItemCatName() {
+		return itemCatName;
+	}
+
+	public void setItemCatName(String itemCatName) {
+		this.itemCatName = itemCatName;
 	}
 
 	public String getSellPoint() {
@@ -115,14 +90,6 @@ public class Item implements Serializable {
 		this.price = price;
 	}
 
-	public Integer getNum() {
-		return num;
-	}
-
-	public void setNum(Integer num) {
-		this.num = num;
-	}
-
 	public Integer getLimitNum() {
 		return limitNum;
 	}
@@ -139,36 +106,12 @@ public class Item implements Serializable {
 		this.image = image;
 	}
 
-	public Long getcId() {
-		return cId;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setcId(Long cId) {
-		this.cId = cId;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
-	}
-
-	public LocalDateTime getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(LocalDateTime updated) {
-		this.updated = updated;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getSortOrder() {
@@ -187,21 +130,14 @@ public class Item implements Serializable {
 		this.remark = remark;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	@Override
 	public String toString() {
-		return "Item{" + "itemId=" + itemId + ", name=" + name + ", sellPoint="
-				+ sellPoint + ", price=" + price + ", num=" + num + ", limitNum="
-				+ limitNum + ", image=" + image + ", cId=" + cId + ", status=" + status
-				+ ", created=" + created + ", updated=" + updated + ", sortOrder="
-				+ sortOrder + ", remark=" + remark + ", description=" + description + "}";
+		return "ItemDto{" + "itemId='" + itemId + '\'' + ", name='" + name + '\''
+				+ ", cId=" + cId + ", itemCatName='" + itemCatName + '\''
+				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", limitNum="
+				+ limitNum + ", image='" + image + '\'' + ", remark='" + remark + '\''
+				+ ", description='" + description + '\'' + ", sortOrder=" + sortOrder
+				+ '}';
 	}
 
 }

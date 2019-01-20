@@ -1,7 +1,9 @@
 package com.yoke.poseidon.web.itemShow.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoke.poseidon.web.itemShow.cache.RedisCache;
 import com.yoke.poseidon.web.itemShow.entity.Item;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -16,6 +18,7 @@ import java.util.List;
  * @author yoke
  * @since 2018-10-30
  */
+@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemMapper extends BaseMapper<Item> {
 
 	/**

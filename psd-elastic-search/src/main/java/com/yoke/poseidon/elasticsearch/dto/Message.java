@@ -1,4 +1,4 @@
-package com.yoke.poseidon.web.itemShow.dto;
+package com.yoke.poseidon.elasticsearch.dto;
 
 import org.springframework.http.HttpStatus;
 
@@ -66,7 +66,7 @@ public class Message implements Serializable {
 		this.data = data;
 	}
 
-	private Message(int code, String msg, Object data) {
+	public Message(int code, String msg, Object data) {
 		this.code = code;
 		this.msg = msg;
 		this.data = data;

@@ -1,7 +1,9 @@
 package com.yoke.poseidon.web.itemShow.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoke.poseidon.web.itemShow.cache.RedisCache;
 import com.yoke.poseidon.web.itemShow.entity.PanelContent;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
 
@@ -15,6 +17,7 @@ import java.util.List;
  * @author ehereal
  * @since 2018-09-20
  */
+@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface PanelContentMapper extends BaseMapper<PanelContent> {
 
 	/**
@@ -30,10 +33,10 @@ public interface PanelContentMapper extends BaseMapper<PanelContent> {
 	/**
 	 * 根据版块id查询商品的id
 	 * @param panelId 版块的id
-	 * @param limit 限制查询的条数
+	 * @param itemLimit 限制查询的条数
 	 * @return 查询得到的商品ids
 	 */
 	List<String> selectItemIdsByPanelId(@Param("panelId") Integer panelId,
-			@Param("limit") Integer limit);
+			@Param("limit") Integer itemLimit);
 
 }

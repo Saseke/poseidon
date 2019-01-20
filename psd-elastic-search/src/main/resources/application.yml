@@ -4,7 +4,5 @@ spring:
   data:
     elasticsearch:
       cluster-nodes: localhost:9300
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+  profiles:
+    active: dev

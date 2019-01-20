@@ -73,4 +73,10 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 		return convertService.convertItem(data);
 	}
 
+	@Override
+	public List<ItemDto> get() {
+		List<Item> itemList = list(new QueryWrapper<>());
+		return convertService.convertItem(itemList);
+	}
+
 }

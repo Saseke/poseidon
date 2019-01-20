@@ -9,10 +9,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,8 +30,12 @@ import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 @Api(value = "panelController", description = "handle panel")
 public class PanelController {
 
+	private final PanelService panelService;
+
 	@Autowired
-	private PanelService panelService;
+	public PanelController(PanelService panelService) {
+		this.panelService = panelService;
+	}
 
 	@ApiOperation(value = "得到版块信息和对应版块的商品的信息", response = PanelDto.class)
 	@ApiImplicitParams({
@@ -76,6 +78,19 @@ public class PanelController {
 			e.printStackTrace();
 		}
 		return failed();
+	}
+
+	@ApiOperation(value = "获取指定分类下面的模块信息,可以指定两个分类的id", response = PanelDto.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "每一个版块下商品的数量"),
+			@ApiImplicitParam(paramType = "query", dataType = "Long[]", name = "catId", value = "分类的id集合,集合是特殊的集合，是矩阵变量") })
+
+	@GetMapping(path = "/pi/{itemLimit}")
+	public Message panelWithCatsAndItems(@PathVariable Integer itemLimit,
+			@MatrixVariable MultiValueMap<String, Long> matrixVars) {
+		List<Long> catIds = matrixVars.get("catId");
+		return Message
+				.success(panelService.getPanelWithItemsByItemCatId(catIds, itemLimit));
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.yoke.poseidon.web.itemShow.web;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -13,13 +14,5 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/panelContent")
 public class PanelContentController {
-
-	@GetMapping("/pets/{petId}")
-	public void findPet(@PathVariable String petId, @MatrixVariable int q) {
-		System.out.println(q);
-		System.out.println(petId);
-		// petId == 42
-		// q == 11
-	}
 
 }

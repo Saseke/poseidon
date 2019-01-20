@@ -17,11 +17,17 @@ import java.util.List;
  */
 public interface PanelService extends IService<Panel> {
 
-	List<PanelDto> getPanelByRemark(@NonNull String remark, Integer panelLimit,
-			Integer itemLimit);
+	List<PanelDto> getPanelByRemark(@NonNull String remark, @NonNull Integer panelLimit,
+			@NonNull Integer itemLimit);
 
 	List<PanelDto> getPanelByItemCatId(@NonNull Long itemCatId);
 
-	List<PanelDto> getPanelWithItemsByItemCatId(@NonNull Long itemCatId, Integer limit);
+	List<PanelDto> getPanelByItemCatId(@NonNull List<Long> itemCatIds);
+
+	List<PanelDto> getPanelWithItemsByItemCatId(@NonNull Long itemCatId,
+			@NonNull Integer limit);
+
+	List<PanelDto> getPanelWithItemsByItemCatId(@NonNull List<Long> itemCatIds,
+			@NonNull Integer itemLimit);
 
 }

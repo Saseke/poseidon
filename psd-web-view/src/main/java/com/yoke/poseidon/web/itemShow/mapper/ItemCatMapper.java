@@ -1,10 +1,11 @@
 package com.yoke.poseidon.web.itemShow.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yoke.poseidon.web.itemShow.cache.RedisCache;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @author ehereal
  * @since 2018-09-20
  */
+@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemCatMapper extends BaseMapper<ItemCat> {
 
 	ItemCat selectById(@NonNull Long id);
@@ -56,4 +58,5 @@ public interface ItemCatMapper extends BaseMapper<ItemCat> {
 	int update(@Param("itemCat") ItemCat itemCat);
 
 	List<Long> selectChildIdsById(@NonNull @Param("parent_id") Long itemCatId);
+
 }

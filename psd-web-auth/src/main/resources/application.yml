@@ -33,7 +33,7 @@ mybatis-plus:
     sql-parser-cache: true
     configuration:
       map-underscore-to-camel-case: true
-      cache-enabled: false
+      cache-enabled: true
 
 server:
   port: 9100

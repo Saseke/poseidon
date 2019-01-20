@@ -2,6 +2,7 @@ package com.yoke.poseidon.elasticsearch.service.impl;
 
 import com.yoke.poseidon.elasticsearch.dao.ItemRepository;
 import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
 import com.yoke.poseidon.elasticsearch.service.ItemService;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -28,6 +29,9 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private ElasticsearchTemplate elasticsearchTemplate;
+
+	@Autowired
+	private ItemFeign itemFeign;
 
 	@Override
 	public List<Item> getByName(@NonNull String name) {
@@ -58,6 +62,13 @@ public class ItemServiceImpl implements ItemService {
 	public List<Item> getAll() {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().build();
 		return elasticsearchTemplate.queryForList(searchQuery, Item.class);
+	}
+
+	@Override
+	public List<Item> syncData() {
+		List<Item> itemList = itemFeign.fetch();
+		itemRepository.saveAll(itemList);
+		return getAll();
 	}
 
 }

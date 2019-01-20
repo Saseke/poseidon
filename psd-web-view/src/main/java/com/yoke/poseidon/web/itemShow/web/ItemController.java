@@ -1,9 +1,7 @@
 package com.yoke.poseidon.web.itemShow.web;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.dto.Message;
-import com.yoke.poseidon.web.itemShow.entity.Item;
 import com.yoke.poseidon.web.itemShow.service.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -33,8 +31,12 @@ import static com.yoke.poseidon.web.itemShow.dto.Message.success;
 @Api(value = "itemController", description = "handle item")
 public class ItemController {
 
+	private final ItemService itemService;
+
 	@Autowired
-	private ItemService itemService;
+	public ItemController(ItemService itemService) {
+		this.itemService = itemService;
+	}
 
 	@ApiOperation(value = "get item by id", response = ItemDto.class)
 	@ApiImplicitParams({
@@ -83,10 +85,9 @@ public class ItemController {
 		return failed();
 	}
 
-	@GetMapping("/test")
-	public Message test() {
-		return Message.success(
-				itemService.list(new QueryWrapper<Item>().eq("item_id", "AGVERFERVE")));
+	@GetMapping(path = "")
+	public List<ItemDto> items() {
+		return itemService.get();
 	}
 
 }

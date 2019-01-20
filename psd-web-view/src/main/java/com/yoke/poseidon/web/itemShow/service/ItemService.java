@@ -27,4 +27,10 @@ public interface ItemService extends IService<Item> {
 			int intBlob);
 
 	List<ItemDto> getByCatIds(@NonNull List<Long> itemCatIds, @NonNull Integer limit);
+
+	/**
+	 * 得到所有的商品信息,目的是第一次elasticsearch同步
+	 */
+	List<ItemDto> get();
+
 }

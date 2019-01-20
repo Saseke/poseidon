@@ -32,16 +32,17 @@ apply plugin: 'checkstyle'
 
 dependencies {
 
-//    -------------------------------spring cloud start--------------------------------
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
-//    -------------------------------end--------------------------------------------
     compile("org.springframework.boot:spring-boot-starter-web")
-//    --------------------------elasticSearch part-------------------------------------------
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-elasticsearch
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.1.1.RELEASE'
-//    ----------------------------------------------------------------------------------
+
     checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.6")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
