@@ -14,12 +14,19 @@ public class Router {
 	@Value("/cart/**")
 	private String web_shop_cart_service;
 
+	@Value("/member/**")
+	private String member_service;
+
 	public String getWeb_view_service() {
 		return web_view_service;
 	}
 
 	public String getWeb_shop_cart_service() {
 		return web_shop_cart_service;
+	}
+
+	public String getMember_service() {
+		return member_service;
 	}
 
 }

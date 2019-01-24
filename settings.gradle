@@ -7,5 +7,5 @@ include 'psd-web-auth'
 include 'psd-config'
 include 'psd-elastic-search'
 include 'psd-web-shop-cart'
-include 'venus'
+include 'psd-member'
 

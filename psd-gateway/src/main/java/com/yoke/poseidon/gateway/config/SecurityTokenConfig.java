@@ -46,7 +46,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().requestMatchers(CorsUtils::isCorsRequest).permitAll()
 				.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
 				.antMatchers(HttpMethod.GET, router.getWeb_shop_cart_service(),
-						router.getWeb_view_service())
+						router.getWeb_view_service(), router.getMember_service())
 				.permitAll()
 				// required here)
 				// .antMatchers("/view" + "/admin/**").hasRole("")

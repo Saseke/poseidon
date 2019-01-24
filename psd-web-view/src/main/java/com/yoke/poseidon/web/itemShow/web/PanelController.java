@@ -1,5 +1,6 @@
 package com.yoke.poseidon.web.itemShow.web;
 
+import com.google.common.collect.Lists;
 import com.yoke.poseidon.web.itemShow.dto.Message;
 import com.yoke.poseidon.web.itemShow.dto.PanelDto;
 import com.yoke.poseidon.web.itemShow.service.PanelService;
@@ -9,8 +10,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -61,13 +64,13 @@ public class PanelController {
 
 	@ApiOperation(value = "点击商品分类,查看商品分类下的版块(包含商品)", response = PanelDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemCatId", value = "商品分类id"),
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "cId", value = "商品分类id"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制显示的商品数量")
 
 	})
-	@GetMapping(path = { "/pi/{itemCatId}",
-			"/pi/{itemCatId}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message panelWithItems(@PathVariable("itemCatId") Long itemCatId,
+	@GetMapping(path = { "/cat/{cId}",
+			"/cat/{cId}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message panelWithItems(@PathVariable("cId") Long itemCatId,
 			@PathVariable(value = "limit", required = false) Integer limit) {
 		try {
 			List<PanelDto> data = panelService.getPanelWithItemsByItemCatId(itemCatId,
@@ -82,13 +85,14 @@ public class PanelController {
 
 	@ApiOperation(value = "获取指定分类下面的模块信息,可以指定两个分类的id", response = PanelDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "每一个版块下商品的数量"),
-			@ApiImplicitParam(paramType = "query", dataType = "Long[]", name = "catId", value = "分类的id集合,集合是特殊的集合，是矩阵变量") })
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId1", value = "第一个分类的id"),
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId2", value = "第二个分类的id"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "每一个版块下商品的数量"), })
 
-	@GetMapping(path = "/pi/{itemLimit}")
+	@GetMapping(path = "/cat/{cId1}/{cId2}/{itemLimit}")
 	public Message panelWithCatsAndItems(@PathVariable Integer itemLimit,
-			@MatrixVariable MultiValueMap<String, Long> matrixVars) {
-		List<Long> catIds = matrixVars.get("catId");
+			@PathVariable Long cId1, @PathVariable Long cId2) {
+		List<Long> catIds = Lists.newArrayList(cId1, cId2);
 		return Message
 				.success(panelService.getPanelWithItemsByItemCatId(catIds, itemLimit));
 	}

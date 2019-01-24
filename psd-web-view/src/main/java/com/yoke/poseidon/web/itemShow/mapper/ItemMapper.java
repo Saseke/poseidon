@@ -21,13 +21,7 @@ import java.util.List;
 @CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemMapper extends BaseMapper<Item> {
 
-	/**
-	 * 根据商品id得到Item的部分信息信息,不包括BLOB
-	 * @param itemId 商品id
-	 * @param blob 是否包含大字段信息
-	 */
-	Item selectById(@NonNull @Param("id") String itemId,
-			@NonNull @Param("blob") boolean blob);
+	Item select(@Param("itemId") String itemId, @Param("blob") boolean blob);
 
 	/**
 	 * 根据一群ids查询得到相对应的商品

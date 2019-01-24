@@ -2,7 +2,7 @@ db:
   server: www.test.com
   port: 13306
   username: root
-  password: 'FJEOIRFWQ132EW'
+  password: ${common.password}
 eureka:
   client:
     serviceUrl:

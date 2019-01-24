@@ -40,13 +40,13 @@ public class ItemCatController {
 		this.itemCatService = itemCatService;
 	}
 
-	@ApiOperation(value = "得到首页左侧展示的商品分类和相关的商品信息", response = ItemCatDto.class)
+	@ApiOperation(value = "得到首页左侧展示的根商品分类和相关的商品信息", response = ItemCatDto.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "catLimit", value = "商品分类的数量,推荐是20"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的数量,推荐是12") })
 
 	@GetMapping(path = "/ro/{catLimit}/{itemLimit}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message itemCatDto(@PathVariable Integer catLimit,
+	public Message rootCatWithItems(@PathVariable Integer catLimit,
 			@PathVariable Integer itemLimit) {
 
 		try {
@@ -61,14 +61,13 @@ public class ItemCatController {
 
 	@ApiOperation(value = "得到导航栏的展示信息", response = ItemCatDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "remark", value = "remark的值,有index和nav两种选择"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "catLimit", value = "商品分类的数量,推荐是10"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "itemLimit", value = "商品的数量,推荐是5") })
-	@GetMapping(path = "/{remark}/{catLimit}/{itemLimit}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message indexView(@PathVariable String remark, @PathVariable Integer catLimit,
+	@GetMapping(path = "/nav/{catLimit}/{itemLimit}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message navCatWithItems(@PathVariable Integer catLimit,
 			@PathVariable Integer itemLimit) {
 		return Message
-				.success(itemCatService.getItemCatWithItems(remark, catLimit, itemLimit));
+				.success(itemCatService.getItemCatWithItems("nav", catLimit, itemLimit));
 	}
 
 }

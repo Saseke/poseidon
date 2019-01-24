@@ -21,17 +21,6 @@
         select *
         from poseidon.db_item
     </sql>
-    <select id="selectById" resultType="com.yoke.poseidon.web.itemShow.entity.Item">
-        <choose>
-            <when test="blob==true">
-                <include refid="itemColumnsWithBLOB"/>
-            </when>
-            <otherwise>
-                <include refid="itemColumns"/>
-            </otherwise>
-        </choose>
-        where item_id=#{id}
-    </select>
 
 
     <select id="selectIdIn" resultType="com.yoke.poseidon.web.itemShow.entity.Item">
@@ -108,6 +97,22 @@
         <if test="limit != null">
             limit #{limit}
         </if>
+    </select>
+    <select id="selectById" resultType="com.yoke.poseidon.web.itemShow.entity.Item">
+        select *
+        from poseidon.db_item
+        where item_id = #{id}
+    </select>
+    <select id="select" resultType="com.yoke.poseidon.web.itemShow.entity.Item">
+        <choose>
+            <when test="blob==true">
+                <include refid="itemColumnsWithBLOB"/>
+            </when>
+            <otherwise>
+                <include refid="itemColumns"/>
+            </otherwise>
+        </choose>
+        where item_id = #{itemId}
     </select>
 
 </mapper>

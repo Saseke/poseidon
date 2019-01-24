@@ -12,9 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.Optional.ofNullable;
 
 /**
  * <p>
@@ -37,9 +34,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 	@Override
 	public ItemDto getById(@NonNull String itemId, int intBlob) {
 		boolean blob = intBlob == 1;
-		Optional<Item> itemOptional = ofNullable(itemMapper.selectById(itemId, blob));
-		return itemOptional.map(item -> convertService.convertItem(item))
-				.orElse(new ItemDto());
+		return convertService.convertItem(itemMapper.select(itemId, blob));
 	}
 
 	@Override

@@ -9,6 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
   # mybatis plus
+  profiles:
+    active: dev
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml

@@ -21,3 +21,11 @@ zuul:
     web-shop-cart-service:
       path: /cart/**
       service-id: web-shop-cart-service
+    member-service:
+      path: /member/**
+      service-id: member-service
+      strip-prefix: false
+
+spring:
+  profiles:
+    active: dev
