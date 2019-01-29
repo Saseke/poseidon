@@ -85,9 +85,15 @@ public class ItemController {
 		return failed();
 	}
 
+	// -----------------test--------------------------------
 	@GetMapping(path = "")
 	public List<ItemDto> items() {
 		return itemService.get();
+	}
+
+	@GetMapping("/test")
+	public void message() {
+		itemService.test();
 	}
 
 }

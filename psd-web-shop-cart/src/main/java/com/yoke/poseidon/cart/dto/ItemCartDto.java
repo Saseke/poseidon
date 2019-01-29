@@ -2,7 +2,6 @@ package com.yoke.poseidon.cart.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -38,6 +37,26 @@ public class ItemCartDto implements Serializable {
 
 	private String memberNickname;
 
+	private String itemImage;
+
+	private String itemSellPoint;
+
+	public String getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
+	}
+
+	public String getItemSellPoint() {
+		return itemSellPoint;
+	}
+
+	public void setItemSellPoint(String itemSellPoint) {
+		this.itemSellPoint = itemSellPoint;
+	}
+
 	public Long getItemCartId() {
 		return itemCartId;
 	}
@@ -54,23 +73,23 @@ public class ItemCartDto implements Serializable {
 		this.memberId = memberId;
 	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public Date getModifyDate() {
-        return modifyDate;
-    }
+	public Date getModifyDate() {
+		return modifyDate;
+	}
 
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
 
-    public String getRemark() {
+	public String getRemark() {
 		return remark;
 	}
 
@@ -126,14 +145,8 @@ public class ItemCartDto implements Serializable {
 		this.memberNickname = memberNickname;
 	}
 
-	@Override
-	public String toString() {
-		return "ItemCartDto{" + "itemCartId=" + itemCartId + ", memberId=" + memberId
-				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate
-				+ ", remark='" + remark + '\'' + ", itemCartStatus=" + itemCartStatus
-				+ ", quantity=" + quantity + ", itemId='" + itemId + '\'' + ", price="
-				+ price + ", itemCatId=" + itemCatId + ", memberNickname='"
-				+ memberNickname + '\'' + '}';
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 }

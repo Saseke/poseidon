@@ -71,4 +71,9 @@ public class ItemServiceImpl implements ItemService {
 		return getAll();
 	}
 
+	@Override
+	public List<Item> test() {
+		return itemFeign.fetch();
+	}
+
 }

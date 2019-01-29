@@ -13,3 +13,9 @@ spring:
     password: ${common.password}
 common:
   password: "FJEOIRFWQ132EW"
+# rabbitmq config
+item:
+  exchange: item_exchange
+  vary_key: item_vary.key
+  queue: item_queue
+  routing-key: item_vary.*

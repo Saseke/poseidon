@@ -25,9 +25,9 @@ public interface ItemCartService extends IService<ItemCart> {
 	boolean add(@NonNull ItemCartDto itemCartDto);
 
 	/**
-	 * 根据用户编号获取购物车信息
+	 * 根据用户名称获取购物车信息
 	 */
-	List<ItemCartDto> list(@NonNull Long memberId);
+	List<ItemCartDto> list(@NonNull String name);
 
 	/**
 	 * 更新购物车中某个商品的数量

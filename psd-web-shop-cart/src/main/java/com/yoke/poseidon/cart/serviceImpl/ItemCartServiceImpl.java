@@ -46,9 +46,9 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 	}
 
 	@Override
-	public List<ItemCartDto> list(@NonNull Long memberId) {
+	public List<ItemCartDto> list(@NonNull String name) {
 		List<ItemCart> itemCartList = list(
-				new QueryWrapper<ItemCart>().eq("member_id", memberId));
+				new QueryWrapper<ItemCart>().eq("member_nickname", name));
 		return convertService.convert(itemCartList);
 	}
 

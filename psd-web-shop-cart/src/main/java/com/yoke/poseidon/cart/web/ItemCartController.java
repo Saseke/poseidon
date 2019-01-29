@@ -46,10 +46,10 @@ public class ItemCartController {
 
 	@ApiOperation(value = "列出指定用户的购物车记录", response = ItemCartDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "memberId", value = "用户的id") })
-	@GetMapping(path = "/list/{memberId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message list(@PathVariable Long memberId) {
-		return Message.success(itemCartService.list(memberId));
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "nickName", value = "用户的昵称") })
+	@GetMapping(path = "/list/{name}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message list(@PathVariable String name) {
+		return Message.success(itemCartService.list(name));
 	}
 
 	@ApiOperation(value = "更新指定用户的某个商品的数量")

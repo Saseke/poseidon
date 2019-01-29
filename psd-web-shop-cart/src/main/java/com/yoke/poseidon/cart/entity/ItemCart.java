@@ -1,7 +1,6 @@
 package com.yoke.poseidon.cart.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -47,6 +46,30 @@ public class ItemCart implements Serializable {
 	private Long itemCatId;
 
 	private String memberNickname;
+
+	private String itemImage;
+
+	private String itemSellPoint;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
+	}
+
+	public String getItemSellPoint() {
+		return itemSellPoint;
+	}
+
+	public void setItemSellPoint(String itemSellPoint) {
+		this.itemSellPoint = itemSellPoint;
+	}
 
 	public Long getItemCartId() {
 		return itemCartId;
@@ -140,10 +163,11 @@ public class ItemCart implements Serializable {
 	public String toString() {
 		return "ItemCart{" + "itemCartId=" + itemCartId + ", memberId=" + memberId
 				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate
-				+ ", remark=" + remark + ", itemCartStatus=" + itemCartStatus
-				+ ", quantity=" + quantity + ", itemId=" + itemId + ", price=" + price
-				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate
-				+ ", itemCatId=" + itemCatId + ", memberNickname=" + memberNickname + "}";
+				+ ", remark='" + remark + '\'' + ", itemCartStatus=" + itemCartStatus
+				+ ", quantity=" + quantity + ", itemId='" + itemId + '\'' + ", price="
+				+ price + ", itemCatId=" + itemCatId + ", memberNickname='"
+				+ memberNickname + '\'' + ", itemImage='" + itemImage + '\''
+				+ ", itemSellPoint='" + itemSellPoint + '\'' + '}';
 	}
 
 }

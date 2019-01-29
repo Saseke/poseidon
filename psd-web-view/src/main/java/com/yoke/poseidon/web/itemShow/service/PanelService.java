@@ -30,4 +30,6 @@ public interface PanelService extends IService<Panel> {
 	List<PanelDto> getPanelWithItemsByItemCatId(@NonNull List<Long> itemCatIds,
 			@NonNull Integer itemLimit);
 
+	PanelDto getPanelById(@NonNull Integer panelId);
+
 }

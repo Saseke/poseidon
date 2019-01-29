@@ -101,6 +101,19 @@ public class PanelServiceImpl extends ServiceImpl<PanelMapper, Panel>
 	}
 
 	@Override
+	public PanelDto getPanelById(@NonNull Integer panelId) {
+
+		Panel panel = panelMapper.selectById(panelId);
+		PanelDto panelDto = convertService.convertPanel(panel);
+		List<String> itemIds = panelContentMapper
+				.selectItemIdsByPanelId(panelDto.getPanelId(), null);
+		List<Item> items = itemMapper.selectIdIn(itemIds, null, false);
+		List<ItemDto> itemDtoList = convertService.convertItem(items);
+		panelDto.setItemDtoList(itemDtoList);
+		return panelDto;
+	}
+
+	@Override
 	public List<PanelDto> getPanelByItemCatId(@NonNull List<Long> itemCatIds) {
 		List<Panel> panelList = panelMapper
 				.selectList(new QueryWrapper<Panel>().in("item_cat_id", itemCatIds));

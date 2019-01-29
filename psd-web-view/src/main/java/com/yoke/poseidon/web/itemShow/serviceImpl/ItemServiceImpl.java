@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.entity.Item;
+import com.yoke.poseidon.web.itemShow.event.EventDispatcher;
 import com.yoke.poseidon.web.itemShow.mapper.ItemMapper;
 import com.yoke.poseidon.web.itemShow.service.ConvertService;
 import com.yoke.poseidon.web.itemShow.service.ItemService;
@@ -30,6 +31,9 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 
 	@Autowired
 	private ConvertService convertService;
+
+	@Autowired
+	private EventDispatcher eventDispatcher;
 
 	@Override
 	public ItemDto getById(@NonNull String itemId, int intBlob) {
@@ -72,6 +76,13 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 	public List<ItemDto> get() {
 		List<Item> itemList = list(new QueryWrapper<>());
 		return convertService.convertItem(itemList);
+	}
+
+	@Override
+	public void test() {
+		ItemDto itemDto = new ItemDto();
+		itemDto.setName("Hello");
+		eventDispatcher.send(itemDto);
 	}
 
 }

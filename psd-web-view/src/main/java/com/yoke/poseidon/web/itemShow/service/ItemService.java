@@ -33,4 +33,6 @@ public interface ItemService extends IService<Item> {
 	 */
 	List<ItemDto> get();
 
+	void test();
+
 }

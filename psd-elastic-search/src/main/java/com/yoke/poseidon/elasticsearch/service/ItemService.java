@@ -15,8 +15,6 @@ public interface ItemService {
 
 	List<Item> getByName(@NonNull String name);
 
-
-
 	Item add(@NonNull Item item);
 
 	void delete(@NonNull String itemId);
@@ -31,5 +29,7 @@ public interface ItemService {
 	 * 从商品展示服务同步数据
 	 */
 	List<Item> syncData();
+
+	List<Item> test();
 
 }

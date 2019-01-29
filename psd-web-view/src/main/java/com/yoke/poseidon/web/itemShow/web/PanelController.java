@@ -97,4 +97,13 @@ public class PanelController {
 				.success(panelService.getPanelWithItemsByItemCatId(catIds, itemLimit));
 	}
 
+	@ApiOperation(value = "根据版块的id查找对应的版块信息，包含对应的商品信息")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "panelId", value = "版块的id") })
+	@GetMapping(path = "/{panelId}")
+	public Message panel(@PathVariable Integer panelId) {
+		PanelDto panelDto = panelService.getPanelById(panelId);
+		return Message.success(panelDto);
+	}
+
 }

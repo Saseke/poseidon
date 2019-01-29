@@ -54,18 +54,14 @@ dependencies {
 //    spring cloud end
     compile('mysql:mysql-connector-java:8.0.12')
 //     springboot start
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
-    compile('org.springframework.boot:spring-boot-starter-webflux')
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
     compile('org.springframework.boot:spring-boot-starter-data-redis')
 
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+//    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-test")
-//    compile('org.springframework:springloaded:1.2.8.RELEASE')
-    compile("org.springframework.boot:spring-boot-devtools")
 //    springboot end
-
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
     compile("com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}")
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus
@@ -94,7 +90,6 @@ dependencies {
     checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.6")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 dependencyManagement {

@@ -36,6 +36,10 @@
         <include refid="panelColumns"/>
         where item_cat_id = #{item_cat_id} order by sort_order asc
     </select>
+    <select id="selectById" resultType="com.yoke.poseidon.web.itemShow.entity.Panel">
+        <include refid="panelColumns"/>
+        where panel_id = #{panelId}
+    </select>
 
 
 </mapper>

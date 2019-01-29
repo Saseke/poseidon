@@ -37,4 +37,9 @@ public interface PanelMapper extends BaseMapper<Panel> {
 	 */
 	List<Panel> selectByCatId(@NonNull @Param("item_cat_id") Long itemCatId);
 
+	/**
+	 * 根据版块的id查找对应的板块信息
+	 */
+	Panel selectById(@NonNull @Param("panelId") Integer panelId);
+
 }

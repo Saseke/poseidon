@@ -1,4 +1,4 @@
-package com.yoke.poseidon.elasticsearch.controller;
+package com.yoke.poseidon.elasticsearch.web;
 
 import com.yoke.poseidon.elasticsearch.dto.Message;
 import com.yoke.poseidon.elasticsearch.entity.Item;
@@ -35,6 +35,11 @@ public class ItemController {
 	public Message syncData() {
 		List<Item> list = itemService.syncData();
 		return Message.success(null);
+	}
+
+	@GetMapping(path = "/test")
+	public Message test() {
+		return Message.success(itemService.test());
 	}
 
 }
