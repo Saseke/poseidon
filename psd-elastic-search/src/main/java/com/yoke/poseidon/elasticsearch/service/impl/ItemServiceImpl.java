@@ -1,7 +1,7 @@
 package com.yoke.poseidon.elasticsearch.service.impl;
 
 import com.yoke.poseidon.elasticsearch.dao.ItemRepository;
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
 import com.yoke.poseidon.elasticsearch.service.ItemService;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -15,6 +15,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -34,13 +35,13 @@ public class ItemServiceImpl implements ItemService {
 	private ItemFeign itemFeign;
 
 	@Override
-	public List<Item> getByName(@NonNull String name) {
+	public List<EsItem> getByName(@NonNull String name) {
 		return itemRepository.findByName(name);
 	}
 
 	@Override
-	public Item add(@NonNull Item item) {
-		return itemRepository.save(item);
+	public EsItem add(@NonNull EsItem esItem) {
+		return itemRepository.save(esItem);
 	}
 
 	@Override
@@ -49,30 +50,40 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public Item update(@NonNull Item item) {
-		return itemRepository.save(item);
+	public EsItem update(@NonNull EsItem esItem) {
+		return itemRepository.save(esItem);
 	}
 
-	public Page<Item> getByKey(String name, PageRequest pageRequest) {
+	@Override
+	public EsItem create(@NotNull EsItem esItem) {
+		return null;
+	}
+
+	public Page<EsItem> getByKey(String name, PageRequest pageRequest) {
 		QueryBuilder queryBuilder = QueryBuilders.fuzzyQuery("name", name);
 		return itemRepository.search(queryBuilder, pageRequest);
 	}
 
 	@Override
-	public List<Item> getAll() {
+	public List<EsItem> getAll() {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().build();
-		return elasticsearchTemplate.queryForList(searchQuery, Item.class);
+		return elasticsearchTemplate.queryForList(searchQuery, EsItem.class);
 	}
 
 	@Override
-	public List<Item> syncData() {
-		List<Item> itemList = itemFeign.fetch();
-		itemRepository.saveAll(itemList);
+	public List<EsItem> syncData() {
+		List<EsItem> esItemList = itemFeign.fetch();
+		itemRepository.saveAll(esItemList);
 		return getAll();
 	}
 
 	@Override
-	public List<Item> test() {
+	public List<EsItem> recommend() {
+		return null;
+	}
+
+	@Override
+	public List<EsItem> test() {
 		return itemFeign.fetch();
 	}
 

@@ -4,6 +4,10 @@
     <bytecodeTargetLevel>
       <module name="psd-manager-app_main" target="1.8" />
       <module name="psd-manager-app_test" target="1.8" />
+      <module name="psd-memeber_main" target="1.8" />
+      <module name="psd-memeber_test" target="1.8" />
+      <module name="venus_main" target="1.8" />
+      <module name="venus_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

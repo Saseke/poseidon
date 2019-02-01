@@ -26,13 +26,19 @@ import java.util.List;
 public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 		implements ItemCartService {
 
+	private final ConvertService convertService;
+
 	@Autowired
-	private ConvertService convertService;
+	public ItemCartServiceImpl(ConvertService convertService) {
+		this.convertService = convertService;
+	}
 
 	@Override
 	public boolean add(@NonNull ItemCartDto itemCartDto) {
 		ItemCart itemCart = convertService.convertToBean(itemCartDto);
-		ItemCart exist = getById(itemCartDto.getItemCartId());
+		// ItemCart exist = getById(itemCartDto.getItemCartId());
+		ItemCart exist = getOne(
+				new QueryWrapper<ItemCart>().eq("item_id", itemCart.getItemId()));
 		if (exist == null) {
 			itemCart.setCreateDate(new Date());
 			itemCart.setItemCartStatus(1);
@@ -46,30 +52,33 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 	}
 
 	@Override
-	public List<ItemCartDto> list(@NonNull String name) {
+	public List<ItemCartDto> list(@NonNull String nickName) {
 		List<ItemCart> itemCartList = list(
-				new QueryWrapper<ItemCart>().eq("member_nickname", name));
+				new QueryWrapper<ItemCart>().eq("member_nickname", nickName));
 		return convertService.convert(itemCartList);
 	}
 
 	@Override
-	public boolean updateQuantity(@NonNull Long memberId, @NonNull String itemId,
+	public boolean updateQuantity(@NonNull String nickName, @NonNull String itemId,
 			@NonNull Integer quantity) {
-		ItemCart itemCart = getOne(new QueryWrapper<ItemCart>().eq("member_id", memberId)
-				.eq("item_id", itemId));
-		itemCart.setQuantity(quantity);
-		return updateById(itemCart);
+		ItemCart itemCart = getOne(new QueryWrapper<ItemCart>()
+				.eq("member_nickname", nickName).eq("item_id", itemId));
+		if (!quantity.equals(itemCart.getQuantity())) {
+			itemCart.setQuantity(quantity);
+			return updateById(itemCart);
+		}
+		return true;
 	}
 
 	@Override
-	public boolean clear(@NonNull Long memberId) {
-		return remove(new QueryWrapper<ItemCart>().eq("member_id", memberId));
+	public boolean clear(@NonNull String nickName) {
+		return remove(new QueryWrapper<ItemCart>().eq("member_nickname", nickName));
 	}
 
 	@Override
-	public boolean delete(@NonNull Long memberId, @NonNull String itemId) {
-		return remove(new QueryWrapper<ItemCart>().eq("member_id", memberId).eq("item_id",
-				itemId));
+	public boolean delete(@NonNull String nickName, @NonNull String itemId) {
+		return remove(new QueryWrapper<ItemCart>().eq("member_nickname", nickName)
+				.eq("item_cart_id", itemId));
 	}
 
 }

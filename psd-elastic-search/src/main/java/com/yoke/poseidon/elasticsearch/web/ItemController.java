@@ -1,7 +1,7 @@
 package com.yoke.poseidon.elasticsearch.web;
 
 import com.yoke.poseidon.elasticsearch.dto.Message;
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,8 +21,8 @@ public class ItemController {
 	private ItemService itemService;
 
 	@GetMapping("/{name}/{page}/{size}")
-	public List<Item> searchByKey(@PathVariable("name") String name,
-			@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+	public List<EsItem> searchByKey(@PathVariable("name") String name,
+                                    @PathVariable("page") Integer page, @PathVariable("size") Integer size) {
 		return itemService.getByKey(name, PageRequest.of(page - 1, size)).getContent();
 	}
 
@@ -33,7 +33,7 @@ public class ItemController {
 
 	@PostMapping("/sync")
 	public Message syncData() {
-		List<Item> list = itemService.syncData();
+		List<EsItem> list = itemService.syncData();
 		return Message.success(null);
 	}
 

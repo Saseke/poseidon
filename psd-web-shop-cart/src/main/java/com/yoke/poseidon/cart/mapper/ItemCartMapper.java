@@ -16,4 +16,6 @@ import org.apache.ibatis.annotations.CacheNamespace;
 @CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemCartMapper extends BaseMapper<ItemCart> {
 
+
+
 }

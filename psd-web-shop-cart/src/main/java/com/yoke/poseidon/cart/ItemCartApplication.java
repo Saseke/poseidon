@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 @EnableFeignClients
 @SpringBootApplication
 @MapperScan(basePackages = "com.yoke.poseidon.cart.mapper")
-public class ItemCartApplication {
+public class ItemCartApplication{
 
 	@Bean
 	public ModelMapper modelMapper() {

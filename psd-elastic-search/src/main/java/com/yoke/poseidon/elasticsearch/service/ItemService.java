@@ -1,10 +1,11 @@
 package com.yoke.poseidon.elasticsearch.service;
 
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -13,23 +14,30 @@ import java.util.List;
  */
 public interface ItemService {
 
-	List<Item> getByName(@NonNull String name);
+	List<EsItem> getByName(@NonNull String name);
 
-	Item add(@NonNull Item item);
+	EsItem add(@NonNull EsItem esItem);
 
 	void delete(@NonNull String itemId);
 
-	Item update(@NonNull Item item);
+	EsItem update(@NonNull EsItem esItem);
 
-	Page<Item> getByKey(String name, PageRequest pageRequest);
+	EsItem create(@NotNull EsItem esItem);
 
-	List<Item> getAll();
+	Page<EsItem> getByKey(String name, PageRequest pageRequest);
+
+	List<EsItem> getAll();
 
 	/**
 	 * 从商品展示服务同步数据
 	 */
-	List<Item> syncData();
+	List<EsItem> syncData();
 
-	List<Item> test();
+	/**
+	 * 商品推荐
+	 */
+	List<EsItem> recommend();
+
+	List<EsItem> test();
 
 }

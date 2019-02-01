@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @Date 2018/10/17 下午8:17
  */
 @Document(indexName = "item")
-public class Item implements Serializable {
+public class EsItem implements Serializable {
 
 	private static final long serialVersionUID = -4001786119212330546L;
 

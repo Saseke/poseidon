@@ -1,6 +1,6 @@
 package com.yoke.poseidon.elasticsearch.fallback;
 
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class ItemFallback implements ItemFeign {
 
 	@Override
-	public List<Item> fetch() {
+	public List<EsItem> fetch() {
 		return Collections.emptyList();
 	}
 

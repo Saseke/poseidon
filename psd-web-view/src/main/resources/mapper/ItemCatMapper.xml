@@ -3,7 +3,7 @@
 <mapper namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper">
 
 
-    <cache-ref namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper"/>
+    <!--<cache-ref namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper"/>-->
     <!--在update操作时,需要添加flushCache="true"去使得缓存失效-->
     <sql id="itemCatColumns">
         select item_cat_id, icon, is_parent, name, parent_id, remark, sort_order

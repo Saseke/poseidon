@@ -2,6 +2,8 @@ package com.yoke.poseidon.web.itemShow.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,33 +26,41 @@ public class Item implements Serializable {
 	/**
 	 * 商品名称
 	 */
+	@NotNull
+	@Size(max = 64)
 	private String name;
 
 	/**
 	 * 卖点
 	 */
+	@NotNull
 	private String sellPoint;
 
+	@NotNull
 	private BigDecimal price;
 
 	/**
 	 * 库存
 	 */
+	@NotNull
 	private Integer num;
 
 	/**
 	 * 限制售卖的数量
 	 */
+	@NotNull
 	private Integer limitNum;
 
 	/**
 	 * 商品图片
 	 */
+	@NotNull
 	private String image;
 
 	/**
 	 * 分类id
 	 */
+	@NotNull
 	private Long cId;
 
 	/**

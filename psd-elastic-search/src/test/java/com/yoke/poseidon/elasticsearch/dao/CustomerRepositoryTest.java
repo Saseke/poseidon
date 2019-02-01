@@ -1,6 +1,6 @@
 package com.yoke.poseidon.elasticsearch.dao;
 
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class CustomerRepositoryTest {
 	public void test() {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder()
 				.withQuery(QueryBuilders.fuzzyQuery("name", "yoke")).build();
-		List<Item> list = elasticsearchTemplate.queryForList(searchQuery, Item.class);
+		List<EsItem> list = elasticsearchTemplate.queryForList(searchQuery, EsItem.class);
 		list.forEach(System.out::println);
 	}
 

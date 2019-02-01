@@ -41,5 +41,5 @@ server:
   port: 8090
 logging:
   level:
-    com.yoke.poseidon.web.itemShow.mapper: debug
+    com.yoke.poseidon.cart.mapper: debug
 

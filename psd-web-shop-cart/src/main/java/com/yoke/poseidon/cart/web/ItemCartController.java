@@ -46,21 +46,21 @@ public class ItemCartController {
 
 	@ApiOperation(value = "列出指定用户的购物车记录", response = ItemCartDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "nickName", value = "用户的昵称") })
-	@GetMapping(path = "/list/{name}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Message list(@PathVariable String name) {
-		return Message.success(itemCartService.list(name));
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称") })
+	@GetMapping(path = "/list/{nickName}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Message list(@PathVariable String nickName) {
+		return Message.success(itemCartService.list(nickName));
 	}
 
 	@ApiOperation(value = "更新指定用户的某个商品的数量")
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "memberId", value = "用户的id"),
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称"),
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemId", value = "商品的id"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "quantity", value = "商品更新后的数量"), })
-	@PatchMapping(path = "/{memberId}/{itemId}/{quantity}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Message patch(@PathVariable Long memberId, @PathVariable String itemId,
+	@PatchMapping(path = "/{nickName}/{itemId}/{quantity}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Message patch(@PathVariable String nickName, @PathVariable String itemId,
 			@PathVariable Integer quantity) {
-		if (itemCartService.updateQuantity(memberId, itemId, quantity)) {
+		if (itemCartService.updateQuantity(nickName, itemId, quantity)) {
 			return Message.success();
 		}
 		else {
@@ -70,10 +70,10 @@ public class ItemCartController {
 
 	@ApiOperation(value = "清空某个用户的购物车")
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "memberId", value = "用户的id") })
-	@DeleteMapping(path = "/{memberId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Message clear(@PathVariable Long memberId) {
-		if (itemCartService.clear(memberId)) {
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称") })
+	@DeleteMapping(path = "/{nickName}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Message clear(@PathVariable String nickName) {
+		if (itemCartService.clear(nickName)) {
 			return Message.success();
 		}
 		else {
@@ -83,11 +83,11 @@ public class ItemCartController {
 
 	@ApiOperation(value = "清空指定用户的某个商品")
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "Long", dataType = "Long", name = "memberId", value = "用户的id"),
-			@ApiImplicitParam(paramType = "String", dataType = "String", name = "itemId", value = "商品的id") })
-	@DeleteMapping(path = "/{memberId}/{itemId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Message delete(@PathVariable Long memberId, @PathVariable String itemId) {
-		if (itemCartService.delete(memberId, itemId)) {
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称"),
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemId", value = "商品的id") })
+	@DeleteMapping(path = "/{nickName}/{itemId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Message delete(@PathVariable String nickName, @PathVariable String itemId) {
+		if (itemCartService.delete(nickName, itemId)) {
 			return Message.success();
 		}
 		else {

@@ -32,7 +32,6 @@ psd-generate/src/test/
 psd-web-auth/build/
 psd-web-auth/out/
 psd-web-auth/src/test/resources/
-psd-web-shop-cart/build/tmp/compileJava/
 psd-web-shop-cart/out/
 psd-web-shop-cart/src/test/resources/
 psd-web-view/build/
@@ -40,3 +39,7 @@ psd-web-view/out/
 psd-web-view/src/test/resources/
 psd-web-shop-cart/build
 .gitignore
+psd-gateway/out
+
+.idea
+psd-member/out

@@ -1,6 +1,6 @@
 package com.yoke.poseidon.elasticsearch.feign;
 
-import com.yoke.poseidon.elasticsearch.entity.Item;
+import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.fallback.ItemFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +16,6 @@ public interface ItemFeign {
 
 	@GetMapping("/item")
 	// 默认就是post,即使写的是get请求
-	List<Item> fetch();
+	List<EsItem> fetch();
 
 }

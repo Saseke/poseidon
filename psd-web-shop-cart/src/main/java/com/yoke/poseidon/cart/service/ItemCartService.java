@@ -27,22 +27,22 @@ public interface ItemCartService extends IService<ItemCart> {
 	/**
 	 * 根据用户名称获取购物车信息
 	 */
-	List<ItemCartDto> list(@NonNull String name);
+	List<ItemCartDto> list(@NonNull String nickName);
 
 	/**
 	 * 更新购物车中某个商品的数量
 	 */
-	boolean updateQuantity(@NonNull Long memberId, @NonNull String itemId,
+	boolean updateQuantity(@NonNull String nickName, @NonNull String itemId,
 			@NonNull Integer quantity);
 
 	/**
 	 * 清空购物车
 	 */
-	boolean clear(@NonNull Long memberId);
+	boolean clear(@NonNull String nickName);
 
 	/**
 	 * 清空购物车中的某一种商品
 	 */
-	boolean delete(@NonNull Long memberId, @NonNull String itemId);
+	boolean delete(@NonNull String nickName, @NonNull String itemId);
 
 }

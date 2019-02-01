@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -27,10 +29,14 @@ public class ItemCat implements Serializable {
 
 	private String icon;
 
+	@NotNull
 	private Boolean isParent;
 
+	@NotNull
+	@NotBlank
 	private String name;
 
+	@NotNull
 	private Long parentId;
 
 	private String remark;
