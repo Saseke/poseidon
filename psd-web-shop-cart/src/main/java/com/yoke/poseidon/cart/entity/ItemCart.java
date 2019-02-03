@@ -51,6 +51,8 @@ public class ItemCart implements Serializable {
 
 	private String itemSellPoint;
 
+	private String itemName;
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -159,6 +161,14 @@ public class ItemCart implements Serializable {
 		this.memberNickname = memberNickname;
 	}
 
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemCart{" + "itemCartId=" + itemCartId + ", memberId=" + memberId
@@ -167,7 +177,8 @@ public class ItemCart implements Serializable {
 				+ ", quantity=" + quantity + ", itemId='" + itemId + '\'' + ", price="
 				+ price + ", itemCatId=" + itemCatId + ", memberNickname='"
 				+ memberNickname + '\'' + ", itemImage='" + itemImage + '\''
-				+ ", itemSellPoint='" + itemSellPoint + '\'' + '}';
+				+ ", itemSellPoint='" + itemSellPoint + '\'' + ", itemName='" + itemName
+				+ '\'' + '}';
 	}
 
 }

@@ -18,11 +18,10 @@ public class CodeGeneration {
 		AutoGenerator mpg = new AutoGenerator();
 		// 全局配置
 		GlobalConfig gc = new GlobalConfig();
-		gc.setOutputDir(
-				"/media/code/java/project/Poseidon-Java/psd-member/src/main/java");
+		gc.setOutputDir("/media/code/java/project/Poseidon-Java/psd-order/src/main/java");
 		gc.setFileOverride(true);
 		gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
-		gc.setEnableCache(false);// XML 二级缓存
+		gc.setEnableCache(true);// XML 二级缓存
 		gc.setBaseResultMap(true);// XML ResultMap
 		gc.setBaseColumnList(false);// XML columList
 		gc.setAuthor("yoke");// 作者
@@ -49,7 +48,7 @@ public class CodeGeneration {
 		StrategyConfig strategy = new StrategyConfig();
 		strategy.setTablePrefix("db_");// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude("db_member");
+		strategy.setInclude("db_order", "db_order_item");
 		strategy.setSuperServiceClass(null);
 		strategy.setSuperServiceImplClass(null);
 		strategy.setSuperMapperClass(null);
@@ -57,7 +56,7 @@ public class CodeGeneration {
 
 		// 包配置
 		PackageConfig pc = new PackageConfig();
-		pc.setParent("com.yoke.poseidon.member");
+		pc.setParent("com.yoke.poseidon.order");
 		pc.setController("web");
 		pc.setService("service");
 		pc.setServiceImpl("serviceImpl");

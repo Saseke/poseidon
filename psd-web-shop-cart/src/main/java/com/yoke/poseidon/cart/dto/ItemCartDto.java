@@ -41,6 +41,8 @@ public class ItemCartDto implements Serializable {
 
 	private String itemSellPoint;
 
+	private String itemName;
+
 	public String getItemImage() {
 		return itemImage;
 	}
@@ -147,6 +149,14 @@ public class ItemCartDto implements Serializable {
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 }

@@ -18,6 +18,7 @@ Poseidon
 ├── psd-gateway -- 网关服务
 ├── psd-generate -- 采用Mybatis Generator自动生成代码
 ├── psd-member -- 用户服务
+├── psd-order -- 订单服务
 ├── psd-web-auth -- JWT用户登录服务
 ├── psd-web-shop-cart -- 购物车服务
 └── psd-web-view -- 商品展示服务

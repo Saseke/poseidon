@@ -45,6 +45,7 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 			return save(itemCart);
 		}
 		else {
+			itemCart.setItemCartId(exist.getItemCartId());
 			itemCart.setModifyDate(new Date());
 			itemCart.setQuantity(exist.getQuantity() + itemCartDto.getQuantity());
 			return updateById(itemCart);

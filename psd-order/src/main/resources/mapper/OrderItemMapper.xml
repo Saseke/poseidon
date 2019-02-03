@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.order.mapper.OrderItemMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yoke.poseidon.order.entity.OrderItem">
+        <id column="id" property="id" />
+        <result column="item_id" property="itemId" />
+        <result column="order_id" property="orderId" />
+        <result column="item_num" property="itemNum" />
+        <result column="item_price" property="itemPrice" />
+        <result column="item_total_price" property="itemTotalPrice" />
+    </resultMap>
+
+</mapper>
