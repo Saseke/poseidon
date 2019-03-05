@@ -1,0 +1,11 @@
+db:
+  server: www.test.com
+  port: 13306
+  username: root
+  password: ${common.password}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+common:
+  password: "FJEOIRFWQ132EW"

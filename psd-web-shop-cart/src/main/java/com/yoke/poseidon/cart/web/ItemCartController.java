@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-01-11
  */
 @RestController
-@RequestMapping(path = "/itemCart")
+@RequestMapping(path = "/cart")
 @Api(value = "购物车", description = "购物车相关操作")
 public class ItemCartController {
 

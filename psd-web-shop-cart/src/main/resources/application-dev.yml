@@ -11,5 +11,6 @@ spring:
   redis:
     host: www.test.com
     password: ${common.password}
+    database: 1
 common:
   password: "FJEOIRFWQ132EW"

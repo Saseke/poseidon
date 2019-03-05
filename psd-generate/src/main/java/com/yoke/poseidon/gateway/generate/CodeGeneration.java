@@ -18,7 +18,7 @@ public class CodeGeneration {
 		AutoGenerator mpg = new AutoGenerator();
 		// 全局配置
 		GlobalConfig gc = new GlobalConfig();
-		gc.setOutputDir("/media/code/java/project/Poseidon-Java/psd-order/src/main/java");
+		gc.setOutputDir("/media/code/java/project/Poseidon-Java/psd-web-order/src/main/java");
 		gc.setFileOverride(true);
 		gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
 		gc.setEnableCache(true);// XML 二级缓存

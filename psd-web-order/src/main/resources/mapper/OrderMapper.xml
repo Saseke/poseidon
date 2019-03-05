@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.poseidon.order.mapper.OrderMapper">
+    <cache-ref namespace="com.yoke.poseidon.order.mapper.OrderMapper"/>
+    <sql id="commonColumns">
+        select order_id,
+               payment,
+               payment_type,
+               post_fee,
+               create_time,
+               buyer_nick,
+               seller_nick
+        from poseidon.db_order
+    </sql>
+
+    <select id="selectByBuyerId" resultType="com.yoke.poseidon.order.entity.Order">
+        <include refid="commonColumns"/>
+        where buyer_id = #{buyer_id}
+    </select>
+
+</mapper>

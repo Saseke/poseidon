@@ -13,17 +13,22 @@ zuul:
     web-item-service:
       path: /view/**
       service-id: web-view-service
-    auth-service:
+    web-auth-service:
       path: /auth/**
-      service-id: auth-service
+      service-id: web-auth-service
       strip-prefix: false
       sensitive-headers: Cookie,Set-Cookie
     web-shop-cart-service:
       path: /cart/**
       service-id: web-shop-cart-service
-    member-service:
+      strip-prefix: false
+    web-member-service:
       path: /member/**
-      service-id: member-service
+      service-id: web-member-service
+      strip-prefix: false
+    web-order-service:
+      path: /order/**
+      service-id: web-order-service
       strip-prefix: false
 
 spring:

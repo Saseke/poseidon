@@ -1,0 +1,91 @@
+package com.yoke.poseidon.order.serviceImpl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yoke.poseidon.order.constants.OrderConstant;
+import com.yoke.poseidon.order.dto.OrderDto;
+import com.yoke.poseidon.order.dto.OrderItemDto;
+import com.yoke.poseidon.order.entity.Order;
+import com.yoke.poseidon.order.entity.OrderItem;
+import com.yoke.poseidon.order.mapper.OrderItemMapper;
+import com.yoke.poseidon.order.mapper.OrderMapper;
+import com.yoke.poseidon.order.service.ConvertService;
+import com.yoke.poseidon.order.service.OrderItemService;
+import com.yoke.poseidon.order.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * <p>
+ * 服务实现类
+ * </p>
+ *
+ * @author yoke
+ * @since 2019-02-03
+ */
+@Service
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
+		implements OrderService {
+
+	private final OrderMapper orderMapper;
+
+	private final ConvertService convertService;
+
+	private final OrderItemMapper orderItemMapper;
+
+	private final OrderItemService orderItemService;
+
+	@Autowired
+	public OrderServiceImpl(OrderMapper orderMapper, ConvertService convertService,
+			OrderItemMapper orderItemMapper, OrderItemService orderItemService) {
+		this.orderMapper = orderMapper;
+		this.convertService = convertService;
+		this.orderItemMapper = orderItemMapper;
+		this.orderItemService = orderItemService;
+	}
+
+	@Override
+	public List<OrderDto> getByBuyerId(@NotNull Long buyerId) {
+		List<OrderDto> ret = convertService
+				.convertOrder(orderMapper.selectByBuyerId(buyerId));
+		ret.forEach(orderDto -> {
+			List<OrderItemDto> orderDetails = convertService.convertOrderItem(
+					orderItemMapper.selectByOrderId(orderDto.getOrderId()));
+			orderDto.setOrderItemDtoList(orderDetails);
+		});
+		return ret;
+	}
+
+	@Override
+	public OrderDto createOrder(@NotNull OrderDto orderDto) {
+		try {
+			Order order = convertService.convertOrderDto(orderDto);
+			String orderId = UUID.randomUUID().toString();
+			order.setOrderId(orderId);
+			order.setCreateTime(new Date());
+			order.setStatus(OrderConstant.SUCCESS);
+			List<OrderItem> orderItemList = convertService
+					.convertOrderItemDto(orderDto.getOrderItemDtoList());
+			orderItemList.forEach(orderItem -> orderItem.setOrderId(orderId));
+			orderMapper.insert(order);
+			orderItemService.saveBatch(orderItemList);
+			return orderDto;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean cancelOrder(@NotNull String orderId) {
+		Order order = orderMapper.selectById(orderId);
+		order.setStatus(OrderConstant.CALCEL);
+		return updateById(order);
+	}
+
+}

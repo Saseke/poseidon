@@ -42,4 +42,3 @@ logging:
   level:
     com.yoke.poseidon.web.itemShow.mapper: debug
 
-
