@@ -5,7 +5,7 @@
     <cache-ref namespace="com.yoke.poseidon.member.mapper.MemberMapper"/>
 
     <select id="selectByName" resultType="com.yoke.poseidon.member.entity.Member">
-        select member_id, username
+        select member_id, username, phone, description
         from poseidon.db_member
         where username = #{username}
     </select>
