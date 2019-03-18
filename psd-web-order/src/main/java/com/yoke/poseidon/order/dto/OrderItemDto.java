@@ -31,7 +31,17 @@ public class OrderItemDto {
 
 	private String itemName;
 
+	private String itemImage;
+
 	private String itemSellPoint;
+
+	public String getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
+	}
 
 	public String getId() {
 		return id;

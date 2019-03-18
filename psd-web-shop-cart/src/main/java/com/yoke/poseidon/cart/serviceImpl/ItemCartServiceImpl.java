@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +29,13 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 
 	private final ConvertService convertService;
 
+	private final ItemCartMapper itemCartMapper;
+
 	@Autowired
-	public ItemCartServiceImpl(ConvertService convertService) {
+	public ItemCartServiceImpl(ConvertService convertService,
+			ItemCartMapper itemCartMapper) {
 		this.convertService = convertService;
+		this.itemCartMapper = itemCartMapper;
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 				new QueryWrapper<ItemCart>().eq("item_id", itemCart.getItemId()));
 		if (exist == null) {
 			itemCart.setCreateDate(new Date());
-			itemCart.setItemCartStatus(1);
+			itemCart.setItemCartStatus(0);
 			return save(itemCart);
 		}
 		else {
@@ -54,8 +59,8 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 
 	@Override
 	public List<ItemCartDto> list(@NonNull String nickName) {
-		List<ItemCart> itemCartList = list(
-				new QueryWrapper<ItemCart>().eq("member_nickname", nickName));
+		List<ItemCart> itemCartList = list(new QueryWrapper<ItemCart>()
+				.eq("member_nickname", nickName).eq("item_cart_status", 0));
 		return convertService.convert(itemCartList);
 	}
 
@@ -67,6 +72,30 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 		if (!quantity.equals(itemCart.getQuantity())) {
 			itemCart.setQuantity(quantity);
 			return updateById(itemCart);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean submitOrder(@NotNull Long itemCartId) {
+		ItemCart itemCart = getById(itemCartId);
+		if (itemCart != null) {
+			itemCart.setItemCartStatus(1);
+			updateById(itemCart);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean submitOrder(@NotNull List<Long> itemCartIds) {
+		try {
+			List<ItemCart> itemCartList = itemCartMapper.selectBatchIds(itemCartIds);
+			itemCartList.forEach(itemCart -> itemCart.setItemCartStatus(1));
+			updateBatchById(itemCartList);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 		return true;
 	}

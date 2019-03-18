@@ -5,6 +5,7 @@ import com.yoke.poseidon.order.dto.OrderDto;
 import com.yoke.poseidon.order.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,11 +30,13 @@ public class OrderController {
 		this.orderService = orderService;
 	}
 
-	@GetMapping(path = "/list/{buyerId}")
+	@GetMapping(path = "/list/{buyerId}/{op}")
 	@ApiOperation(value = "得到指定用户的所有订单信息", response = OrderDto.class)
-	@ApiImplicitParam(paramType = "query", dataType = "Long", name = "buyerId", value = "买家的id")
-	public Message list(@PathVariable Long buyerId) {
-		return Message.success(orderService.getByBuyerId(buyerId));
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "buyerId", value = "买家的id"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "op", value = "查询订单的类型: 0为未支付订单,1为支付成功的订单") })
+	public Message list(@PathVariable Long buyerId, @PathVariable Integer op) {
+		return Message.success(orderService.getByBuyerId(buyerId, op));
 	}
 
 	@PostMapping(path = "")
@@ -51,7 +54,7 @@ public class OrderController {
 
 	@DeleteMapping("/{orderId}")
 	@ApiOperation(value = "取消订单", response = Message.class)
-	@ApiImplicitParam(paramType = "query", dataType = "String", name = "ordereId", value = "订单的id")
+	@ApiImplicitParam(paramType = "query", dataType = "String", name = "orderId", value = "订单的id")
 	public Message delete(@PathVariable String orderId) {
 		if (orderService.cancelOrder(orderId)) {
 			return Message.success();

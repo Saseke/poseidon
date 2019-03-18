@@ -6,8 +6,10 @@ package com.yoke.poseidon.order.constants;
  */
 public class OrderConstant {
 
-	public static final int CALCEL = 3;
+	public static final int CANCEL = 3;
 
 	public static final int SUCCESS = 1;
+
+	public static final int UN_PAID = 0;
 
 }

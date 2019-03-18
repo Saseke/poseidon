@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 购物车 前端控制器
@@ -92,6 +94,18 @@ public class ItemCartController {
 		}
 		else {
 			return Message.failed("删除失败");
+		}
+	}
+
+	@ApiOperation(value = "更新购物车条目为已提交订单状态")
+	@ApiImplicitParam(paramType = "update", dataType = "List<Long>", name = "itemCartIds", value = "购物车条目的ids")
+	@PatchMapping(path = "")
+	public Message submitOrder(@RequestBody List<Long> itemCartIds) {
+		if (itemCartService.submitOrder(itemCartIds)) {
+			return Message.success();
+		}
+		else {
+			return Message.failed();
 		}
 	}
 

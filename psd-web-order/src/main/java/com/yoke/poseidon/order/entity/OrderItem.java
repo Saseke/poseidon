@@ -41,7 +41,17 @@ public class OrderItem implements Serializable {
 
 	private String itemName;
 
+	private String itemImage;
+
 	private String itemSellPoint;
+
+	public String getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
+	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -113,9 +123,11 @@ public class OrderItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OrderItem{" + "id=" + id + ", itemId=" + itemId + ", orderId=" + orderId
-				+ ", itemNum=" + itemNum + ", itemPrice=" + itemPrice
-				+ ", itemTotalPrice=" + itemTotalPrice + "}";
+		return "OrderItem{" + "id='" + id + '\'' + ", itemId='" + itemId + '\''
+				+ ", orderId='" + orderId + '\'' + ", itemNum=" + itemNum + ", itemPrice="
+				+ itemPrice + ", itemTotalPrice=" + itemTotalPrice + ", itemName='"
+				+ itemName + '\'' + ", itemImage='" + itemImage + '\''
+				+ ", itemSellPoint='" + itemSellPoint + '\'' + '}';
 	}
 
 }

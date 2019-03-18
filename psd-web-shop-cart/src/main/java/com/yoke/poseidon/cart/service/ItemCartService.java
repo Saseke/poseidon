@@ -6,6 +6,7 @@ import com.yoke.poseidon.cart.entity.ItemCart;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -34,6 +35,16 @@ public interface ItemCartService extends IService<ItemCart> {
 	 */
 	boolean updateQuantity(@NonNull String nickName, @NonNull String itemId,
 			@NonNull Integer quantity);
+
+	/**
+	 * 更新购物车项的信息为已购买状态
+	 */
+	boolean submitOrder(@NotNull Long itemCartId);
+
+	/**
+	 * 更新多个购物车条目为已购买状态
+	 */
+	boolean submitOrder(@NotNull List<Long> itemCartIds);
 
 	/**
 	 * 清空购物车

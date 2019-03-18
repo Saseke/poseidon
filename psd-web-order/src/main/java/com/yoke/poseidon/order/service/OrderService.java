@@ -20,7 +20,7 @@ public interface OrderService extends IService<Order> {
 	/**
 	 * 根据买家id获取所有的订单信息
 	 */
-	List<OrderDto> getByBuyerId(@NotNull Long buyerId);
+	List<OrderDto> getByBuyerId(@NotNull Long buyerId, @NotNull Integer op);
 
 	/**
 	 * 创建一个新订单

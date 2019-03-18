@@ -1,5 +1,6 @@
 package com.yoke.poseidon.order.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.order.constants.OrderConstant;
 import com.yoke.poseidon.order.dto.OrderDto;
@@ -49,9 +50,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 	}
 
 	@Override
-	public List<OrderDto> getByBuyerId(@NotNull Long buyerId) {
-		List<OrderDto> ret = convertService
-				.convertOrder(orderMapper.selectByBuyerId(buyerId));
+	public List<OrderDto> getByBuyerId(@NotNull Long buyerId, @NotNull Integer op) {
+		/*
+		 * List<OrderDto> ret = convertService
+		 * .convertOrder(orderMapper.selectByBuyerId(buyerId));
+		 */
+		List<OrderDto> ret = convertService.convertOrder(orderMapper.selectList(
+				new QueryWrapper<Order>().eq("buyer_id", buyerId).eq("status", op)));
 		ret.forEach(orderDto -> {
 			List<OrderItemDto> orderDetails = convertService.convertOrderItem(
 					orderItemMapper.selectByOrderId(orderDto.getOrderId()));
@@ -64,13 +69,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 	public OrderDto createOrder(@NotNull OrderDto orderDto) {
 		try {
 			Order order = convertService.convertOrderDto(orderDto);
-			String orderId = UUID.randomUUID().toString();
+			String orderId = UUID.randomUUID().toString().replace("-", "");
 			order.setOrderId(orderId);
 			order.setCreateTime(new Date());
-			order.setStatus(OrderConstant.SUCCESS);
+			order.setStatus(OrderConstant.UN_PAID);
 			List<OrderItem> orderItemList = convertService
 					.convertOrderItemDto(orderDto.getOrderItemDtoList());
-			orderItemList.forEach(orderItem -> orderItem.setOrderId(orderId));
+			orderItemList.forEach(orderItem -> {
+				String orderItemId = UUID.randomUUID().toString().replace("-", "");
+				orderItem.setOrderId(orderId);
+				orderItem.setId(orderItemId);
+			});
 			orderMapper.insert(order);
 			orderItemService.saveBatch(orderItemList);
 			return orderDto;
@@ -84,7 +93,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 	@Override
 	public boolean cancelOrder(@NotNull String orderId) {
 		Order order = orderMapper.selectById(orderId);
-		order.setStatus(OrderConstant.CALCEL);
+		order.setStatus(OrderConstant.CANCEL);
 		return updateById(order);
 	}
 
