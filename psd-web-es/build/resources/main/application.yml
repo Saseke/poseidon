@@ -1,8 +1,0 @@
-server:
-  port: 8900
-spring:
-  data:
-    elasticsearch:
-      cluster-nodes: localhost:9300
-  profiles:
-    active: dev

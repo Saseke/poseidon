@@ -1,6 +1,8 @@
 package com.yoke.poseidon.order.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.order.constants.OrderConstant;
 import com.yoke.poseidon.order.dto.OrderDto;
@@ -95,6 +97,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 		Order order = orderMapper.selectById(orderId);
 		order.setStatus(OrderConstant.CANCEL);
 		return updateById(order);
+	}
+
+	@Override
+	public IPage<OrderDto> getPageByBuyerId(@NotNull Long buyerId,
+			@NotNull Integer status, @NotNull long current, @NotNull long size) {
+		Page page = new Page(current, size);
+		IPage<OrderDto> orderDtoIPage = orderMapper.selectPageByBuyerId(page, buyerId,
+				status);
+		List<OrderDto> records = orderDtoIPage.getRecords();
+		records.forEach(orderDto -> {
+			List<OrderItemDto> orderDetails = convertService.convertOrderItem(
+					orderItemMapper.selectByOrderId(orderDto.getOrderId()));
+			orderDto.setOrderItemDtoList(orderDetails);
+		});
+		return orderDtoIPage.setRecords(records);
 	}
 
 }

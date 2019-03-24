@@ -102,13 +102,32 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 
 	@Override
 	public boolean clear(@NonNull String nickName) {
-		return remove(new QueryWrapper<ItemCart>().eq("member_nickname", nickName));
+		try {
+			List<ItemCart> itemCartList = list(new QueryWrapper<ItemCart>()
+					.eq("member_nickname", nickName).eq("status", 0));
+			itemCartList.forEach(itemCart -> itemCart.setItemCartStatus(1));
+			updateBatchById(itemCartList);
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
 	public boolean delete(@NonNull String nickName, @NonNull String itemId) {
-		return remove(new QueryWrapper<ItemCart>().eq("member_nickname", nickName)
-				.eq("item_cart_id", itemId));
+		try {
+			ItemCart itemCart = getOne(new QueryWrapper<ItemCart>()
+					.eq("member_nickname", nickName).eq("item_cart_id", itemId));
+			itemCart.setItemCartStatus(1);
+			updateById(itemCart);
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

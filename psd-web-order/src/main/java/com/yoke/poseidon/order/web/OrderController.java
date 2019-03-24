@@ -30,13 +30,25 @@ public class OrderController {
 		this.orderService = orderService;
 	}
 
-	@GetMapping(path = "/list/{buyerId}/{op}")
+	@GetMapping(path = "/list/{buyerId}/{status}")
 	@ApiOperation(value = "得到指定用户的所有订单信息", response = OrderDto.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "buyerId", value = "买家的id"),
-			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "op", value = "查询订单的类型: 0为未支付订单,1为支付成功的订单") })
-	public Message list(@PathVariable Long buyerId, @PathVariable Integer op) {
-		return Message.success(orderService.getByBuyerId(buyerId, op));
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "status", value = "查询订单的类型: 0为未支付订单,1为支付成功的订单") })
+	public Message list(@PathVariable Long buyerId, @PathVariable Integer status) {
+		return Message.success(orderService.getByBuyerId(buyerId, status));
+	}
+
+	@GetMapping(path = "/list/{buyerId}/{status}/{cur}/{size}")
+	@ApiOperation(value = "分页查询用户的订单")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "buyerId", value = "买家的id"),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "status", value = "查询订单的类型: 0为未支付订单,1为支付成功的订单"),
+			@ApiImplicitParam(paramType = "query", dataType = "long", name = "cur", value = "当前页数"),
+			@ApiImplicitParam(paramType = "query", dataType = "long", name = "size", value = "每一页返回的条数") })
+	public Message list(@PathVariable Long buyerId, @PathVariable Integer status,
+			@PathVariable long cur, @PathVariable long size) {
+		return Message.success(orderService.getPageByBuyerId(buyerId, status, cur, size));
 	}
 
 	@PostMapping(path = "")

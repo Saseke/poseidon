@@ -1,12 +1,13 @@
 package com.yoke.poseidon.order.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @Author Yoke
  * @Date 2019/02/10 下午4:50
  */
-public class OrderItemDto {
+public class OrderItemDto implements Serializable {
 
 	private String id;
 

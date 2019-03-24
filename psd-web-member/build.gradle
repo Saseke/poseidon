@@ -30,7 +30,7 @@ repositories {
 }
 
 bootJar {
-    baseName = 'psd-web-view'
+    baseName = 'psd-web-member'
     version = '0.1.0'
 }
 

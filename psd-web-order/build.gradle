@@ -29,7 +29,7 @@ repositories {
 }
 
 bootJar {
-    baseName = 'psd-web-view'
+    baseName = 'psd-web-order'
     version = '0.1.0'
 }
 

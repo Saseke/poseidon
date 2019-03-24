@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.order.mapper.OrderMapper">
-    <cache-ref namespace="com.yoke.poseidon.order.mapper.OrderMapper"/>
+    <!--<cache-ref namespace="com.yoke.poseidon.order.mapper.OrderMapper"/>-->
     <sql id="commonColumns">
         select order_id,
                payment,
@@ -16,6 +16,16 @@
     <select id="selectByBuyerId" resultType="com.yoke.poseidon.order.entity.Order">
         <include refid="commonColumns"/>
         where buyer_id = #{buyer_id}
+    </select>
+    <select id="selectPageByBuyerId" resultType="com.yoke.poseidon.order.dto.OrderDto">
+        <include refid="commonColumns"/>
+        where buyer_id = #{buyer_id} and status = #{status}
+    </select>
+    <select id="selectIdsByBuyerIdAndStatus" resultType="java.lang.String">
+        select order_id
+        from poseidon.db_order
+        where buyer_id = #{buyer_id}
+          and status = #{status}
     </select>
 
 </mapper>

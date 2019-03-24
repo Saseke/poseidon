@@ -30,7 +30,7 @@ repositories {
 }
 
 bootJar {
-    baseName = 'gs-spring-boot-docker'
+    baseName = 'psd-web-shop-cart'
     version = '0.1.0'
 }
 

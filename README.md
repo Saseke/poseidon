@@ -1,9 +1,10 @@
 
-
 # Poseidon
-
-[TOC]
-
+![](https://img.shields.io/badge/language-java-blue.svg)
+![](https://img.shields.io/badge/version-1.0-brightgreen.svg)
+![](https://img.shields.io/badge/gradle-4.10.2-brightgreen.svg)
+![GitHub](https://img.shields.io/github/license/saseke/poseidon.svg)
+![](https://img.shields.io/badge/qq-1538341848-orange.svg)
 ## 1. 说明
 
 > Poseidon采用微服务架构方式,基于SpringCloud+SpringBoot+Mybatis Plus的商城系统。主要包括包括前台商城系统和后台管理系统。
@@ -13,7 +14,7 @@
 > 或者可以"follow"一下,该项目会一直持续更新,不断添加新功能和优化
 
 ## 2. 组织结构
-
+1a065155-3806-4f33-87ab-7a17ab29db0b
 ```
 Poseidon
 ├── psd-config -- 通用配置

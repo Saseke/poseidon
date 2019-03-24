@@ -83,7 +83,7 @@ public class ItemCartController {
 		}
 	}
 
-	@ApiOperation(value = "清空指定用户的某个商品")
+	@ApiOperation(value = "清空指定用户的某个商品,当商品提交到订单时调用")
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称"),
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemId", value = "商品的id") })
@@ -97,7 +97,7 @@ public class ItemCartController {
 		}
 	}
 
-	@ApiOperation(value = "更新购物车条目为已提交订单状态")
+	@ApiOperation(value = "清空多个购物车中的商品信息,当商品提交到订单时调用")
 	@ApiImplicitParam(paramType = "update", dataType = "List<Long>", name = "itemCartIds", value = "购物车条目的ids")
 	@PatchMapping(path = "")
 	public Message submitOrder(@RequestBody List<Long> itemCartIds) {

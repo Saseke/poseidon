@@ -26,7 +26,7 @@ repositories {
     mavenCentral()
 }
 bootJar {
-    baseName = 'poseidon-gateway'
+    baseName = 'psd-gateway'
     version = '0.1.0'
 }
 dependencies {
