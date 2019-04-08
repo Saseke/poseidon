@@ -66,6 +66,8 @@ public class Order implements Serializable {
 	/**
 	 * 买家留言
 	 */
+	private Long addressId;
+
 	private String buyerMessage;
 
 	private String buyerNick;
@@ -75,6 +77,14 @@ public class Order implements Serializable {
 	private String sellerNick;
 
 	private Integer buyerComment;
+
+	public Long getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Long addressId) {
+		this.addressId = addressId;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -226,14 +236,16 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order{" + "orderId=" + orderId + ", payment=" + payment + ", paymentType="
-				+ paymentType + ", postFee=" + postFee + ", status=" + status
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime
+		return "Order{" + "orderId='" + orderId + '\'' + ", payment=" + payment
+				+ ", paymentType=" + paymentType + ", postFee=" + postFee + ", status="
+				+ status + ", createTime=" + createTime + ", updateTime=" + updateTime
 				+ ", paymentTime=" + paymentTime + ", endTime=" + endTime + ", closeTime="
-				+ closeTime + ", shippingName=" + shippingName + ", shippingCode="
-				+ shippingCode + ", buyerId=" + buyerId + ", buyerMessage=" + buyerMessage
-				+ ", buyerNick=" + buyerNick + ", sellerId=" + sellerId + ", sellerNick="
-				+ sellerNick + ", buyerComment=" + buyerComment + "}";
+				+ closeTime + ", shippingName='" + shippingName + '\''
+				+ ", shippingCode='" + shippingCode + '\'' + ", buyerId=" + buyerId
+				+ ", addressId=" + addressId + ", buyerMessage='" + buyerMessage + '\''
+				+ ", buyerNick='" + buyerNick + '\'' + ", sellerId=" + sellerId
+				+ ", sellerNick='" + sellerNick + '\'' + ", buyerComment=" + buyerComment
+				+ '}';
 	}
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper">
 
-    <cache-ref namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper"/>
+<!--    <cache-ref namespace="com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper"/>-->
     <!--在update操作时,需要添加flushCache="true"去使得缓存失效-->
     <sql id="itemCatColumns">
         select item_cat_id, icon, is_parent, name, parent_id, remark, sort_order

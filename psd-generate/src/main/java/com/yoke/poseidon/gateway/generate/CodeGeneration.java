@@ -48,7 +48,7 @@ public class CodeGeneration {
 		StrategyConfig strategy = new StrategyConfig();
 		strategy.setTablePrefix("db_");// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude("db_order", "db_order_item");
+		strategy.setInclude("db_address");
 		strategy.setSuperServiceClass(null);
 		strategy.setSuperServiceImplClass(null);
 		strategy.setSuperMapperClass(null);

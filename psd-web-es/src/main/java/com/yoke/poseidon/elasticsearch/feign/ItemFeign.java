@@ -11,7 +11,7 @@ import java.util.List;
  * @Author Yoke
  * @Date 2019/01/16 下午9:02
  */
-@FeignClient(value = "web-view-service", fallback = ItemFallback.class)
+@FeignClient(value = "web-view-service:8080", fallback = ItemFallback.class)
 public interface ItemFeign {
 
 	@GetMapping("/item")

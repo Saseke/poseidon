@@ -87,6 +87,19 @@ public class Item implements Serializable {
 	 */
 	private String description;
 
+	/**
+	 * 销量
+	 */
+	private Integer sale;
+
+	public Integer getSale() {
+		return sale;
+	}
+
+	public void setSale(Integer sale) {
+		this.sale = sale;
+	}
+
 	public String getItemId() {
 		return itemId;
 	}
@@ -197,16 +210,6 @@ public class Item implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return "Item{" + "itemId='" + itemId + '\'' + ", name='" + name + '\''
-				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", num=" + num
-				+ ", limitNum=" + limitNum + ", image='" + image + '\'' + ", cId=" + cId
-				+ ", status=" + status + ", createDate=" + createDate + ", modifyDate="
-				+ modifyDate + ", sortOrder=" + sortOrder + ", remark='" + remark + '\''
-				+ ", description='" + description + '\'' + '}';
 	}
 
 }

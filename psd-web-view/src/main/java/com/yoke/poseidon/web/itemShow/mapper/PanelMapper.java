@@ -17,7 +17,7 @@ import java.util.List;
  * @author ehereal
  * @since 2018-09-20
  */
-@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
+//@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface PanelMapper extends BaseMapper<Panel> {
 
 	/**

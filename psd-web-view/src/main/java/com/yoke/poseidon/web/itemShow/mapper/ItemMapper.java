@@ -18,7 +18,7 @@ import java.util.List;
  * @author yoke
  * @since 2018-10-30
  */
-@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
+//@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemMapper extends BaseMapper<Item> {
 
 	Item select(@Param("itemId") String itemId, @Param("blob") boolean blob);

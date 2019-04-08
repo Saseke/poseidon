@@ -1,6 +1,8 @@
 package com.yoke.poseidon.elasticsearch.dao;
 
 import com.yoke.poseidon.elasticsearch.entity.EsItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 import java.util.List;
@@ -11,6 +13,10 @@ import java.util.List;
  */
 public interface ItemRepository extends ElasticsearchRepository<EsItem, String> {
 
-	List<EsItem> findByName(String name);
+	List<EsItem> findByName(String keyword);
+
+	Page<EsItem> findByName(String name, Pageable page);
+
+	EsItem findByItemId(String itemId);
 
 }

@@ -33,8 +33,18 @@ public class ItemDto implements Serializable {
 
 	private Integer sortOrder;
 
+	private Integer sale;
+
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
+	}
+
+	public Integer getSale() {
+		return sale;
+	}
+
+	public void setSale(Integer sale) {
+		this.sale = sale;
 	}
 
 	public String getItemId() {
@@ -132,7 +142,7 @@ public class ItemDto implements Serializable {
 				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", limitNum="
 				+ limitNum + ", image='" + image + '\'' + ", remark='" + remark + '\''
 				+ ", description='" + description + '\'' + ", sortOrder=" + sortOrder
-				+ '}';
+				+ ", sale=" + sale + '}';
 	}
 
 }

@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.CacheNamespace;
  * @author yoke
  * @since 2019-01-11
  */
-@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
+//@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemCartMapper extends BaseMapper<ItemCart> {
 
 }

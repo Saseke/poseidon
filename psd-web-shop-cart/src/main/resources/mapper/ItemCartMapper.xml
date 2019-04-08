@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yoke.poseidon.cart.mapper.ItemCartMapper">
-    <cache-ref namespace="com.yoke.poseidon.cart.mapper.ItemCartMapper"/>
+<!--    <cache-ref namespace="com.yoke.poseidon.cart.mapper.ItemCartMapper"/>-->
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.yoke.poseidon.cart.entity.ItemCart">
         <id column="item_cart_id" property="itemCartId"/>

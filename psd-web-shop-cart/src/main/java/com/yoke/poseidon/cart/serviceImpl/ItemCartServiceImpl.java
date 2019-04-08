@@ -42,8 +42,8 @@ public class ItemCartServiceImpl extends ServiceImpl<ItemCartMapper, ItemCart>
 	public boolean add(@NonNull ItemCartDto itemCartDto) {
 		ItemCart itemCart = convertService.convertToBean(itemCartDto);
 		// ItemCart exist = getById(itemCartDto.getItemCartId());
-		ItemCart exist = getOne(
-				new QueryWrapper<ItemCart>().eq("item_id", itemCart.getItemId()));
+		ItemCart exist = getOne(new QueryWrapper<ItemCart>()
+				.eq("item_id", itemCart.getItemId()).eq("item_cart_status", 0));
 		if (exist == null) {
 			itemCart.setCreateDate(new Date());
 			itemCart.setItemCartStatus(0);

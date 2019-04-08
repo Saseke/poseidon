@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "/cart")
-@Api(value = "购物车", description = "购物车相关操作")
+@Api(value = "购物车")
 public class ItemCartController {
 
 	private final ItemCartService itemCartService;
@@ -83,7 +83,7 @@ public class ItemCartController {
 		}
 	}
 
-	@ApiOperation(value = "清空指定用户的某个商品,当商品提交到订单时调用")
+	@ApiOperation(value = "删除购物车中单个商品")
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "nickName", value = "用户的昵称"),
 			@ApiImplicitParam(paramType = "query", dataType = "String", name = "itemId", value = "商品的id") })
@@ -97,7 +97,7 @@ public class ItemCartController {
 		}
 	}
 
-	@ApiOperation(value = "清空多个购物车中的商品信息,当商品提交到订单时调用")
+	@ApiOperation(value = "更新购物车中多种商品状态信息为订单状态")
 	@ApiImplicitParam(paramType = "update", dataType = "List<Long>", name = "itemCartIds", value = "购物车条目的ids")
 	@PatchMapping(path = "")
 	public Message submitOrder(@RequestBody List<Long> itemCartIds) {

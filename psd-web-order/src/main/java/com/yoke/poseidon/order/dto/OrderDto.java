@@ -27,6 +27,8 @@ public class OrderDto implements Serializable {
 
 	private String sellerNick;
 
+	private String address;
+
 	private List<OrderItemDto> orderItemDtoList;
 
 	public String getOrderId() {
@@ -93,4 +95,11 @@ public class OrderDto implements Serializable {
 		this.orderItemDtoList = orderItemDtoList;
 	}
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
