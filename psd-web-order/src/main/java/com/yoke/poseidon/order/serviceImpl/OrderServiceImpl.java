@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -112,6 +113,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 			orderDto.setOrderItemDtoList(orderDetails);
 		});
 		return orderDtoIPage.setRecords(records);
+	}
+
+	@Override
+	public boolean update(String orderId, Integer status) {
+		Order order = getById(orderId);
+		if (order != null) {
+			order.setStatus(status);
+			return updateById(order);
+		}
+		return false;
+	}
+
+	@Override
+	public List<Map<Integer, Integer>> statisticStatus(Long buyerId) {
+		return orderMapper.groupByStatus(buyerId);
 	}
 
 }

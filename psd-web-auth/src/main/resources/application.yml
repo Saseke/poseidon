@@ -38,7 +38,7 @@ mybatis-plus:
       cache-enabled: true
 
 server:
-  port: 9100
+  port: 9200
 logging:
   level:
     com.yoke.poseidon.auth.mapper: debug

@@ -28,7 +28,7 @@ import static com.yoke.poseidon.web.itemShow.dto.Message.success;
  */
 @RestController
 @RequestMapping("/item")
-@Api(value = "itemController", description = "handle item")
+@Api(value = "itemController")
 public class ItemController {
 
 	private final ItemService itemService;
@@ -40,8 +40,10 @@ public class ItemController {
 
 	@ApiOperation(value = "get item by id", response = ItemDto.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "id", value = "商品id", required = true),
-			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true) })
+			@ApiImplicitParam(paramType = "query", dataType = "String", name = "id",
+					value = "商品id", required = true),
+			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob",
+					value = "0代表不包含大字段信息,1表示包含大字段信息", required = true) })
 
 	@GetMapping(path = "/{id}/{blob}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message item(@PathVariable("id") String id, @PathVariable("blob") int blob) {
@@ -55,10 +57,12 @@ public class ItemController {
 		return failed();
 	}
 
-	@ApiOperation(value = "根据商品的ids查询商品信息返回", notes = "这个用于服务之间调用", response = ItemDto.class)
-	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "String", name = "blob", value = "是否包含大字段信息", required = true) })
-	@ApiImplicitParam(paramType = "post body", dataType = "List<String>", name = "ids", value = "商品的ids", required = true)
+	@ApiOperation(value = "根据商品的ids查询商品信息返回", notes = "这个用于服务之间调用",
+			response = ItemDto.class)
+	@ApiImplicitParams({ @ApiImplicitParam(paramType = "query", dataType = "String",
+			name = "blob", value = "是否包含大字段信息", required = true) })
+	@ApiImplicitParam(paramType = "post body", dataType = "List<String>", name = "ids",
+			value = "商品的ids", required = true)
 	@PostMapping(path = "/{blob}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<ItemDto> items(@PathVariable("blob") int blob,
 			@NonNull @RequestBody List<String> ids) {
@@ -68,11 +72,14 @@ public class ItemController {
 
 	@ApiOperation(value = "get list of items by cId", response = Flux.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId", value = "商品分类的id", required = true),
-			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob", value = "0代表不包含大字段信息,1表示包含大字段信息", required = true),
-			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit", value = "限制查询的条数") })
-	@GetMapping(path = { "/c/{cId}/{blob}",
-			"/c/{cId}/{blob}/{limit}" }, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "cId",
+					value = "商品分类的id", required = true),
+			@ApiImplicitParam(paramType = "query", dataType = "int", name = "blob",
+					value = "0代表不包含大字段信息,1表示包含大字段信息", required = true),
+			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "limit",
+					value = "限制查询的条数") })
+	@GetMapping(path = { "/c/{cId}/{blob}", "/c/{cId}/{blob}/{limit}" },
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Message items(@PathVariable("cId") Long cId, @PathVariable("blob") int blob,
 			@PathVariable(value = "limit", required = false) Integer limit) {
 		try {

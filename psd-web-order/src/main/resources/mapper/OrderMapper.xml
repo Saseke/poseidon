@@ -27,5 +27,11 @@
         where buyer_id = #{buyer_id}
           and status = #{status}
     </select>
+    <select id="groupByStatus" resultType="java.util.Map">
+        select status, count(*) as count
+        from poseidon.db_order
+        where buyer_id = #{buyer_id}
+        group by status
+    </select>
 
 </mapper>

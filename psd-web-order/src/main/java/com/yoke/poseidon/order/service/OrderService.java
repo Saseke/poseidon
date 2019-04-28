@@ -7,6 +7,7 @@ import com.yoke.poseidon.order.entity.Order;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -43,5 +44,20 @@ public interface OrderService extends IService<Order> {
 	 */
 	IPage<OrderDto> getPageByBuyerId(@NotNull Long buyerId, @NotNull Integer status,
 			@NotNull long current, @NotNull long size);
+
+	/**
+	 * 修改订单的状态
+	 * @param orderId 订单的id号
+	 * @param status 0: 未支付,1:已支付，待收货,2是已收货
+	 * @return 修改订单状态是否成功
+	 */
+	boolean update(String orderId, Integer status);
+
+	/**
+	 * 订单根据状态进行分类统计
+	 * @param buyerId 买家id
+	 * @return 统计得到的分类以及条数
+	 */
+	List<Map<Integer, Integer>> statisticStatus(Long buyerId);
 
 }

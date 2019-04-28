@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+
 /**
  * <p>
  * 服务实现类
@@ -35,6 +38,26 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member>
 	@Override
 	public MemberDto getByName(@NonNull String name) {
 		Member member = memberMapper.selectByName(name);
+		return convertService.convert(member);
+	}
+
+	@Override
+	public boolean pay(@NotNull Long memberId, @NotNull BigDecimal payment) {
+		Member member = memberMapper.selectById(memberId);
+		BigDecimal balance = member.getBalance();
+		if (member.getBalance().compareTo(payment) > 0) {
+			member.setBalance(balance.subtract(payment));
+			memberMapper.updateById(member);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public MemberDto getById(@NotNull Long memberId) {
+		Member member = memberMapper.selectById(memberId);
 		return convertService.convert(member);
 	}
 

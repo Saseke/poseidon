@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yoke.poseidon.member.mapper.MemberMapper">
-    <cache-ref namespace="com.yoke.poseidon.member.mapper.MemberMapper"/>
+<!--    <cache-ref namespace="com.yoke.poseidon.member.mapper.MemberMapper"/>-->
 
     <select id="selectByName" resultType="com.yoke.poseidon.member.entity.Member">
-        select member_id, username, phone, description
+        select member_id, balance, email, username, phone, description, point
         from poseidon.db_member
         where username = #{username}
     </select>

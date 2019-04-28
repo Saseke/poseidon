@@ -11,7 +11,7 @@ spring:
   profiles:
     active: dev
   redis:
-    host: www.test.com
+    host: www.poseidon.com
     password: ${common.password}
   jackson:
     date-format: yyyy年MM月dd日 HH分ss秒

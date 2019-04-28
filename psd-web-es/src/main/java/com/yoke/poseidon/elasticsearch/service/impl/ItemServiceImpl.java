@@ -5,7 +5,6 @@ import com.yoke.poseidon.elasticsearch.dao.ItemRepository;
 import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
 import com.yoke.poseidon.elasticsearch.service.ItemService;
-import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -99,8 +98,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public List<EsItem> test() {
-	    BulkRequestBuilder
+		return null;
 	}
-
 
 }

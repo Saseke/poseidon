@@ -68,6 +68,13 @@ Poseidon
 
 ![index](./doc/img/cart.png)
 
+
+#### 4.3 订单页
+![index](./doc/img/order.png)
+
+
+#### 4.4 个人中心
+![index](./doc/img/personalCenter.png)
 ## 5. Poseidon构建与运行
 
 ### 5.1 后台搭建
@@ -96,7 +103,7 @@ Poseidon
 
 ### 5.2 前台搭建
 
-[poseidon前台地址]("https://github.com/Saseke/poseidon-front")
+poseidon前台地址: https://github.com/Saseke/poseidon-front
 
 #### 5.2.1 环境的搭建
 
@@ -108,6 +115,6 @@ Poseidon
 * 可直接在`WebStorm`进行二次开发
 
 ## 6 相关链接
-邮箱:  `1538341848@qq.com`
-博客:  http://songmengyuan.me
+* 邮箱:  `1538341848@qq.com`
+* 博客:  http://songmengyuan.me
 

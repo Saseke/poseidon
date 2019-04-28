@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -32,5 +33,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
 	List<String> selectIdsByBuyerIdAndStatus(@NotNull @Param("buyer_id") Long buyerId,
 			@NotNull @Param("status") Integer status);
+
+	List<Map<Integer, Integer>> groupByStatus(@Param("buyer_id") Long buyer_id);
 
 }
