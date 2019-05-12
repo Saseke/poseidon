@@ -23,3 +23,4 @@ psd-web-es/src/test/resources/
 psd-web-member/src/test/
 psd-web-order/src/test/
 psd-web-es/build/*
+psd-web-es/out/*

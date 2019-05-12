@@ -24,10 +24,17 @@ import java.util.Map;
 public interface OrderMapper extends BaseMapper<Order> {
 
 	/**
-	 * 根据买家id 查询所有订单
+	 * 根据买家id
 	 */
 	List<Order> selectByBuyerId(@NotNull @Param("buyer_id") Long buyerId);
 
+	/**
+	 * 根据买家id获取指定状态的订单
+	 * @param page 当前页
+	 * @param buyerId 买家的id
+	 * @param status 订单的状态
+	 * @return 查询得到的订单
+	 */
 	IPage<OrderDto> selectPageByBuyerId(Page page, @Param("buyer_id") Long buyerId,
 			@Param("status") Integer status);
 

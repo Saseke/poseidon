@@ -54,10 +54,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 
 	@Override
 	public List<OrderDto> getByBuyerId(@NotNull Long buyerId, @NotNull Integer op) {
-		/*
-		 * List<OrderDto> ret = convertService
-		 * .convertOrder(orderMapper.selectByBuyerId(buyerId));
-		 */
 		List<OrderDto> ret = convertService.convertOrder(orderMapper.selectList(
 				new QueryWrapper<Order>().eq("buyer_id", buyerId).eq("status", op)));
 		ret.forEach(orderDto -> {
@@ -101,8 +97,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order>
 	}
 
 	@Override
-	public IPage<OrderDto> getPageByBuyerId(@NotNull Long buyerId,
-			@NotNull Integer status, @NotNull long current, @NotNull long size) {
+	public IPage<OrderDto> getPageByBuyerId(Long buyerId, Integer status, long current,
+			long size) {
 		Page page = new Page(current, size);
 		IPage<OrderDto> orderDtoIPage = orderMapper.selectPageByBuyerId(page, buyerId,
 				status);

@@ -34,6 +34,6 @@ public interface ItemService {
 	 */
 	List<EsItem> recommend(String itemId, int page, int size);
 
-	List<EsItem> test();
+	Page<EsItem> test();
 
 }

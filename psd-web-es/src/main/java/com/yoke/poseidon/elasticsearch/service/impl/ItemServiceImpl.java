@@ -5,6 +5,7 @@ import com.yoke.poseidon.elasticsearch.dao.ItemRepository;
 import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
 import com.yoke.poseidon.elasticsearch.service.ItemService;
+import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -68,7 +69,8 @@ public class ItemServiceImpl implements ItemService {
 				.withSort(SortBuilders.fieldSort("sale").order(SortOrder.DESC));
 		NativeSearchQuery query = nativeSearchQueryBuilder.build();
 		LOGGER.info("DSL:{}", query.getQuery().toString());
-		return itemRepository.search(query);
+		return elasticsearchTemplate.queryForPage(query, EsItem.class);
+		// return itemRepository.search(query);
 	}
 
 	@Override
@@ -97,8 +99,15 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<EsItem> test() {
-		return null;
+	public Page<EsItem> test() {
+		MoreLikeThisQueryBuilder moreLikeThisQueryBuilder = QueryBuilders
+				.moreLikeThisQuery(new String[] { "title" }, new String[] { "title" },
+						null);
+		NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+		nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder);
+		NativeSearchQuery query = nativeSearchQueryBuilder.build();
+		LOGGER.info("DSL:{}", query.getQuery().toString());
+		return itemRepository.search(query);
 	}
 
 }

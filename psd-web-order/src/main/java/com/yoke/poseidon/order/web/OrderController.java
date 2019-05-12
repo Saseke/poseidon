@@ -47,13 +47,14 @@ public class OrderController {
 			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "buyerId",
 					value = "买家的id"),
 			@ApiImplicitParam(paramType = "query", dataType = "Integer", name = "status",
-					value = "查询订单的类型: 0为未支付订单,1为支付成功的订单"),
+					value = "查询订单的类型: 0为未支付订单,1为待收,-1为查询所有订单"),
 			@ApiImplicitParam(paramType = "query", dataType = "long", name = "cur",
 					value = "当前页数"),
 			@ApiImplicitParam(paramType = "query", dataType = "long", name = "size",
 					value = "每一页返回的条数") })
-	public Message list(@PathVariable Long buyerId, @PathVariable Integer status,
-			@PathVariable long cur, @PathVariable long size) {
+	public Message list(@PathVariable Long buyerId,
+			@PathVariable(required = false) Integer status, @PathVariable long cur,
+			@PathVariable long size) {
 		return Message.success(orderService.getPageByBuyerId(buyerId, status, cur, size));
 	}
 

@@ -20,7 +20,7 @@ import java.util.Map;
 public interface OrderService extends IService<Order> {
 
 	/**
-	 * 根据买家id获取所有的订单信息
+	 * 根据买家id获取订单信息
 	 */
 	List<OrderDto> getByBuyerId(@NotNull Long buyerId, @NotNull Integer status);
 
@@ -42,8 +42,8 @@ public interface OrderService extends IService<Order> {
 	 * @param size 每页显示的条数
 	 * @return 分页后的数据
 	 */
-	IPage<OrderDto> getPageByBuyerId(@NotNull Long buyerId, @NotNull Integer status,
-			@NotNull long current, @NotNull long size);
+	IPage<OrderDto> getPageByBuyerId(Long buyerId, Integer status, long current,
+			long size);
 
 	/**
 	 * 修改订单的状态

@@ -29,7 +29,7 @@ public class ItemController {
 
 	@GetMapping("")
 	public Message list() {
-		return Message.success(itemService.getAll());
+		return Message.success(itemService.test());
 	}
 
 	@PostMapping("/sync")
