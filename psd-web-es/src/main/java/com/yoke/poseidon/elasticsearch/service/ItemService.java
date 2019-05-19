@@ -32,8 +32,6 @@ public interface ItemService {
 	/**
 	 * 商品推荐
 	 */
-	List<EsItem> recommend(String itemId, int page, int size);
-
-	Page<EsItem> test();
+	Page<EsItem> recommend(List<String> itemIds, int page, int size);
 
 }

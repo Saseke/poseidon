@@ -30,6 +30,11 @@ zuul:
       path: /order/**
       service-id: web-order-service
       strip-prefix: false
+    web-es-service:
+      path: /es/**
+      service-id: web-es-service
+      strip-prefix: false
+
 
 spring:
   profiles:

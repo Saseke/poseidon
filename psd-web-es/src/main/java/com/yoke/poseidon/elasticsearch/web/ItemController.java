@@ -21,15 +21,16 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 
-	@GetMapping("/{key}/{page}/{limit}")
+	@GetMapping("/search/{key}/{page}/{limit}")
 	public Message searchByKey(@PathVariable("key") String key,
 			@PathVariable("page") Integer page, @PathVariable("limit") Integer limit) {
 		return Message.success(itemService.getByKey(key, page - 1, limit));
 	}
 
-	@GetMapping("")
-	public Message list() {
-		return Message.success(itemService.test());
+	@PostMapping("/recommend/{page}/{limit}")
+	public Message recommend(@PathVariable Integer page, @PathVariable Integer limit,
+			@RequestBody List<String> itemIds) {
+		return Message.success(itemService.recommend(itemIds, page - 1, limit));
 	}
 
 	@PostMapping("/sync")

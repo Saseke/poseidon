@@ -1,6 +1,5 @@
 package com.yoke.poseidon.elasticsearch.service.impl;
 
-import com.google.common.collect.Lists;
 import com.yoke.poseidon.elasticsearch.dao.ItemRepository;
 import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import com.yoke.poseidon.elasticsearch.feign.ItemFeign;
@@ -12,7 +11,6 @@ import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +21,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,14 +33,18 @@ public class ItemServiceImpl implements ItemService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
 
-	@Autowired
-	private ItemRepository itemRepository;
+	private final ItemRepository itemRepository;
 
-	@Autowired
-	private ElasticsearchTemplate elasticsearchTemplate;
+	private final ElasticsearchTemplate elasticsearchTemplate;
 
-	@Autowired
-	private ItemFeign itemFeign;
+	private final ItemFeign itemFeign;
+
+	public ItemServiceImpl(ItemRepository itemRepository,
+			ElasticsearchTemplate elasticsearchTemplate, ItemFeign itemFeign) {
+		this.itemRepository = itemRepository;
+		this.elasticsearchTemplate = elasticsearchTemplate;
+		this.itemFeign = itemFeign;
+	}
 
 	@Override
 	public EsItem add(@NonNull EsItem esItem) {
@@ -70,7 +73,6 @@ public class ItemServiceImpl implements ItemService {
 		NativeSearchQuery query = nativeSearchQueryBuilder.build();
 		LOGGER.info("DSL:{}", query.getQuery().toString());
 		return elasticsearchTemplate.queryForPage(query, EsItem.class);
-		// return itemRepository.search(query);
 	}
 
 	@Override
@@ -92,22 +94,27 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<EsItem> recommend(String itemId, int page, int size) {
-		EsItem esItem = getById(itemId);
-		QueryBuilder queryBuilder = QueryBuilders.matchQuery("name", esItem.getName());
-		return Lists.newArrayList(itemRepository.search(queryBuilder));
-	}
-
-	@Override
-	public Page<EsItem> test() {
+	public Page<EsItem> recommend(List<String> itemIds, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		String[] itemCatNames;
+		if (itemIds.size() != 0) {
+			List<EsItem> esItems = itemRepository.findByItemIdIn(itemIds);
+			itemCatNames = esItems.stream().map(EsItem::getItemCatName)
+					.toArray(String[]::new);
+		}
+		else {
+			itemCatNames = new String[] { "手机" };
+		}
+		System.out.println(Arrays.toString(itemCatNames));
 		MoreLikeThisQueryBuilder moreLikeThisQueryBuilder = QueryBuilders
-				.moreLikeThisQuery(new String[] { "title" }, new String[] { "title" },
-						null);
+				.moreLikeThisQuery(new String[] { "itemCatName" }, itemCatNames, null)
+				.minTermFreq(1);
 		NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-		nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder);
+		nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder)
+				.withPageable(pageable)
+				.withSort(SortBuilders.fieldSort("sale").order(SortOrder.DESC));
 		NativeSearchQuery query = nativeSearchQueryBuilder.build();
-		LOGGER.info("DSL:{}", query.getQuery().toString());
-		return itemRepository.search(query);
+		return elasticsearchTemplate.queryForPage(query, EsItem.class);
 	}
 
 }

@@ -75,10 +75,10 @@
             limit #{limit}
         </if>
     </select>
-    <select id="selectById" resultType="com.yoke.poseidon.web.itemShow.entity.ItemCat">
+<!--    <select id="selectById" resultType="com.yoke.poseidon.web.itemShow.entity.ItemCat">
         <include refid="itemCatColumns"/>
-
-    </select>
+            where item_cat_id = #{id}
+    </select>-->
     <select id="selectChildIdsById" resultType="java.lang.Long">
         select item_cat_id
         from poseidon.db_item_cat

@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yoke.poseidon.web.itemShow.dto.ItemDto;
 import com.yoke.poseidon.web.itemShow.entity.Item;
 import com.yoke.poseidon.web.itemShow.event.EventDispatcher;
+import com.yoke.poseidon.web.itemShow.mapper.ItemCatMapper;
 import com.yoke.poseidon.web.itemShow.mapper.ItemMapper;
 import com.yoke.poseidon.web.itemShow.service.ConvertService;
 import com.yoke.poseidon.web.itemShow.service.ItemService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +26,21 @@ import java.util.List;
 public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 		implements ItemService {
 
-	@Autowired
-	private ItemMapper itemMapper;
+	private final ItemMapper itemMapper;
 
-	@Autowired
-	private ConvertService convertService;
+	private final ItemCatMapper itemCatMapper;
 
-	@Autowired
-	private EventDispatcher eventDispatcher;
+	private final ConvertService convertService;
+
+	private final EventDispatcher eventDispatcher;
+
+	public ItemServiceImpl(ItemMapper itemMapper, ItemCatMapper itemCatMapper,
+			ConvertService convertService, EventDispatcher eventDispatcher) {
+		this.itemMapper = itemMapper;
+		this.itemCatMapper = itemCatMapper;
+		this.convertService = convertService;
+		this.eventDispatcher = eventDispatcher;
+	}
 
 	@Override
 	public ItemDto getById(@NonNull String itemId, int intBlob) {
@@ -75,7 +82,11 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 	@Override
 	public List<ItemDto> get() {
 		List<Item> itemList = list(new QueryWrapper<>());
-		return convertService.convertItem(itemList);
+		List<ItemDto> ret = convertService.convertItem(itemList);
+		ret.forEach(itemDto -> {
+			itemDto.setItemCatName(itemCatMapper.selectById(itemDto.getcId()).getName());
+		});
+		return ret;
 	}
 
 	@Override

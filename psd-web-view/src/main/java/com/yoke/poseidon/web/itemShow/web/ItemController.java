@@ -92,7 +92,7 @@ public class ItemController {
 		return failed();
 	}
 
-	// -----------------test--------------------------------
+	// 与es进行同步数据使用
 	@GetMapping(path = "")
 	public List<ItemDto> items() {
 		return itemService.get();

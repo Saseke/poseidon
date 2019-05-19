@@ -1,9 +1,7 @@
 package com.yoke.poseidon.web.itemShow.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yoke.poseidon.web.itemShow.cache.RedisCache;
 import com.yoke.poseidon.web.itemShow.entity.ItemCat;
-import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.NonNull;
 
@@ -17,10 +15,10 @@ import java.util.List;
  * @author ehereal
  * @since 2018-09-20
  */
-//@CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
+// @CacheNamespace(implementation = RedisCache.class, eviction = RedisCache.class)
 public interface ItemCatMapper extends BaseMapper<ItemCat> {
 
-	ItemCat selectById(@NonNull Long id);
+	// ItemCat selectById(@NonNull Long id);
 
 	/**
 	 * 根据分类id查找子分类

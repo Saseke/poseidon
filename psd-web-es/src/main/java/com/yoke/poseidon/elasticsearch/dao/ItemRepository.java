@@ -19,4 +19,6 @@ public interface ItemRepository extends ElasticsearchRepository<EsItem, String> 
 
 	EsItem findByItemId(String itemId);
 
+	List<EsItem> findByItemIdIn(List<String> itemIds);
+
 }

@@ -6,9 +6,12 @@
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 ###
 
-POST http://localhost:8900/es/sync
+GET http://localhost:8900/es/recommend/1/10
 Content-Type: application/json
 
-{}
+
+###
+POST http://localhost:8900/es/sync
+Content-Type: application/json
 
 ###
