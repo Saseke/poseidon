@@ -19,10 +19,10 @@ public class CodeGeneration {
 		// 全局配置
 		GlobalConfig gc = new GlobalConfig();
 		gc.setOutputDir(
-				"/media/code/program/java/poseidon/poseidon/psd-web-es/src/main/java");
+				"/media/code/program/java/poseidon/poseidon/psd-web-view/src/main/java");
 		gc.setFileOverride(true);
 		gc.setActiveRecord(false);// 不需要ActiveRecord特性的请改为false
-		gc.setEnableCache(true);// XML 二级缓存
+		gc.setEnableCache(false);// XML 二级缓存
 		gc.setBaseResultMap(true);// XML ResultMap
 		gc.setBaseColumnList(false);// XML columList
 		gc.setAuthor("yoke");// 作者
@@ -49,7 +49,8 @@ public class CodeGeneration {
 		StrategyConfig strategy = new StrategyConfig();
 		strategy.setTablePrefix("db_");// 此处可以修改为您的表前缀
 		strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-		strategy.setInclude("db_item_purchase_log");
+		strategy.setInclude("db_item_attribute_name", "db_item_attribute_value",
+				"db_item_sku");
 		strategy.setSuperServiceClass(null);
 		strategy.setSuperServiceImplClass(null);
 		strategy.setSuperMapperClass(null);
@@ -57,7 +58,7 @@ public class CodeGeneration {
 
 		// 包配置
 		PackageConfig pc = new PackageConfig();
-		pc.setParent("com.yoke.poseidon.elasticsearch");
+		pc.setParent("com.yoke.poseidon.web.itemShow");
 		pc.setController("web");
 		pc.setService("service");
 		pc.setServiceImpl("serviceImpl");
