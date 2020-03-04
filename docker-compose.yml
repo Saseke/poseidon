@@ -1,0 +1,100 @@
+version: '3'
+
+services:
+  eureka-service:
+    build:
+      context: ./psd-discovery
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+  gateway-service:
+    build:
+      context: ./psd-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8769:8769"
+    depends_on:
+      - odrder-service
+      - cart-service
+      - view-service
+      - eureka-service
+  odrder-service:
+    build:
+      context: ./psd-web-order
+      dockerfile: Dockerfile
+    env_file:
+      - config.env
+    ports:
+      - "9100:9100"
+    depends_on:
+      - eureka-service
+      - mysql
+  cart-service:
+    build:
+      context: ./psd-web-shop-cart
+      dockerfile: Dockerfile
+    env_file:
+      - config.env
+    ports:
+      - "8090:8090"
+    depends_on:
+      - eureka-service
+      - mysql
+  view-service:
+    build:
+      context: ./psd-web-view
+      dockerfile: Dockerfile
+    env_file:
+      - config.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-service
+      - mysql
+  mysql:
+    image: mysql
+    container_name: mysql-server
+    env_file:
+      - config.env
+    volumes:
+      - "/Users/yoke/mysqlDB:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+  elasticsearch:
+    image: elasticsearch:6.8.5
+    container_name: elasticsearch
+    environment:
+      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+      - "discovery.type=single-node" #以单一节点模式启动
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+    volumes:
+      - "$HOME/esData/data:/usr/share/elasticsearch/data"
+      - "$HOME/esData/plugins:/usr/share/elasticsearch/plugins"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: always
+  elasticsearch-head5:
+    image: mobz/elasticsearch-head:5
+    ports:
+      - "9100:9100"
+  kibana:
+    image: kibana:6.4.0
+    container_name: kibana
+    links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    environment:
+      - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
+    ports:
+      - "5601:5601"
+  logstash:
+    image: logstash:6.4.0
+    container_name: logstash
+    depends_on:
+      - elasticsearch #kibana在elasticsearch启动之后再启动
+    links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+    ports:
+      - "4560:4560"

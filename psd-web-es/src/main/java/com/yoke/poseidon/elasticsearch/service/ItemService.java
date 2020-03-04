@@ -4,6 +4,7 @@ import com.yoke.poseidon.elasticsearch.entity.EsItem;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.NonNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -33,5 +34,10 @@ public interface ItemService {
 	 * 商品推荐
 	 */
 	Page<EsItem> recommend(List<String> itemIds, int page, int size);
+
+	/**
+	 * 查询指定价格范围内的商品
+	 */
+	public Page<EsItem> queryPriceRange(BigDecimal price1, BigDecimal price2, int page, int size);
 
 }

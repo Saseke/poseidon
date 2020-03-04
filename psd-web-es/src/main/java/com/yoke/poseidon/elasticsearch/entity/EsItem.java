@@ -2,6 +2,8 @@ package com.yoke.poseidon.elasticsearch.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,6 +20,7 @@ public class EsItem implements Serializable {
 	@Id
 	private String itemId;
 
+	@Field(type = FieldType.Text, analyzer = "ik_max_word")
 	private String name;
 
 	private Long cId;
@@ -142,12 +145,10 @@ public class EsItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EsItem{" + "itemId='" + itemId + '\'' + ", name='" + name + '\''
-				+ ", cId=" + cId + ", itemCatName='" + itemCatName + '\''
-				+ ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", limitNum="
-				+ limitNum + ", image='" + image + '\'' + ", remark='" + remark + '\''
-				+ ", description='" + description + '\'' + ", sortOrder=" + sortOrder
-				+ ", sale=" + sale + '}';
+		return "EsItem{" + "itemId='" + itemId + '\'' + ", name='" + name + '\'' + ", cId=" + cId + ", itemCatName='"
+				+ itemCatName + '\'' + ", sellPoint='" + sellPoint + '\'' + ", price=" + price + ", limitNum="
+				+ limitNum + ", image='" + image + '\'' + ", remark='" + remark + '\'' + ", description='" + description
+				+ '\'' + ", sortOrder=" + sortOrder + ", sale=" + sale + '}';
 	}
 
 }

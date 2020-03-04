@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for osx10.13 (x86_64)
 --
--- Host: www.test.com    Database: poseidon
+-- Host: test    Database: poseidon
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `db_address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_address` (
   `address_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(4) DEFAULT NULL,
@@ -48,7 +48,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_item` (
   `item_id` varchar(200) NOT NULL,
   `name` varchar(200) DEFAULT NULL COMMENT '商品名称',
@@ -69,6 +69,7 @@ CREATE TABLE `db_item` (
   `new_status` int(1) DEFAULT NULL COMMENT '是否是新品,1->新品,0->不是新品',
   `recommand_status` int(1) DEFAULT NULL COMMENT '是否推荐,1->推荐,0->不推荐',
   `verify_status` int(1) DEFAULT NULL COMMENT '审核状态,1->审核通过,0->审核不通过',
+  `sale` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   KEY `db_item_c_id_index` (`c_id`),
   KEY `db_item_status_index` (`status`),
@@ -82,34 +83,60 @@ CREATE TABLE `db_item` (
 
 LOCK TABLES `db_item` WRITE;
 /*!40000 ALTER TABLE `db_item` DISABLE KEYS */;
-INSERT INTO `db_item` VALUES ('AGVERFERVE','小米游戏本','让你在游戏的世界里恣意闯荡，亦可在游戏之外更加专注极致地创作，这是我们的初衷。为此，我们邀请多\n领域的业内专家，从配置、散热，到键盘、屏幕、音效等进行了系统级的重塑，历经两年，终于将这款小米\n游戏本呈现给你。',6399.00,100,80,'http://39.105.59.55:9999/img/pms_1533266333.04566853!200x200.jpg',8,1,'2018-12-23 01:15:50','2018-12-23 01:15:51',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BHTRTGVR','红米Note 5','迄今拍照最好的红米手机*，1.4μm超大像素，暗光拍照更清晰。Dual PD 双核对焦，\n让你更快地抓拍精彩瞬间。',1000.00,100,80,'http://39.105.59.55:9999/img/pms_1521164686.19516467!200x200.jpg',22,1,'2018-11-06 15:19:34','2018-11-06 15:19:34',16,NULL,'desc',NULL,NULL,NULL,NULL,NULL),('BMRTGVFSD','红米6 Pro','AI双摄，高颜值大容量',869.00,100,80,'http://39.105.59.55:9999/img/pms_1529635747.42979757!220x220.jpg',22,1,'2018-11-06 15:15:03','2018-11-06 15:15:04',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BNRWRVBSFV','小米笔记本Pro 15.6″','最高配备第八代英特尔® 酷睿™ i7处理器 ，无锁4核8线程，最大频率达4.0GHz，性能较上一代提升40%。\n强大而高效的多任务处理能力，让你近乎实时地创建、编辑和共享图形渲染及视频内容。',6299.00,100,80,'http://39.105.59.55:9999/img/pms_1505897592.73836006!200x200.jpg',8,1,'2018-12-23 01:12:19','2018-12-23 01:12:20',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRGVDSVSD','红米S2','前置1600万 智能美拍｜后置1200万 AI 双摄\n骁龙625 八核处理器｜“杨柳腰” 纤薄机身\n\n',999.00,100,80,'http://39.105.59.55:9999/img/pms_1529635751.98631070!200x200.jpg',22,1,'2018-11-06 15:21:14','2018-11-06 15:21:14',16,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRTGFVSD','米粉卡 日租卡','「1元日租卡」每天800M，流量刚刚好\n\n「任性用日租卡」3元任性用，真正吃到饱',3.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:23:04','2018-11-06 15:23:05',17,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRWTGVRF','小米电视4C 50英寸','4K HDR 人工智能语音电视',1899.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:55:40','2018-11-03 12:55:41',2,'',NULL,NULL,NULL,NULL,NULL,NULL),('BSDFVDSVFD','小米移动 电话卡','吃到饱 联通版：月使用流量达到20GB上网速率限速至1Mbps，累计达到100GB后，上网速率限速至256Kbps，次月恢复4G上网速率；\n吃到饱 电信版：可办理特惠语音包，国内拨打低至0.06元 / 分钟\n任我行 联通版：可办理特惠流量包，国内流量低至0.05元 / MB?',30.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:23:52','2018-11-06 15:23:52',18,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GHROTGTWTW','小米8 屏幕指纹版','压感屏幕指纹,透明玻璃机身',3199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:55:23','2018-10-28 07:58:39',3,'新品',NULL,NULL,NULL,NULL,NULL,NULL),('GJROTGJROTIG','小米6X','轻薄美观的拍照手机 / 前置2000万“治愈系”自拍 / 后置2000万 AI双摄 / 标配骁龙660 AIE处理器',1649.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-03 12:33:07','2018-11-03 12:33:09',7,'',NULL,NULL,NULL,NULL,NULL,NULL),('GRJTOGVJRFGOV','小米笔记本Air 13.3\"','全新升级：第八代四核处理器\n',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:58:14','2018-11-03 12:58:18',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GROTIGJROTIGJROTI','小米MIX 3','磁动力滑盖全面屏',3299.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 08:59:22','2018-10-27 11:55:24',1,'新品',NULL,NULL,NULL,NULL,NULL,NULL),('GRTOGPADCS','小米8 SE','骁龙710全球首发',1699.00,100,80,'http://39.105.59.55:9999/img/pms_1527685277.65255600!220x220.jpg',22,1,'2018-10-27 11:59:07','2018-10-27 11:59:08',5,'',NULL,NULL,NULL,NULL,NULL,NULL),('HBNTHBGF','米家LED吸顶灯','Φ450mm 适合25m²以内 | 色温亮度可调 | 墙壁开关切换光线 | 蓝牙网关 | 防尘防虫 | 快速安装',399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:02:22','2018-11-03 13:02:23',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('MARADSAi','小米笔记本Air 12.5\"  ','在设计小米笔记本时，设计师做了一个大胆的决定：去掉笔记本正面的Logo。这个设计虽然冒险，却换来了一个优雅的、干净的表面，高度简洁的设计美学使笔记本从一个产品，成为了一件艺术品。什么都没有的正面，会不会没个性？美学家认为这恰恰提供了个性的无限可能：没有 Logo，正意味着它的每个角落都可以被装饰。还有更多艺术家机身贴纸，陆续推出。',3599.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:13:56','2018-12-23 01:13:57',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('MWTTTTGFR','小米笔记本Air 13.3\"','全新升级：第八代四核处理器\n5399元起',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',6,1,'2018-12-23 01:08:28','2018-12-23 01:08:29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PBGRTBVFGD','红米6A','12nm高性能处理器｜5.45\"小巧全面屏｜1300万高清相机｜“小杨柳腰”机身',2300.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:18:08','2018-11-06 15:18:09',15,'',NULL,NULL,NULL,NULL,NULL,NULL),('PDASJSDASCS','小米笔记本Air 13.3\"','只需一个 GeForce®️ MX150 独立显卡和 2GB GDDR5 高速显存，让你对\n轻薄本的游戏性能完全改观。43%的性能提升，流畅运行大场景游戏。',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:14:47','2018-12-23 01:14:48',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PDCASDCSD','小米MIX 2','得益于不断进化的全面屏科技，使得屏幕底边革命性地再次缩短 12%，\n为 18:9 全面屏带来更纯粹的观看体验。点亮的瞬间，你会发现这就是全面屏真正的样子。',3000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:13:47','2018-11-06 15:13:48',12,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PFREWRVE','米家电水壶','一杯水，是一家人的安心',99.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:00:16','2018-11-03 13:00:18',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PHGRTEGRTG','小米电视4A 43英寸 青春版','老人小孩都会用的人工智能语音电视',1399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:54:27','2018-11-03 12:54:28',1,'',NULL,NULL,NULL,NULL,NULL,NULL),('PIJOIJOIJ','小米Max 3','巨无霸超级全面屏',1699.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 12:00:10','2018-10-27 12:00:11',6,'',NULL,NULL,NULL,NULL,NULL,NULL),('PQRFERFEFVEDRF','黑鲨游戏手机 Helo','双液冷 更能打',2000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:09:21','2018-11-06 15:09:22',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PTGBRVDFVDF','小米MIX 2S','骁龙 845 旗舰处理器 | AI 双摄相机 | 艺术品般的陶瓷机身',3900.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:07:00','2018-11-06 15:07:01',9,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QEWQEDFDF','小米净水器','大流量直出纯净水，健康家庭必备',1999.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:37:59','2018-11-03 13:38:00',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QEWRFRFERFER','小米8','超轻四曲面，前置2000万',2499.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:56:59','2018-10-27 11:57:01',4,'',NULL,NULL,NULL,NULL,NULL,NULL),('QFCAPAK','小米笔记本 15.6\"','全面均衡的国民轻薄本\n第八代酷睿™ 四核处理器',4199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:09:57','2018-12-23 01:09:58',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QRERFRRFCAS','黑鲨游戏手机','液冷更快  一键战力觉醒',2300.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:12:21','2018-11-06 15:12:22',11,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBHGRTGVRFV','红米6','红米6\nAI双摄 小屏高性能\n后置1200万 AI双摄 / 12nm八核处理器 / 5.45”高清全面屏 / AI 人脸解锁',2000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:16:19','2018-11-06 15:16:20',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBRWTFVSDFV','云服务空间月卡','小米云服务空间月卡',100.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:24:50','2018-11-06 15:24:51',19,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBVRTGBVRVRF','小米笔记本 15.6','全面均衡的国民轻薄本\n第八代酷睿™ 四核处理器',4199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:57:07','2018-11-03 12:57:08',3,'新品',NULL,NULL,NULL,NULL,NULL,NULL),('TGTRGJRLTGJR','小米8 青春版','潮流镜面渐变色,AI裸妆美颜',1399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:37:52','2018-10-27 11:37:53',2,'新品',NULL,NULL,NULL,NULL,NULL,NULL),('TRTGRTGRTGR','小米MAX2','6.44\'\'大屏 / 5300mAh 充电宝级的大电量 / 大像素相机 / 轻薄全金属 / ​4GB 大内存 / 骁龙八核处理器',1699.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-03 12:35:31','2018-11-03 12:35:32',7,'',NULL,NULL,NULL,NULL,NULL,NULL),('VAAAEFEFERF','米家空气净化器 Pro','澎湃动力，净化能力更快更强',1499.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:59:08','2018-11-03 12:59:09',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `db_item` VALUES ('AGVERFERVE','小米游戏本','让你在游戏的世界里恣意闯荡，亦可在游戏之外更加专注极致地创作，这是我们的初衷。为此，我们邀请多\n领域的业内专家，从配置、散热，到键盘、屏幕、音效等进行了系统级的重塑，历经两年，终于将这款小米\n游戏本呈现给你。',6399.00,100,80,'http://39.105.59.55:9999/img/pms_1533266333.04566853!200x200.jpg',8,1,'2018-12-23 01:15:50','2018-12-23 01:15:51',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BHTRTGVR','红米Note 5','迄今拍照最好的红米手机*，1.4μm超大像素，暗光拍照更清晰。Dual PD 双核对焦，\n让你更快地抓拍精彩瞬间。',1000.00,100,80,'http://39.105.59.55:9999/img/pms_1521164686.19516467!200x200.jpg',22,1,'2018-11-06 15:19:34','2018-11-06 15:19:34',16,NULL,'desc',NULL,NULL,NULL,NULL,NULL,NULL),('BMRTGVFSD','红米6 Pro','AI双摄，高颜值大容量',869.00,100,80,'http://39.105.59.55:9999/img/pms_1529635747.42979757!220x220.jpg',22,1,'2018-11-06 15:15:03','2018-11-06 15:15:04',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BNRWRVBSFV','小米笔记本Pro 15.6″','最高配备第八代英特尔® 酷睿™ i7处理器 ，无锁4核8线程，最大频率达4.0GHz，性能较上一代提升40%。\n强大而高效的多任务处理能力，让你近乎实时地创建、编辑和共享图形渲染及视频内容。',6299.00,100,80,'http://39.105.59.55:9999/img/pms_1505897592.73836006!200x200.jpg',8,1,'2018-12-23 01:12:19','2018-12-23 01:12:20',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRGVDSVSD','红米S2','前置1600万 智能美拍｜后置1200万 AI 双摄\n骁龙625 八核处理器｜“杨柳腰” 纤薄机身\n\n',999.00,100,80,'http://39.105.59.55:9999/img/pms_1529635751.98631070!200x200.jpg',22,1,'2018-11-06 15:21:14','2018-11-06 15:21:14',16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRTGFVSD','米粉卡 日租卡','「1元日租卡」每天800M，流量刚刚好\n\n「任性用日租卡」3元任性用，真正吃到饱',3.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:23:04','2018-11-06 15:23:05',17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BRWTGVRF','小米电视4C 50英寸','4K HDR 人工智能语音电视',1899.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:55:40','2018-11-03 12:55:41',2,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('BSDFVDSVFD','小米移动 电话卡','吃到饱 联通版：月使用流量达到20GB上网速率限速至1Mbps，累计达到100GB后，上网速率限速至256Kbps，次月恢复4G上网速率；\n吃到饱 电信版：可办理特惠语音包，国内拨打低至0.06元 / 分钟\n任我行 联通版：可办理特惠流量包，国内流量低至0.05元 / MB?',30.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:23:52','2018-11-06 15:23:52',18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GHROTGTWTW','小米8 屏幕指纹版','压感屏幕指纹,透明玻璃机身',3199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:55:23','2018-10-28 07:58:39',3,'新品',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GJROTGJROTIG','小米6X','轻薄美观的拍照手机 / 前置2000万“治愈系”自拍 / 后置2000万 AI双摄 / 标配骁龙660 AIE处理器',1649.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-03 12:33:07','2018-11-03 12:33:09',7,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GRJTOGVJRFGOV','小米笔记本Air 13.3\"','全新升级：第八代四核处理器\n',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:58:14','2018-11-03 12:58:18',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GROTIGJROTIGJROTI','小米MIX 3','磁动力滑盖全面屏',3299.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 08:59:22','2018-10-27 11:55:24',1,'新品',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('GRTOGPADCS','小米8 SE','骁龙710全球首发',1699.00,100,80,'http://39.105.59.55:9999/img/pms_1527685277.65255600!220x220.jpg',22,1,'2018-10-27 11:59:07','2018-10-27 11:59:08',5,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('HBNTHBGF','米家LED吸顶灯','Φ450mm 适合25m²以内 | 色温亮度可调 | 墙壁开关切换光线 | 蓝牙网关 | 防尘防虫 | 快速安装',399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:02:22','2018-11-03 13:02:23',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('MARADSAi','小米笔记本Air 12.5\"  ','在设计小米笔记本时，设计师做了一个大胆的决定：去掉笔记本正面的Logo。这个设计虽然冒险，却换来了一个优雅的、干净的表面，高度简洁的设计美学使笔记本从一个产品，成为了一件艺术品。什么都没有的正面，会不会没个性？美学家认为这恰恰提供了个性的无限可能：没有 Logo，正意味着它的每个角落都可以被装饰。还有更多艺术家机身贴纸，陆续推出。',3599.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:13:56','2018-12-23 01:13:57',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('MWTTTTGFR','小米笔记本Air 13.3\"','全新升级：第八代四核处理器\n5399元起',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',6,1,'2018-12-23 01:08:28','2018-12-23 01:08:29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PBGRTBVFGD','红米6A','12nm高性能处理器｜5.45\"小巧全面屏｜1300万高清相机｜“小杨柳腰”机身',2300.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:18:08','2018-11-06 15:18:09',15,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PDASJSDASCS','小米笔记本Air 13.3\"','只需一个 GeForce®️ MX150 独立显卡和 2GB GDDR5 高速显存，让你对\n轻薄本的游戏性能完全改观。43%的性能提升，流畅运行大场景游戏。',5399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:14:47','2018-12-23 01:14:48',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PDCASDCSD','小米MIX 2','得益于不断进化的全面屏科技，使得屏幕底边革命性地再次缩短 12%，\n为 18:9 全面屏带来更纯粹的观看体验。点亮的瞬间，你会发现这就是全面屏真正的样子。',3000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:13:47','2018-11-06 15:13:48',12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PFREWRVE','米家电水壶','一杯水，是一家人的安心',99.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:00:16','2018-11-03 13:00:18',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PHGRTEGRTG','小米电视4A 43英寸 青春版','老人小孩都会用的人工智能语音电视',1399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:54:27','2018-11-03 12:54:28',1,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PIJOIJOIJ','小米Max 3','巨无霸超级全面屏',1699.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 12:00:10','2018-10-27 12:00:11',6,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PQRFERFEFVEDRF','黑鲨游戏手机 Helo','双液冷 更能打',2000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:09:21','2018-11-06 15:09:22',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('PTGBRVDFVDF','小米MIX 2S','骁龙 845 旗舰处理器 | AI 双摄相机 | 艺术品般的陶瓷机身',3900.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:07:00','2018-11-06 15:07:01',9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QEWQEDFDF','小米净水器','大流量直出纯净水，健康家庭必备',1999.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 13:37:59','2018-11-03 13:38:00',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QEWRFRFERFER','小米8','超轻四曲面，前置2000万',2499.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:56:59','2018-10-27 11:57:01',4,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QFCAPAK','小米笔记本 15.6\"','全面均衡的国民轻薄本\n第八代酷睿™ 四核处理器',4199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-12-23 01:09:57','2018-12-23 01:09:58',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('QRERFRRFCAS','黑鲨游戏手机','液冷更快  一键战力觉醒',2300.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:12:21','2018-11-06 15:12:22',11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBHGRTGVRFV','红米6','红米6\nAI双摄 小屏高性能\n后置1200万 AI双摄 / 12nm八核处理器 / 5.45”高清全面屏 / AI 人脸解锁',2000.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:16:19','2018-11-06 15:16:20',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBRWTFVSDFV','云服务空间月卡','小米云服务空间月卡',100.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-06 15:24:50','2018-11-06 15:24:51',19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TBVRTGBVRVRF','小米笔记本 15.6','全面均衡的国民轻薄本\n第八代酷睿™ 四核处理器',4199.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:57:07','2018-11-03 12:57:08',3,'新品',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TGTRGJRLTGJR','小米8 青春版','潮流镜面渐变色,AI裸妆美颜',1399.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-10-27 11:37:52','2018-10-27 11:37:53',2,'新品',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('TRTGRTGRTGR','小米MAX2','6.44\'\'大屏 / 5300mAh 充电宝级的大电量 / 大像素相机 / 轻薄全金属 / ​4GB 大内存 / 骁龙八核处理器',1699.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',22,1,'2018-11-03 12:35:31','2018-11-03 12:35:32',7,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL),('VAAAEFEFERF','米家空气净化器 Pro','澎湃动力，净化能力更快更强',1499.00,100,80,'http://39.105.59.55:9999/img/pms.jpg',8,1,'2018-11-03 12:59:08','2018-11-03 12:59:09',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `db_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `db_item_attribute`
+-- Table structure for table `db_item_attribute_name`
 --
 
-DROP TABLE IF EXISTS `db_item_attribute`;
+DROP TABLE IF EXISTS `db_item_attribute_name`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `db_item_attribute` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) DEFAULT NULL,
-  `input_list` varchar(255) DEFAULT NULL COMMENT '不同类型之间用,分隔开',
-  `sort` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='商品参数表';
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `db_item_attribute_name` (
+  `attribute_name_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) DEFAULT NULL,
+  `c_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`attribute_name_id`),
+  UNIQUE KEY `db_item_attribute_name_attribute_name_id_uindex` (`attribute_name_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `db_item_attribute`
+-- Dumping data for table `db_item_attribute_name`
 --
 
-LOCK TABLES `db_item_attribute` WRITE;
-/*!40000 ALTER TABLE `db_item_attribute` DISABLE KEYS */;
-INSERT INTO `db_item_attribute` VALUES (1,'尺寸','M,X,XL,2XL,3XL,4XL',0),(2,'颜色','黑色,红色,白色,粉色',0),(3,'风格','嘻哈风格,基础大众,商务正装',0),(4,'适用人群','老年,青年,中年',0),(5,'容量','16G,32G,64G,128G',0),(6,'屏幕尺寸','9.7,10.3,13.3,14,15.6',0),(7,'系统','Android,IOS',0),(8,'电池容量','',0);
-/*!40000 ALTER TABLE `db_item_attribute` ENABLE KEYS */;
+LOCK TABLES `db_item_attribute_name` WRITE;
+/*!40000 ALTER TABLE `db_item_attribute_name` DISABLE KEYS */;
+INSERT INTO `db_item_attribute_name` VALUES (1,'内存',1),(2,'存储',1),(3,'颜色',1),(4,'处理器',1);
+/*!40000 ALTER TABLE `db_item_attribute_name` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `db_item_attribute_value`
+--
+
+DROP TABLE IF EXISTS `db_item_attribute_value`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `db_item_attribute_value` (
+  `attribute_value_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `attribute_name_id` bigint(20) DEFAULT NULL,
+  `attribute_value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`attribute_value_id`),
+  UNIQUE KEY `db_item_attribute_value_attribute_value_id_uindex` (`attribute_value_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `db_item_attribute_value`
+--
+
+LOCK TABLES `db_item_attribute_value` WRITE;
+/*!40000 ALTER TABLE `db_item_attribute_value` DISABLE KEYS */;
+INSERT INTO `db_item_attribute_value` VALUES (1,1,'6GB'),(2,1,'8GB'),(3,2,'64GB'),(4,2,'128GB'),(5,3,'黄色'),(6,3,'蓝色'),(7,4,'晓龙710'),(8,4,'骁龙828');
+/*!40000 ALTER TABLE `db_item_attribute_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -118,7 +145,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_item_cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_item_cart` (
   `item_cart_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `member_id` bigint(20) DEFAULT NULL,
@@ -154,7 +181,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_item_cat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_item_cat` (
   `item_cat_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -186,7 +213,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_item_cat_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_item_cat_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `item_id` varchar(200) DEFAULT NULL,
@@ -214,7 +241,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_item_img`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_item_img` (
   `id` varchar(200) NOT NULL,
   `item_id` varchar(200) DEFAULT NULL,
@@ -236,12 +263,69 @@ LOCK TABLES `db_item_img` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `db_item_purchase_log`
+--
+
+DROP TABLE IF EXISTS `db_item_purchase_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `db_item_purchase_log` (
+  `item_purchase_log_id` varchar(255) DEFAULT NULL,
+  `member_id` bigint(20) DEFAULT NULL,
+  `item_id` varchar(255) DEFAULT NULL,
+  `item_name` varchar(255) DEFAULT NULL,
+  `item_cat_id` bigint(20) DEFAULT NULL,
+  `item_cat_name` varchar(255) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `modify_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `db_item_purchase_log`
+--
+
+LOCK TABLES `db_item_purchase_log` WRITE;
+/*!40000 ALTER TABLE `db_item_purchase_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `db_item_purchase_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `db_item_sku`
+--
+
+DROP TABLE IF EXISTS `db_item_sku`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `db_item_sku` (
+  `item_sku_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `item_id` varchar(255) DEFAULT NULL,
+  `attributes` text,
+  `price` decimal(10,2) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL COMMENT '库存',
+  PRIMARY KEY (`item_sku_id`),
+  UNIQUE KEY `db_item_sku_item_sku_id_uindex` (`item_sku_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `db_item_sku`
+--
+
+LOCK TABLES `db_item_sku` WRITE;
+/*!40000 ALTER TABLE `db_item_sku` DISABLE KEYS */;
+INSERT INTO `db_item_sku` VALUES (1,'BHTRTGVR','1:1;2:3;3:5;4:7',1500.00,NULL,100),(2,'BHTRTGVR','1:2;2:4;3:6;4:8',2000.00,NULL,100);
+/*!40000 ALTER TABLE `db_item_sku` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `db_log`
 --
 
 DROP TABLE IF EXISTS `db_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_log` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -272,7 +356,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_member` (
   `member_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
@@ -308,7 +392,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_order` (
   `order_id` varchar(50) NOT NULL,
   `payment` decimal(10,2) DEFAULT NULL COMMENT '实付金额',
@@ -352,7 +436,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_order_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_order_item` (
   `id` varchar(20) NOT NULL,
   `item_id` varchar(20) DEFAULT NULL,
@@ -384,7 +468,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_order_shipping`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_order_shipping` (
   `order_id` varchar(50) NOT NULL,
   `receiver_name` varchar(20) DEFAULT NULL COMMENT '收货人名称',
@@ -414,7 +498,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_panel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_panel` (
   `panel_id` int(11) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -446,7 +530,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_panel_content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_panel_content` (
   `panel_content_id` int(11) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT NULL,
@@ -476,7 +560,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -500,7 +584,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -524,7 +608,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_role_perm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_role_perm` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `permission_id` int(11) DEFAULT NULL,
@@ -548,7 +632,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_shop_cart_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_shop_cart_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `shop_cart_id` bigint(20) DEFAULT NULL,
@@ -574,7 +658,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `db_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `db_user` (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created` datetime DEFAULT NULL,
@@ -610,4 +694,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-05 14:21:34
+-- Dump completed on 2020-02-29 10:32:34

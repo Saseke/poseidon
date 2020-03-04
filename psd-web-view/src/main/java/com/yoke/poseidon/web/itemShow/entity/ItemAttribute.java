@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ItemAttribute implements Serializable {
 
-    private List<Map<Long,Long>> attributes;
+    private List<Map<Long, Long>> attributes;
     private BigDecimal price;
 
     public List<Map<Long, Long>> getAttributes() {

@@ -1,14 +1,16 @@
 package com.yoke.poseidon.web.itemShow.entity;
 
 import java.math.BigDecimal;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yoke
@@ -90,12 +92,12 @@ public class ItemSku implements Serializable {
     @Override
     public String toString() {
         return "ItemSku{" +
-        "itemSkuId=" + itemSkuId +
-        ", itemId=" + itemId +
-        ", attributes=" + attributes +
-        ", price=" + price +
-        ", cost=" + cost +
-        ", stock=" + stock +
-        "}";
+                "itemSkuId=" + itemSkuId +
+                ", itemId=" + itemId +
+                ", attributes=" + attributes +
+                ", price=" + price +
+                ", cost=" + cost +
+                ", stock=" + stock +
+                "}";
     }
 }

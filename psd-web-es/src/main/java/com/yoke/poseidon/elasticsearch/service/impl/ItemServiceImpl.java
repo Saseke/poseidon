@@ -7,6 +7,7 @@ import com.yoke.poseidon.elasticsearch.service.ItemService;
 import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class ItemServiceImpl implements ItemService {
 
 	private final ItemFeign itemFeign;
 
-	public ItemServiceImpl(ItemRepository itemRepository,
-			ElasticsearchTemplate elasticsearchTemplate, ItemFeign itemFeign) {
+	public ItemServiceImpl(ItemRepository itemRepository, ElasticsearchTemplate elasticsearchTemplate,
+			ItemFeign itemFeign) {
 		this.itemRepository = itemRepository;
 		this.elasticsearchTemplate = elasticsearchTemplate;
 		this.itemFeign = itemFeign;
@@ -64,8 +66,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Page<EsItem> getByKey(String keyWord, int page, int limit) {
 		Pageable pageable = PageRequest.of(page, limit);
-		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.should(QueryBuilders.matchQuery("name", keyWord))
+		QueryBuilder queryBuilder = QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name", keyWord))
 				.should(QueryBuilders.matchQuery("sellPoint", keyWord));
 		NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
 		nativeSearchQueryBuilder.withQuery(queryBuilder).withPageable(pageable)
@@ -99,22 +100,29 @@ public class ItemServiceImpl implements ItemService {
 		String[] itemCatNames;
 		if (itemIds.size() != 0) {
 			List<EsItem> esItems = itemRepository.findByItemIdIn(itemIds);
-			itemCatNames = esItems.stream().map(EsItem::getItemCatName)
-					.toArray(String[]::new);
+			itemCatNames = esItems.stream().map(EsItem::getItemCatName).toArray(String[]::new);
 		}
 		else {
 			itemCatNames = new String[] { "手机" };
 		}
 		System.out.println(Arrays.toString(itemCatNames));
 		MoreLikeThisQueryBuilder moreLikeThisQueryBuilder = QueryBuilders
-				.moreLikeThisQuery(new String[] { "itemCatName" }, itemCatNames, null)
-				.minTermFreq(1);
+				.moreLikeThisQuery(new String[] { "itemCatName" }, itemCatNames, null).minTermFreq(1);
 		NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-		nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder)
-				.withPageable(pageable)
+		nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder).withPageable(pageable)
 				.withSort(SortBuilders.fieldSort("sale").order(SortOrder.DESC));
 		NativeSearchQuery query = nativeSearchQueryBuilder.build();
-		return elasticsearchTemplate.queryForPage(query, EsItem.class);
+		// return elasticsearchTemplate.queryForPage(query, EsItem.class);
+		return itemRepository.search(query);
+	}
+
+	@Override
+	public Page<EsItem> queryPriceRange(BigDecimal price1, BigDecimal price2, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("price").gt(price1).lt(price2);
+		NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(rangeQueryBuilder).withPageable(pageable)
+				.build();
+		return itemRepository.search(query);
 	}
 
 }

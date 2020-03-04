@@ -3,11 +3,12 @@ package com.yoke.poseidon.web.itemShow.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yoke
@@ -56,9 +57,9 @@ public class ItemAttributeValue implements Serializable {
     @Override
     public String toString() {
         return "ItemAttributeValue{" +
-        "attributeValueId=" + attributeValueId +
-        ", attributeNameId=" + attributeNameId +
-        ", attributeValue=" + attributeValue +
-        "}";
+                "attributeValueId=" + attributeValueId +
+                ", attributeNameId=" + attributeNameId +
+                ", attributeValue=" + attributeValue +
+                "}";
     }
 }

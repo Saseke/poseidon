@@ -1,8 +1,8 @@
-db:
-  server: www.test.com
-  port: 13306
-  username: root
-  password: ${common.password}
+#db:
+#  server: localhost
+#  port: 3306
+#  username: root
+#  password: 123456
 eureka:
   client:
     serviceUrl:

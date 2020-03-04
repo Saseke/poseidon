@@ -9,8 +9,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
   # mybatis plus
-  profiles:
-    active: dev
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
@@ -40,3 +38,12 @@ server:
 logging:
   level:
     com.yoke.poseidon.member.mapper: debug
+db:
+  server: localhost
+  port: 3306
+  username: root
+  password: 123456
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

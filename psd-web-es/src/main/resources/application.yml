@@ -3,9 +3,10 @@ ribbon.ReadTimeout: 120000
 ribbon.ConnectTimeout: 30000
 server:
   port: 8900
+  profiles:
+    active: dev
 spring:
   data:
     elasticsearch:
       cluster-nodes: 127.0.0.1:9300
-  profiles:
-    active: dev
+      cluster-name: elasticsearch
